@@ -9,6 +9,12 @@ interface Colors {
   barBlue: string;
   red: string;
 }
+
+interface FontFamilies {
+  teko: string;
+  exo: string;
+}
+
 interface Gradients {
   redOrange: string;
 }
@@ -23,6 +29,11 @@ export const colors: Colors = {
   lightBlue: "#00bce1",
   barBlue: "#a2bffd",
   red: "#e74c3c",
+};
+
+export const fontFamilies: FontFamilies = {
+  teko: "'Teko', sans-serif",
+  exo: "'Exo', sans-serif",
 };
 
 export const gradients: Gradients = {
