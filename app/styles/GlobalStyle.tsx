@@ -1,8 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { colors } from "../styles/variables";
 
-// font-family: 'Exo', sans-serif;
-// font-family: 'Teko', sans-serif;
+
 
 const GlobalStyle = createGlobalStyle`
   html {

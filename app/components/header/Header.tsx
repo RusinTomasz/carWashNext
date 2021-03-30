@@ -38,7 +38,6 @@ const Header = () => {
             <AddCarWashLink>+ Dodaj myjnię</AddCarWashLink>
           </Link>
         </FlexWrapper>
-        {/* <MainNav /> */}
       </Container>
     </HeaderContent>
   );
