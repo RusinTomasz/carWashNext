@@ -1,39 +1,46 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "../styles/variables";
+
+// font-family: 'Exo', sans-serif;
+// font-family: 'Teko', sans-serif;
 
 const GlobalStyle = createGlobalStyle`
-  h1,h2,h3,h4,h5,h6 {
-    font-family: 'Montserrat', sans-serif;
+  html {
+    font-size: 10px;
   }
-  h1,h2 {
-    font-weight: 800;
-  }
-  h3,h4,h5,h6 {
-    font-weight: bold;
-  }
+
   h1 {
-    font-size: 48px;
-    line-height: 50px;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 48px;
+    font-family: "Exo", sans-serif;
   }
 
   h2 {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 400;
+    margin: 0;
   }
 
   h3 {
-    font-size: 18px;
-    line-height: 25px;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 48px;
+    margin: 0;
   }
   body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    font-family: "Exo", sans-serif;
+    color: ${colors.default};
   }
   a {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    text-decoration: none;
     display: inline-block;
+    color: ${colors.default};
   }
 `;
 
