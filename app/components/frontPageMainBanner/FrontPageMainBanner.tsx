@@ -29,6 +29,10 @@ const Subtitle = styled.p`
   padding: 0 1.5rem;
 `;
 
+const ContentWrap = styled.div`
+  z-index: 1;
+`;
+
 const FrontPageMainBanner = () => {
   return (
     <FrontPageMainBannerContainer
@@ -36,11 +40,11 @@ const FrontPageMainBanner = () => {
       wrap="wrap"
       alignItems="center"
     >
-      <div>
+      <ContentWrap>
         <Title>Znajdź najlepszą myjnię</Title>
         <Subtitle>W twojej lokalizacji!</Subtitle>
         {/* <Search /> */}
-      </div>
+      </ContentWrap>
       <Image
         className="bg-index"
         src="/img/frontPageMainBanner/main-image-big.jpg"
