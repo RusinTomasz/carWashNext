@@ -8,6 +8,7 @@ import { wrapper } from "../store/store";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import Header from "../app/components/header/Header";
+import Footer from "../app/components/footer/Footer";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -16,6 +17,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
       <Provider store={store}>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </Provider>
     </>
   );
