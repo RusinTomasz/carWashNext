@@ -4,6 +4,7 @@ import React from "react";
 // Styles
 import styled from "styled-components";
 import { colors, fontFamilies } from "../../styles/variables";
+import { maxWidth, breakpoints } from "../../styles/breakpoints";
 import FlexWrapper from "../../styles/shared/FlexWrapper";
 
 const FrontPageMainBannerContainer = styled(FlexWrapper)`
@@ -18,6 +19,20 @@ const Title = styled.h1`
   text-transform: uppercase;
   color: ${colors.white};
   padding: 0 1.5rem;
+  ${maxWidth(breakpoints.lg)} {
+    font-size: 52px;
+    line-height: 58px;
+  }
+  ${maxWidth(breakpoints.md)} {
+    font-size: 42px;
+    line-height: 50px;
+    margin: 1rem 0;
+  }
+  ${maxWidth(breakpoints.sm)} {
+    text-align: center;
+    font-size: 36px;
+    line-height: 40px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -27,10 +42,26 @@ const Subtitle = styled.p`
   text-transform: uppercase;
   color: ${colors.yellow};
   padding: 0 1.5rem;
+
+  ${maxWidth(breakpoints.md)} {
+    margin: 1rem 0;
+  }
+  ${maxWidth(breakpoints.sm)} {
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-top: 0;
+  }
 `;
 
 const ContentWrap = styled.div`
   z-index: 1;
+
+  ${maxWidth(breakpoints.sm)} {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 const FrontPageMainBanner = () => {
