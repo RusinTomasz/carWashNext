@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import FrontPageMainBanner from "../app/components/frontPageMainBanner/FrontPageMainBanner";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
       </Head>
       <main>
         <FrontPageMainBanner />
-        <Link href="/aktualnosci">Aktualnosci</Link>
       </main>
     </>
   );
