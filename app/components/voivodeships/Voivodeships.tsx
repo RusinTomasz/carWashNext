@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Image from "next/image";
 
 //Styles
 import styled from "styled-components";
-import FlexWrapper from "../../styles/shared/FlexWrapper";
 import Container from "../../styles/shared/Container";
 import BasicButton from "../../styles/shared/buttons/BasicButton";
 import { maxWidth, breakpoints } from "../../styles/breakpoints";
