@@ -6,6 +6,9 @@ import styled from "styled-components";
 import FlexWrapper from "../../styles/shared/FlexWrapper";
 import Container from "../../styles/shared/Container";
 
+//Components
+import PromotedItems from "./promotedItems/PromotedItems";
+
 interface ContentWrapProps {
   containerHeight?: number;
 }
@@ -32,7 +35,7 @@ const PromotedFlexWrapper = styled(FlexWrapper)`
   height: 100%;
 `;
 
-function Promoted() {
+const Promoted = () => {
   //Must be implemented
   //   let containerHeight;
   //   if (props.windowWidth > 991) {
@@ -49,10 +52,7 @@ function Promoted() {
       <ContentWrap>
         <PromotedContainer z-index={1}>
           <PromotedFlexWrapper wrap="wrap" alignItems="center">
-            <h1>First Element</h1>
-            <h1>Second Element</h1>
-            <h1>Third Element</h1>
-            {/* <PromotedItems /> */}
+            <PromotedItems promotedItems={["1", "2", "3"]} />
           </PromotedFlexWrapper>
         </PromotedContainer>
         <Image
@@ -65,6 +65,6 @@ function Promoted() {
       </ContentWrap>
     </section>
   );
-}
+};
 
 export default Promoted;

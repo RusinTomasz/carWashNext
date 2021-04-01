@@ -1,12 +1,12 @@
 import React from "react";
 import Logo from "../logo/Logo";
+import Image from "next/image";
 
 // Styles
 import styled from "styled-components";
 import FlexWrapper from "../../styles/shared/FlexWrapper";
 import Container from "../../styles/shared/Container";
 import { maxWidth, breakpoints } from "../../styles/breakpoints";
-import Image from "next/image";
 
 //Components
 import FooterNavigation from "./footerNav/FooterNavigation";

@@ -39,7 +39,7 @@ const Header = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Link href="/">
+          <Link href="/" passHref>
             <a>
               <FlexWrapper alignItems="center">
                 <Logo />
