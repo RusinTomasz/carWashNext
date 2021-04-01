@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../variables";
-import Fonts from "./fonts";
+import Fonts from "../fonts";
 
 interface ActionLinkProps {
   backgroundColor?: "blue" | "red" | "default";

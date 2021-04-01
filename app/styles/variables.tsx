@@ -5,6 +5,7 @@ interface Colors {
   orange: string;
   white: string;
   grayText: string;
+  grayButton: string;
   lightBlue: string;
   barBlue: string;
   red: string;
@@ -26,6 +27,7 @@ export const colors: Colors = {
   orange: "#ffd10e",
   white: "#f9f9f9",
   grayText: "#a6a6a6",
+  grayButton: "#efefef",
   lightBlue: "#00bce1",
   barBlue: "#a2bffd",
   red: "#e74c3c",
