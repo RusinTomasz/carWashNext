@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { colors } from "../styles/variables";
 
-
-
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 10px;
@@ -40,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     display: inline-block;
     color: ${colors.default};
+    transition: all 0.2s ease-out;
   }
 `;
 

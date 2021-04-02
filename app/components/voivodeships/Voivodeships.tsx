@@ -10,6 +10,7 @@ import { maxWidth, breakpoints } from "../../styles/breakpoints";
 import carWashTypes from "../../utils/carWashTypes";
 
 //Components
+import VoivodeshipsList from "./voivodeshipsList/VoivodeshipsList";
 
 const VoivodeshipsWrap = styled(Container)`
   margin-top: 6rem;
@@ -33,6 +34,9 @@ const ButtonsWrap = styled.div`
 
 const TypeButton = styled(BasicButton)`
   margin: 0 1rem;
+  ${maxWidth(breakpoints.sm)} {
+    margin: 0.5rem 1.5rem 0.5rem 0;
+  }
 `;
 
 const Voivodeships = () => {
@@ -61,6 +65,16 @@ const Voivodeships = () => {
           Myjnie bezdotykowe
         </TypeButton>
       </ButtonsWrap>
+      <VoivodeshipsList
+        type={type}
+        voivodeships={[
+          { slug: "dolnoslaskie", name: "dolnośląskie" },
+          {
+            slug: "kujawsko-pomorskie",
+            name: "kujawsko-pomorskie",
+          },
+        ]}
+      />
     </VoivodeshipsWrap>
   );
 };
