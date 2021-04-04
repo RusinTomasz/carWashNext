@@ -5,22 +5,13 @@ interface StarsRaterNodes {
   isRating: boolean;
   rating: number;
   interactive: boolean;
-  children: any;
   total: number;
   onRate: Function;
   willRate: Function;
 }
 
 const StarsRaterNodes = (props: StarsRaterNodes) => {
-  const {
-    isRating,
-    rating,
-    interactive,
-    children,
-    total,
-    onRate,
-    willRate,
-  } = props;
+  const { isRating, rating, interactive, total, onRate, willRate } = props;
 
   let nodes = Array(total)
     .fill(0)
@@ -38,11 +29,7 @@ const StarsRaterNodes = (props: StarsRaterNodes) => {
           onClick={interactive ? onRate.bind(this, i + 1) : null}
           onMouseOver={interactive ? willRate.bind(this, i + 1) : null}
         >
-          {children.length ? (
-            React.cloneElement(children[i % children.length], starProps)
-          ) : (
-            <Star {...starProps} />
-          )}
+          <Star {...starProps} />
         </div>
       );
     });

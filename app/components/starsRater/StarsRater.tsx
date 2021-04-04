@@ -7,7 +7,6 @@ interface StarsRaterProps {
   total: number;
   rating: number;
   interactive: boolean;
-  children?: any;
   onRate?: Function;
   onRating?: Function;
   onCancelRate?: Function;
@@ -22,13 +21,11 @@ const Rater = styled.div`
 `;
 
 const StarsRater = (props: StarsRaterProps) => {
-  let { total, interactive, children, ...restProps } = props;
+  let { total, interactive, ...restProps } = props;
   delete restProps.rating;
   delete restProps.onRate;
   delete restProps.onRating;
   delete restProps.onCancelRate;
-
-  children = Children.toArray(children);
 
   const [rating, setRating] = useState<number>();
   const [lastRating, setLastRating] = useState<number>();
@@ -72,7 +69,6 @@ const StarsRater = (props: StarsRaterProps) => {
         interactive={interactive}
         rating={rating}
         isRating={isRating}
-        children={children}
         total={total}
         onRate={onRate}
         willRate={willRate}
