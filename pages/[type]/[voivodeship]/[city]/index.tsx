@@ -8,6 +8,7 @@ import FlexWrapper from "../../../../app/styles/shared/FlexWrapper";
 import styled from "styled-components";
 import { maxWidth, breakpoints } from "../../../../app/styles/breakpoints";
 import { colors } from "../../../../app/styles/variables";
+import StarsRater from "../../../../app/components/starsRater/StarsRater";
 
 const ContentTopBar = styled(FlexWrapper)`
   background-color: ${colors.barBlue};
@@ -142,11 +143,11 @@ const City = () => {
                     <TopBarText>
                       {carWash.total_reviews_maps} Zaufanych ocen
                     </TopBarText>
-                    {/* <Rater
+                    <StarsRater
                       total={5}
                       rating={carWash.rating_maps}
-                      interactive={false}
-                    /> */}
+                      interactive={true}
+                    />
                   </ContentTopBar>
                   <CarWashContent alignItems="center">
                     <ImageWrap>

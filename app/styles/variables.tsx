@@ -11,6 +11,12 @@ interface Colors {
   red: string;
 }
 
+interface StarsRaterColors {
+  starsRaterLink: string;
+  starsRaterHover: string;
+  starsRaterActive: string;
+}
+
 interface FontFamilies {
   teko: string;
   exo: string;
@@ -41,4 +47,10 @@ export const fontFamilies: FontFamilies = {
 export const gradients: Gradients = {
   redOrange:
     "linear-gradient(94deg, rgb(255, 10, 10) 0%, rgb(255, 117, 57) 100%)",
+};
+
+export const starsRaterColors: StarsRaterColors = {
+  starsRaterLink: "#ffffff",
+  starsRaterHover: "#fff50e",
+  starsRaterActive: "#fff50e",
 };

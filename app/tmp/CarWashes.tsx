@@ -22,7 +22,7 @@ const carWashesTmp = [
     lng: 20.4222,
     phone: "531587333",
     plus_code: "XCGC+3V Bochnia",
-    rating_maps: 4.2,
+    rating_maps: 2.5,
     state: "32-700",
     total_reviews_maps: 15,
     voivodeship: "małopolskie",
