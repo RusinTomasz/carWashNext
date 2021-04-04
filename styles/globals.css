@@ -16,3 +16,7 @@ a {
 .bg-index {
   z-index: -1;
 }
+
+.radius-50 {
+  border-radius: 50%;
+}

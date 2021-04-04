@@ -1,4 +1,4 @@
-import CarWashTypes from "../types/CarWash";
+import { CarWashTypes } from "../types/CarWash";
 
 const carWashTypes: CarWashTypes = {
   autospa: "autospa",

@@ -56,7 +56,7 @@ const Voivodeship = ({ type, voivodeship }: VoivodeshipProps) => {
         <title>Ranking Myjni</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main id="page-wrap">
+      <main>
         <div className="container single-voivo-container">
           <ul className="cities-list list-grid">
             <div className="row">
