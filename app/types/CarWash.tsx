@@ -1,6 +1,6 @@
 export interface CarWashTypes {
-  autospa: string;
-  touchless: string;
+  autospa: { alias: string; id: number };
+  touchless: { alias: string; id: number };
 }
 
 export default interface CarWash {
@@ -39,6 +39,5 @@ export default interface CarWash {
   saturday_open_hours: string;
   sunday_open_hours: string;
   promoted_frontpage: boolean | null;
+  slug: string;
 }
-
-

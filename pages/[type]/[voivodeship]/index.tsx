@@ -4,7 +4,7 @@ import Link from "next/link";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "node:querystring";
 
-interface Params extends ParsedUrlQuery {
+export interface VoivodeshipParams extends ParsedUrlQuery {
   type: string;
   voivodeship: string;
 }
@@ -78,8 +78,10 @@ const Voivodeship = ({ type, voivodeship }: VoivodeshipProps) => {
   );
 };
 
-export function getStaticProps(context: GetStaticPropsContext<Params>) {
-  const { type, voivodeship }: Params = context.params;
+export function getStaticProps(
+  context: GetStaticPropsContext<VoivodeshipParams>
+) {
+  const { type, voivodeship }: VoivodeshipParams = context.params;
 
   return {
     props: {

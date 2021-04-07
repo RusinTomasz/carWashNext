@@ -66,7 +66,7 @@ const Voivodeships = () => {
         </TypeButton>
       </ButtonsWrap>
       <VoivodeshipsList
-        type={type}
+        type={type.alias}
         voivodeships={[
           { slug: "dolnoslaskie", name: "dolnośląskie" },
           {

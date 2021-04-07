@@ -36,6 +36,7 @@ const carWashesTmp = [
     saturday_open_hours: "8AM–2PM",
     sunday_open_hours: "Closed",
     promoted_frontpage: null,
+    slug: "alias",
   },
   {
     id: 3232,
@@ -74,6 +75,7 @@ const carWashesTmp = [
     saturday_open_hours: "8AM–2PM",
     sunday_open_hours: "Closed",
     promoted_frontpage: null,
+    slug: "alias",
   },
 ];
 
