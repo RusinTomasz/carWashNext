@@ -13,6 +13,7 @@ import { VoivodeshipParams } from "../index";
 import axios from "axios";
 import { getCarWashTypeIdByAlias } from "../../../../app/utils/carWashTypes";
 import Router from "next/router";
+import paginationUtils from "../../../../app/utils/paginationUtils";
 
 interface CityParams extends VoivodeshipParams {
   city: string;
@@ -144,15 +145,14 @@ const City = (props: CityProps) => {
     carWashesCount,
     limit,
   } = props;
-
+  const startCountingIndex = paginationUtils.countStartingIndex(page, limit);
   const [currentPage, setCurrentPage] = useState(page);
   const [loading, setLoading] = useState(false);
+  const [startingIndex, setStartingIndex] = useState(startCountingIndex);
+
   const carWashListRef = useRef(null);
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
-
-  //Temporary hardcoded
-  let currentPositionStartIndex = 0;
 
   useEffect(() => {
     Router.events.on("routeChangeStart", startLoading);
@@ -164,7 +164,9 @@ const City = (props: CityProps) => {
   }, []);
 
   const onPageChange = (page: number) => {
+    const startCountingIndex = paginationUtils.countStartingIndex(page, limit);
     setCurrentPage(page);
+    setStartingIndex(startCountingIndex);
     carWashListRef.current.scrollIntoView();
   };
 
@@ -209,7 +211,7 @@ const City = (props: CityProps) => {
                           />
                         )}
 
-                        <Index>{currentPositionStartIndex + index + 1}</Index>
+                        <Index>{startingIndex + index + 1}</Index>
                       </ImageWrap>
                       <Wrap>
                         <Link
