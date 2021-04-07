@@ -14,6 +14,7 @@ import axios from "axios";
 import { getCarWashTypeIdByAlias } from "../../../../app/utils/carWashTypes";
 import Router from "next/router";
 import paginationUtils from "../../../../app/utils/paginationUtils";
+import Ads from "../../../../app/components/ads/Ads";
 
 interface CityParams extends VoivodeshipParams {
   city: string;
@@ -123,17 +124,7 @@ const ContentWrap = styled.div`
   }
 `;
 
-const AdsWrap = styled.div`
-  width: 25%;
-  padding-left: 1.5rem;
-  ${maxWidth(breakpoints.md)} {
-    display: none;
-  }
-`;
 
-const AdsImagesWrap = styled.div`
-  position: relative;
-`;
 
 const City = (props: CityProps) => {
   const {
@@ -234,22 +225,7 @@ const City = (props: CityProps) => {
               />
             </ContentWrap>
 
-            <AdsWrap>
-              <AdsImagesWrap>
-                <Image
-                  src="/img/tmp/rek.jpg"
-                  layout="fixed"
-                  width={300}
-                  height={400}
-                />
-                <Image
-                  src="/img/tmp/rek2.jpg"
-                  layout="fixed"
-                  width={300}
-                  height={200}
-                />
-              </AdsImagesWrap>
-            </AdsWrap>
+            <Ads />
           </FlexWrapper>
         </Container>
       </main>
