@@ -13,7 +13,7 @@ interface PaginationLinkProps {
   disable?: boolean;
 }
 
-const PaginationLinkCss = css`
+const paginationLinkCss = css`
   border: 1px solid #f4f4f4;
   border-radius: 3px;
   font-weight: 500;
@@ -23,7 +23,7 @@ const PaginationLinkCss = css`
 `;
 
 const PaginationLink = styled.a<PaginationLinkProps>`
-  ${PaginationLinkCss}
+  ${paginationLinkCss}
   transition: all 0.2s;
   cursor: ${(props) => (props.disable ? "default" : "pointer")};
   opacity: ${(props) => (props.disable ? "0.3" : "1")};
@@ -39,7 +39,7 @@ const PaginationNavItem = styled.li`
 `;
 
 const PaginationCurrentPage = styled.span`
-  ${PaginationLinkCss}
+  ${paginationLinkCss}
   display: inline-block;
   background-color: #74a1ff;
   color: #fff;

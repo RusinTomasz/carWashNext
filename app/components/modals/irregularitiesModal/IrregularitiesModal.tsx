@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { colors } from "../../../styles/variables";
-// import ContactForm from "../contactForm/ContactForm";
+import IrregularitiesForm from "../../forms/irregularitiesForm/IrregularitiesForm";
 
 const StyledIrregularitiesModal = styled(Modal)`
   position: absolute;
@@ -14,7 +14,7 @@ const StyledIrregularitiesModal = styled(Modal)`
   margin-right: -50%;
   transform: translate(-50%, -50%);
   background: rgb(116, 161, 255);
-  padding: 20px 15px 80px 15px;
+  padding: 20px 15px 25px 15px;
   overflow: hidden;
 `;
 
@@ -47,7 +47,7 @@ const IrregularitiesModal = (props) => {
     >
       <CloseButton onClick={onClose}>X</CloseButton>
       <Title>Formularz zgłoszeniowy</Title>
-      <div className="form-modal-wrapper">{/* <ContactForm /> */}</div>
+      <IrregularitiesForm />
     </StyledIrregularitiesModal>
   );
 };
