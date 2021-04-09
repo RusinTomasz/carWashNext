@@ -11,6 +11,8 @@ import Container from "../../../../../app/styles/shared/Container";
 import FlexWrapper from "../../../../../app/styles/shared/FlexWrapper";
 import { colors } from "../../../../../app/styles/variables";
 import dynamic from "next/dynamic";
+import IrregularitiesModal from "../../../../../app/components/modals/irregularitiesModal/IrregularitiesModal";
+import { useState } from "react";
 
 const Map = dynamic(
   import("../../../../../app/components/locationMap/LocationMap"),
@@ -180,6 +182,16 @@ const PhoneNumber = styled.a`
 `;
 
 const CarWash = () => {
+  const [isModalOpen, setModalIsOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
   return (
     <>
       <Head>
@@ -243,7 +255,11 @@ const CarWash = () => {
 
                     <Map position={[50.0647, 20.0704]} />
                     <ButtonFormWrap>
-                      <BasicButton backgroundColor={"blue"} color={"white"}>
+                      <BasicButton
+                        backgroundColor={"blue"}
+                        color={"white"}
+                        onClick={openModal}
+                      >
                         Zgłoś nieprawidłowości w opisie
                       </BasicButton>
                     </ButtonFormWrap>
@@ -257,6 +273,11 @@ const CarWash = () => {
             <Ads />
           </FlexWrapper>
         </Container>
+
+        <IrregularitiesModal
+          isModalOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </main>
     </>
   );
