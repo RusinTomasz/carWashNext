@@ -7,6 +7,7 @@ interface StarsRaterProps {
   total: number;
   rating: number;
   interactive: boolean;
+  starsLinkColor?: string;
   onRate?: Function;
   onRating?: Function;
   onCancelRate?: Function;
@@ -21,7 +22,7 @@ const Rater = styled.div`
 `;
 
 const StarsRater = (props: StarsRaterProps) => {
-  let { total, interactive, ...restProps } = props;
+  let { total, interactive, starsLinkColor, ...restProps } = props;
   delete restProps.rating;
   delete restProps.onRate;
   delete restProps.onRating;
@@ -72,6 +73,7 @@ const StarsRater = (props: StarsRaterProps) => {
         total={total}
         onRate={onRate}
         willRate={willRate}
+        starsLinkColor={starsLinkColor}
       />
     </Rater>
   );

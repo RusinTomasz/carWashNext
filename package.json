@@ -17,15 +17,19 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "leaflet": "^1.7.1",
     "next": "10.0.9",
     "next-redux-wrapper": "^6.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-leaflet": "^3.1.0",
     "react-markdown": "^5.0.3",
+    "react-modal": "^3.12.1",
     "react-redux": "^7.2.3",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.8",
@@ -34,6 +38,8 @@
     "@types/node": "^14.14.37",
     "@types/node-fetch": "^2.5.8",
     "@types/react": "^17.0.3",
+    "@types/react-leaflet": "^2.8.1",
+    "@types/react-modal": "^3.12.0",
     "@types/react-redux": "^7.1.16",
     "@types/styled-components": "^5.1.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",

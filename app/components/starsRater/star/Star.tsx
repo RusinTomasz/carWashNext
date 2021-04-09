@@ -7,6 +7,7 @@ interface StarProps {
   isActiveHalf?: boolean;
   willBeActive?: boolean;
   isDisabled?: boolean;
+  starsLinkColor?: string;
 }
 
 const StarsRaterBeforeStyles = css`
@@ -25,7 +26,10 @@ const StarsRaterStar = styled.div<StarProps>`
   margin: 0 0.2rem;
   font-size: 24px;
 
-  color: ${starsRaterColors.starsRaterLink};
+  color: ${(props) =>
+    props.starsLinkColor
+      ? props.starsLinkColor
+      : starsRaterColors.starsRaterLink};
   cursor: pointer;
 
   ${(props) =>
