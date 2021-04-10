@@ -13,6 +13,7 @@ import { colors } from "../../../../../app/styles/variables";
 import dynamic from "next/dynamic";
 import IrregularitiesModal from "../../../../../app/components/modals/irregularitiesModal/IrregularitiesModal";
 import { useState } from "react";
+import Reviews from "../../../../../app/components/reviews/Reviews";
 
 const Map = dynamic(
   import("../../../../../app/components/locationMap/LocationMap"),
@@ -266,9 +267,7 @@ const CarWash = () => {
                   </RightSideWrap>
                 </FlexWrapper>
               </article>
-              {/* <div className="review-container">
-                <h2>Opinie</h2>
-              </div> */}
+              <Reviews />
             </Content>
             <Ads />
           </FlexWrapper>
