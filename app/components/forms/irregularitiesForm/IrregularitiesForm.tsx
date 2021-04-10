@@ -2,8 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import styled, { css } from "styled-components";
 import SubmitInput from "../../../styles/shared/inputs/SubmitInput";
 import { colors, fontFamilies } from "../../../styles/variables";
-
-type InputEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
+import InputEvent from "../../../types/InputEvent";
 
 const inputsCss = css`
   font-family: ${fontFamilies.exo};
@@ -114,7 +113,6 @@ const IrregularitiesForm = () => {
         font="teko"
         type="submit"
         value="Wyślij"
-        className="btn btn--submit standard-link blue-link teko-font"
       />
       {/* <Recaptcha
         ref={(ref) => (this.recaptcha = ref)}
