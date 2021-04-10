@@ -25,6 +25,7 @@ const starsRaterBeforeStyles = css`
 const StarsRaterStar = styled.div<StarProps>`
   position: relative;
   margin: 0 0.2rem;
+  line-height: ${(props) => (props.size ? `${props.size}px` : `24px`)};
   font-size: ${(props) => (props.size ? `${props.size}px` : `24px`)};
   color: ${(props) =>
     props.starsLinkColor
