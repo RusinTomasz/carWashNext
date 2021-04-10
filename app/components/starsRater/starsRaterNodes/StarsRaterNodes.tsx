@@ -7,6 +7,7 @@ interface StarsRaterNodes {
   interactive: boolean;
   total: number;
   starsLinkColor?: string;
+  size?: number;
   onRate: Function;
   willRate: Function;
 }
@@ -20,6 +21,7 @@ const StarsRaterNodes = (props: StarsRaterNodes) => {
     onRate,
     willRate,
     starsLinkColor,
+    size,
   } = props;
 
   let nodes = Array(total)
@@ -38,7 +40,7 @@ const StarsRaterNodes = (props: StarsRaterNodes) => {
           onClick={interactive ? onRate.bind(this, i + 1) : null}
           onMouseOver={interactive ? willRate.bind(this, i + 1) : null}
         >
-          <Star starsLinkColor={starsLinkColor} {...starProps} />
+          <Star starsLinkColor={starsLinkColor} size={size} {...starProps} />
         </div>
       );
     });
