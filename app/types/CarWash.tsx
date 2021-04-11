@@ -3,7 +3,7 @@ export interface CarWashTypes {
   touchless: { alias: string; id: number };
 }
 
-export default interface CarWash {
+export default interface CarWashType {
   id: number;
   name: string;
   published_at: string;
@@ -41,3 +41,4 @@ export default interface CarWash {
   promoted_frontpage: boolean | null;
   slug: string;
 }
+
