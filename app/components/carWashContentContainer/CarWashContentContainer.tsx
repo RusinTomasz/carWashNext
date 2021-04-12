@@ -14,6 +14,7 @@ import {
   PhoneWrap,
   PhoneNumber,
 } from "./CarWashContentContainerStyles";
+import CarWashType from "../../types/CarWash";
 
 const Map = dynamic(import("../locationMap/LocationMap"), {
   ssr: false,
@@ -22,7 +23,14 @@ const Map = dynamic(import("../locationMap/LocationMap"), {
   ),
 });
 
-const CarWashContent = (props) => {
+interface CarWashContentContainerProps {
+  carWashData: CarWashType;
+  isModalOpen: boolean;
+  openModal(): void;
+  handleCloseModal(): void;
+}
+
+const CarWashContentContainer = (props: CarWashContentContainerProps) => {
   const { carWashData, isModalOpen, openModal, handleCloseModal } = props;
 
   return (
@@ -80,4 +88,4 @@ const CarWashContent = (props) => {
   );
 };
 
-export default CarWashContent;
+export default CarWashContentContainer;
