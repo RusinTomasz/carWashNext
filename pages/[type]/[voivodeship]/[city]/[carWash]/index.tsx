@@ -1,29 +1,27 @@
 import Head from "next/head";
-import Image from "next/image";
 import styled from "styled-components";
 import Ads from "../../../../../app/components/ads/Ads";
-import LocationMap from "../../../../../app/components/locationMap/LocationMap";
-import OpenHours from "../../../../../app/components/openHours/OpenHours";
-import StarsRater from "../../../../../app/components/starsRater/StarsRater";
 import { breakpoints, maxWidth } from "../../../../../app/styles/breakpoints";
-import BasicButton from "../../../../../app/styles/shared/buttons/BasicButton";
 import Container from "../../../../../app/styles/shared/Container";
 import FlexWrapper from "../../../../../app/styles/shared/FlexWrapper";
-import { colors } from "../../../../../app/styles/variables";
-import dynamic from "next/dynamic";
-import IrregularitiesModal from "../../../../../app/components/modals/irregularitiesModal/IrregularitiesModal";
-import { useState } from "react";
 import Reviews from "../../../../../app/components/reviews/Reviews";
+import { GetStaticPropsContext } from "next";
+import axios from "axios";
+import { ParsedUrlQuery } from "node:querystring";
+import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
+import CarWashType from "../../../../../app/types/CarWash";
+import CarWashContentContainer from "../../../../../app/components/carWashContentContainer/CarWashContentContainer";
+import { useState } from "react";
 
-const Map = dynamic(
-  import("../../../../../app/components/locationMap/LocationMap"),
-  {
-    ssr: false,
-    loading: () => (
-      <div style={{ textAlign: "center", paddingTop: 20 }}>Loading…</div>
-    ),
-  }
-);
+interface CarWashParams extends ParsedUrlQuery {
+  carWash: string;
+}
+
+interface CarWashProps {
+  carWashData: CarWashType;
+  carWashFetchDataError: any;
+  carWashFetchReviewsError: any;
+}
 
 const Content = styled.div`
   width: 75%;
@@ -33,156 +31,13 @@ const Content = styled.div`
   }
 `;
 
-const LeftSideWrap = styled.div`
-  width: 33.33%;
-  position: relative;
+const CarWash = (props: CarWashProps) => {
+  const {
+    carWashData,
+    carWashFetchDataError,
+    carWashFetchReviewsError,
+  } = props;
 
-  ${maxWidth(breakpoints.lg)} {
-    width: 41.66%;
-  }
-  ${maxWidth(breakpoints.md)} {
-    width: 100%;
-    margin-top: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-`;
-
-const RightSideWrap = styled.div`
-  width: 66.66%;
-
-  ${maxWidth(breakpoints.lg)} {
-    width: 58.33%;
-  }
-  ${maxWidth(breakpoints.md)} {
-    width: 100%;
-    margin-top: 4rem;
-    order: -1;
-  }
-`;
-
-const Name = styled.h1`
-  font-weight: 500;
-  margin-bottom: 0;
-  ${maxWidth(breakpoints.md)} {
-    font-size: 16px;
-    line-height: 20px;
-  }
-`;
-
-const Address = styled.p`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  color: ${colors.carWashAddress};
-  margin-top: 0;
-  padding-left: 2rem;
-  background-repeat: no-repeat;
-  background-size: 1rem;
-  background-position: 0 50%;
-  background-image: url("/img/carWash/arrow-gray-right.svg");
-  ${maxWidth(breakpoints.md)} {
-    font-size: 14px;
-    line-height: 18px;
-    padding-left: 0;
-    background-image: none;
-  }
-`;
-
-const RatingLabel = styled.span`
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 32px;
-`;
-
-const ButtonFormWrap = styled.div`
-  text-align: right;
-`;
-
-const CarWashStarsRater = styled(StarsRater)`
-  margin-left: 1rem;
-`;
-
-const RateCount = styled.p`
-  ${maxWidth(breakpoints.md)} {
-    padding-top: 3px;
-    margin: 0 2rem 0 9rem;
-  }
-  ${maxWidth(breakpoints.sm)} {
-    margin: 0 0.85rem 0 0;
-  }
-`;
-
-const RateWrap = styled.div`
-  padding: 2rem 0;
-  position: relative;
-  display: inline-block;
-
-  ${maxWidth(breakpoints.md)} {
-    width: 70px;
-  }
-`;
-
-const ServiceRate = styled.p`
-  position: relative;
-  margin: 0;
-  padding: 1rem 0;
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-100%);
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 35px;
-  &::after {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: -1rem;
-    left: 0.5rem;
-    background-repeat: no-repeat;
-    background-size: 7rem;
-    width: 7rem;
-    height: 7rem;
-    background-image: url("/img/carWash/background-star.png");
-  }
-  ${maxWidth(breakpoints.md)} {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0;
-    width: 30px;
-    height: 30px;
-    background-color: #fff50e;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 21px;
-  }
-`;
-
-const PhoneWrap = styled.div`
-  margin-top: 2rem;
-`;
-
-const PhoneNumber = styled.a`
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 21px;
-  line-height: 28px;
-  color: ${colors.lightBlue};
-  padding-left: 3rem;
-  background-repeat: no-repeat;
-  background-size: 2rem;
-  background-position: 0 50%;
-  background-image: url("/img/carWash/phone-blue-icon.svg");
-`;
-
-const CarWash = () => {
   const [isModalOpen, setModalIsOpen] = useState(false);
 
   const handleCloseModal = () => {
@@ -207,79 +62,105 @@ const CarWash = () => {
         <Container>
           <FlexWrapper wrap={"wrap"}>
             <Content>
-              <article>
-                <FlexWrapper>
-                  <LeftSideWrap>
-                    {/* It should be removed below 768px */}
-                    <RateWrap>
-                      <Image
-                        src="/img/city/autospa-default.jpg"
-                        width={175}
-                        height={175}
-                        className="radius-50"
-                      />
-                      <ServiceRate>4.3</ServiceRate>
-                    </RateWrap>
-                    <RateCount>Zaufanych ocen: 55</RateCount>
-                    <FlexWrapper alignItems={"center"}>
-                      <RatingLabel>Ocena:</RatingLabel>
-                      <CarWashStarsRater
-                        starsLinkColor={"#e5e5e5"}
-                        total={5}
-                        rating={4}
-                        interactive={false}
-                      />
-                    </FlexWrapper>
-                    {/* end */}
-                    <PhoneWrap>
-                      <PhoneNumber href="tel:555555555">
-                        555 555 555
-                      </PhoneNumber>
-                    </PhoneWrap>
-                    <OpenHours
-                      monday={"9AM–5PM"}
-                      tuesday={"9AM–5PM"}
-                      wednesday={"9AM–5PM"}
-                      thursday={"9AM–5PM"}
-                      friday={"9AM–5PM"}
-                      saturday={"Closed"}
-                      sunday={"Closed"}
-                    />
-                  </LeftSideWrap>
-                  <RightSideWrap>
-                    <FlexWrapper wrap={"wrap"}>
-                      <div className="title-content">
-                        <Name>RR Detailing Auto Spa</Name>
-                        <Address>Piękna 22, 08-300 Sokołów Podlaski</Address>
-                      </div>
-                    </FlexWrapper>
-
-                    <Map position={[50.0647, 20.0704]} />
-                    <ButtonFormWrap>
-                      <BasicButton
-                        backgroundColor={"blue"}
-                        color={"white"}
-                        onClick={openModal}
-                      >
-                        Zgłoś nieprawidłowości w opisie
-                      </BasicButton>
-                    </ButtonFormWrap>
-                  </RightSideWrap>
-                </FlexWrapper>
-              </article>
+              <CarWashContentContainer
+                carWashData={carWashData}
+                openModal={openModal}
+                handleCloseModal={handleCloseModal}
+                isModalOpen={isModalOpen}
+              />
               <Reviews />
+              {/* Needs to be implement as react Errors  */}
+              {carWashFetchDataError && (
+                <h2>
+                  Przepraszamy nie udało się załoadować strony, spróbuj ponownie
+                  później.
+                </h2>
+              )}
+              {/* end */}
             </Content>
             <Ads />
           </FlexWrapper>
         </Container>
-
-        <IrregularitiesModal
-          isModalOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
       </main>
     </>
   );
 };
+
+export async function getStaticProps(
+  context: GetStaticPropsContext<CarWashParams>
+) {
+  const { carWash } = context.params;
+
+  interface Props {
+    carWashData: CarWashType | null;
+    carWashFetchDataError: any;
+    carWashReviews: any[] | null;
+    carWashFetchReviewsError: any;
+  }
+
+  const props: Props = {
+    carWashData: null,
+    carWashFetchDataError: null,
+    carWashReviews: null,
+    carWashFetchReviewsError: null,
+  };
+
+  try {
+    const carWashResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_HOST}/car-washes?slug=${carWash}`
+    );
+    props.carWashData = carWashResponse.data[0];
+  } catch (err) {
+    props.carWashFetchDataError = "Car wash response error";
+  }
+
+  try {
+    const carWashCommentsResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_HOST}/comments/car-wash:${props.carWashData.id}`
+    );
+    props.carWashReviews = carWashCommentsResponse.data;
+  } catch (err) {
+    props.carWashFetchReviewsError = "Car wash comments response error";
+  }
+
+  return {
+    props: {
+      carWashData: props.carWashData,
+      carWashFetchDataError: props.carWashFetchDataError,
+      carWashReviews: props.carWashReviews,
+      carWashFetchReviewsError: props.carWashFetchReviewsError,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  let allCarWashes = [];
+
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_HOST}/car-washes?_limit=6000`
+  );
+
+  if (response.status === 200) {
+    allCarWashes = response.data;
+  }
+
+  const paths = allCarWashes.map((carWash: CarWashType) => {
+    const carWashTypeAlias = getCarWashTypeAliasById(carWash.car_wash_type.id);
+    const params = {
+      params: {
+        type: carWashTypeAlias,
+        voivodeship: carWash.voivodeship_slug,
+        city: carWash.city_slug,
+        carWash: carWash.slug,
+      },
+    };
+    return params;
+  });
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
+}
 
 export default CarWash;
