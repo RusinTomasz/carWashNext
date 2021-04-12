@@ -12,6 +12,8 @@ import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
 import CarWashType from "../../../../../app/types/CarWash";
 import CarWashContentContainer from "../../../../../app/components/carWashContentContainer/CarWashContentContainer";
 import { useState } from "react";
+import ErrorCarWashContentUI from "../../../../../app/components/errors/ErrorCarWashContentUI";
+import ErrorCarWashReviewsUI from "../../../../../app/components/errors/ErrorCarWashReviewsUI";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -19,8 +21,8 @@ interface CarWashParams extends ParsedUrlQuery {
 
 interface CarWashProps {
   carWashData: CarWashType;
-  carWashFetchDataError: any;
-  carWashFetchReviewsError: any;
+  carWashFetchDataError: boolean;
+  carWashFetchReviewsError: boolean;
 }
 
 const Content = styled.div`
@@ -62,21 +64,21 @@ const CarWash = (props: CarWashProps) => {
         <Container>
           <FlexWrapper wrap={"wrap"}>
             <Content>
-              <CarWashContentContainer
-                carWashData={carWashData}
-                openModal={openModal}
-                handleCloseModal={handleCloseModal}
-                isModalOpen={isModalOpen}
-              />
-              <Reviews />
-              {/* Needs to be implement as react Errors  */}
-              {carWashFetchDataError && (
-                <h2>
-                  Przepraszamy nie udało się załoadować strony, spróbuj ponownie
-                  później.
-                </h2>
+              {!carWashFetchDataError ? (
+                <CarWashContentContainer
+                  carWashData={carWashData}
+                  openModal={openModal}
+                  handleCloseModal={handleCloseModal}
+                  isModalOpen={isModalOpen}
+                />
+              ) : (
+                <ErrorCarWashContentUI />
               )}
-              {/* end */}
+              {!carWashFetchReviewsError ? (
+                <Reviews />
+              ) : (
+                <ErrorCarWashReviewsUI />
+              )}
             </Content>
             <Ads />
           </FlexWrapper>
@@ -93,16 +95,16 @@ export async function getStaticProps(
 
   interface Props {
     carWashData: CarWashType | null;
-    carWashFetchDataError: any;
+    carWashFetchDataError: boolean;
     carWashReviews: any[] | null;
-    carWashFetchReviewsError: any;
+    carWashFetchReviewsError: boolean;
   }
 
   const props: Props = {
     carWashData: null,
-    carWashFetchDataError: null,
+    carWashFetchDataError: false,
     carWashReviews: null,
-    carWashFetchReviewsError: null,
+    carWashFetchReviewsError: false,
   };
 
   try {
@@ -111,7 +113,8 @@ export async function getStaticProps(
     );
     props.carWashData = carWashResponse.data[0];
   } catch (err) {
-    props.carWashFetchDataError = "Car wash response error";
+    props.carWashFetchDataError = true;
+    console.log(err);
   }
 
   try {
@@ -120,7 +123,8 @@ export async function getStaticProps(
     );
     props.carWashReviews = carWashCommentsResponse.data;
   } catch (err) {
-    props.carWashFetchReviewsError = "Car wash comments response error";
+    props.carWashFetchReviewsError = true;
+    console.log(err);
   }
 
   return {
