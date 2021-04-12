@@ -14,4 +14,13 @@ export const getCarWashTypeIdByAlias = (alias: string): number => {
   return carWashId;
 };
 
+export const getCarWashTypeAliasById = (id: number): string => {
+  const carWashType: string[] = Object.keys(carWashTypes).filter(
+    (key) => carWashTypes[key].id === id
+  );
+  const carWashAlias: string = carWashTypes[carWashType[0]].alias;
+
+  return carWashAlias;
+};
+
 export default carWashTypes;
