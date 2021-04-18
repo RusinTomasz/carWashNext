@@ -1,10 +1,10 @@
 import React from "react";
-import FlexWrapper from "../../styles/shared/FlexWrapper";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
 import dynamic from "next/dynamic";
-import CarWashRatingsContainer from "../carWashRatingsContainer/CarWashRatingsContainer";
-import OpenHours from "../openHours/OpenHours";
-import BasicButton from "../../styles/shared/buttons/BasicButton";
-import IrregularitiesModal from "../modals/irregularitiesModal/IrregularitiesModal";
+import Ratings from "../ratings/Ratings";
+import OpenHours from "../../openHours/OpenHours";
+import BasicButton from "../../../styles/shared/buttons/BasicButton";
+import IrregularitiesModal from "../../modals/irregularitiesModal/IrregularitiesModal";
 import {
   LeftSideWrap,
   RightSideWrap,
@@ -13,25 +13,25 @@ import {
   ButtonFormWrap,
   PhoneWrap,
   PhoneNumber,
-} from "./CarWashContentContainerStyles";
-import CarWashType from "../../types/CarWash";
+} from "./styles/ContentStyles";
+import CarWashType from "../../../types/CarWash";
 
-const Map = dynamic(import("../locationMap/LocationMap"), {
+const Map = dynamic(import("../../locationMap/LocationMap"), {
   ssr: false,
   loading: () => (
     <div style={{ textAlign: "center", paddingTop: 20 }}>Loading…</div>
   ),
 });
 
-interface CarWashContentContainerProps {
+interface ContentContainerProps {
   carWashData: CarWashType;
+  handleCloseModal: () => void;
+  openModal: () => void;
   isModalOpen: boolean;
-  openModal(): void;
-  handleCloseModal(): void;
 }
 
-const CarWashContentContainer = (props: CarWashContentContainerProps) => {
-  const { carWashData, isModalOpen, openModal, handleCloseModal } = props;
+const Content = (props: ContentContainerProps) => {
+  const { carWashData, handleCloseModal, openModal, isModalOpen } = props;
 
   return (
     <>
@@ -39,7 +39,7 @@ const CarWashContentContainer = (props: CarWashContentContainerProps) => {
         <FlexWrapper>
           <LeftSideWrap>
             {/* It should be removed below 768px */}
-            <CarWashRatingsContainer />
+            <Ratings />
             {/* end */}
             <PhoneWrap>
               <PhoneNumber href={`tel:${carWashData.phone}`}>
@@ -63,7 +63,6 @@ const CarWashContentContainer = (props: CarWashContentContainerProps) => {
                 <Address>{carWashData.full_address}</Address>
               </div>
             </FlexWrapper>
-
             <Map
               position={[carWashData.lat, carWashData.lng]}
               popupTitle={carWashData.name}
@@ -88,4 +87,4 @@ const CarWashContentContainer = (props: CarWashContentContainerProps) => {
   );
 };
 
-export default CarWashContentContainer;
+export default Content;

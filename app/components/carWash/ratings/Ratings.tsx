@@ -1,5 +1,5 @@
 import React from "react";
-import FlexWrapper from "../../styles/shared/FlexWrapper";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
 import Image from "next/image";
 import {
   CarWashStarsRater,
@@ -9,7 +9,7 @@ import {
   RatingLabel,
 } from "./styles/CarWashRatingsStyles";
 
-const CarWashRatingsContainer = () => {
+const Ratings = () => {
   return (
     <>
       <RateWrap>
@@ -35,4 +35,4 @@ const CarWashRatingsContainer = () => {
   );
 };
 
-export default CarWashRatingsContainer;
+export default Ratings;

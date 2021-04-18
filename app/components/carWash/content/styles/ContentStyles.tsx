@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { breakpoints, maxWidth } from "../../styles/breakpoints";
-import { colors } from "../../styles/variables";
+import { breakpoints, maxWidth } from "../../../../styles/breakpoints";
+import { colors } from "../../../../styles/variables";
 
 const LeftSideWrap = styled.div`
   width: 33.33%;
