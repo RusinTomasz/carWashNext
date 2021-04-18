@@ -5,14 +5,13 @@ import Ratings from "../ratings/Ratings";
 import OpenHours from "../../openHours/OpenHours";
 import BasicButton from "../../../styles/shared/buttons/BasicButton";
 import IrregularitiesModal from "../../modals/irregularitiesModal/IrregularitiesModal";
+import PhoneNumber from "../phoneNumber/PhoneNumber";
 import {
   LeftSideWrap,
   RightSideWrap,
   Name,
   Address,
   ButtonFormWrap,
-  PhoneWrap,
-  PhoneNumber,
 } from "./styles/ContentStyles";
 import CarWashType from "../../../types/CarWash";
 
@@ -41,11 +40,8 @@ const Content = (props: ContentContainerProps) => {
             {/* It should be removed below 768px */}
             <Ratings />
             {/* end */}
-            <PhoneWrap>
-              <PhoneNumber href={`tel:${carWashData.phone}`}>
-                {carWashData.phone}
-              </PhoneNumber>
-            </PhoneWrap>
+            <PhoneNumber phoneNumber={carWashData.phone} />
+
             <OpenHours
               monday={carWashData.monday_open_hours}
               tuesday={carWashData.tuesday_open_hours}

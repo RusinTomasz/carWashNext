@@ -63,22 +63,7 @@ const ButtonFormWrap = styled.div`
   text-align: right;
 `;
 
-const PhoneWrap = styled.div`
-  margin-top: 2rem;
-`;
 
-const PhoneNumber = styled.a`
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 21px;
-  line-height: 28px;
-  color: ${colors.lightBlue};
-  padding-left: 3rem;
-  background-repeat: no-repeat;
-  background-size: 2rem;
-  background-position: 0 50%;
-  background-image: url("/img/carWash/phone-blue-icon.svg");
-`;
 
 export {
   LeftSideWrap,
@@ -86,6 +71,4 @@ export {
   Name,
   Address,
   ButtonFormWrap,
-  PhoneWrap,
-  PhoneNumber,
 };

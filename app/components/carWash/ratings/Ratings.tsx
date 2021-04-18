@@ -7,7 +7,7 @@ import {
   RateWrap,
   ServiceRate,
   RatingLabel,
-} from "./styles/CarWashRatingsStyles";
+} from "./styles/RatingsStyles";
 
 const Ratings = () => {
   return (
