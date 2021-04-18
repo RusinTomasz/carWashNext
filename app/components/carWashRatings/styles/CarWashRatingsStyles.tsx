@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { breakpoints, maxWidth } from "../../styles/breakpoints";
-import StarsRater from "../starsRater/StarsRater";
+import { breakpoints, maxWidth } from "../../../styles/breakpoints";
+import StarsRater from "../../starsRater/StarsRater";
 
 export const CarWashStarsRater = styled(StarsRater)`
   margin-left: 1rem;
