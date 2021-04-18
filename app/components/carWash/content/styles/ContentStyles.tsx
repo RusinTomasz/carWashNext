@@ -59,16 +59,10 @@ const Address = styled.p`
   }
 `;
 
-const ButtonFormWrap = styled.div`
-  text-align: right;
-`;
-
-
 
 export {
   LeftSideWrap,
   RightSideWrap,
   Name,
   Address,
-  ButtonFormWrap,
 };

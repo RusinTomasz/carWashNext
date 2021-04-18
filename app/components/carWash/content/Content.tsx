@@ -3,7 +3,6 @@ import FlexWrapper from "../../../styles/shared/FlexWrapper";
 import dynamic from "next/dynamic";
 import Ratings from "../ratings/Ratings";
 import OpenHours from "../../openHours/OpenHours";
-import BasicButton from "../../../styles/shared/buttons/BasicButton";
 import IrregularitiesModal from "../../modals/irregularitiesModal/IrregularitiesModal";
 import PhoneNumber from "../phoneNumber/PhoneNumber";
 import {
@@ -11,9 +10,9 @@ import {
   RightSideWrap,
   Name,
   Address,
-  ButtonFormWrap,
 } from "./styles/ContentStyles";
 import CarWashType from "../../../types/CarWash";
+import ModalActionButton from "../modalActionButton/ModalActionButton";
 
 const Map = dynamic(import("../../locationMap/LocationMap"), {
   ssr: false,
@@ -63,15 +62,7 @@ const Content = (props: ContentContainerProps) => {
               position={[carWashData.lat, carWashData.lng]}
               popupTitle={carWashData.name}
             />
-            <ButtonFormWrap>
-              <BasicButton
-                backgroundColor={"blue"}
-                color={"white"}
-                onClick={openModal}
-              >
-                Zgłoś nieprawidłowości w opisie
-              </BasicButton>
-            </ButtonFormWrap>
+            <ModalActionButton openModal={openModal} />
           </RightSideWrap>
         </FlexWrapper>
       </article>
