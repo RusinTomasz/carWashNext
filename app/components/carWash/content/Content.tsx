@@ -5,14 +5,10 @@ import Ratings from "../ratings/Ratings";
 import OpenHours from "../../openHours/OpenHours";
 import IrregularitiesModal from "../../modals/irregularitiesModal/IrregularitiesModal";
 import PhoneNumber from "../phoneNumber/PhoneNumber";
-import {
-  LeftSideWrap,
-  RightSideWrap,
-  Name,
-  Address,
-} from "./styles/ContentStyles";
+import { LeftSideWrap, RightSideWrap } from "./styles/ContentStyles";
 import CarWashType from "../../../types/CarWash";
 import ModalActionButton from "../modalActionButton/ModalActionButton";
+import Header from "../header/Header";
 
 const Map = dynamic(import("../../locationMap/LocationMap"), {
   ssr: false,
@@ -40,7 +36,6 @@ const Content = (props: ContentContainerProps) => {
             <Ratings />
             {/* end */}
             <PhoneNumber phoneNumber={carWashData.phone} />
-
             <OpenHours
               monday={carWashData.monday_open_hours}
               tuesday={carWashData.tuesday_open_hours}
@@ -52,12 +47,10 @@ const Content = (props: ContentContainerProps) => {
             />
           </LeftSideWrap>
           <RightSideWrap>
-            <FlexWrapper wrap={"wrap"}>
-              <div>
-                <Name>{carWashData.name}</Name>
-                <Address>{carWashData.full_address}</Address>
-              </div>
-            </FlexWrapper>
+            <Header
+              name={carWashData.name}
+              fullAddress={carWashData.full_address}
+            />
             <Map
               position={[carWashData.lat, carWashData.lng]}
               popupTitle={carWashData.name}
