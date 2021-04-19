@@ -1,6 +1,7 @@
 import React from "react";
 import IrregularitiesModal from "../../modals/irregularitiesModal/IrregularitiesModal";
-import ModalActionButton from "../modalActionButton/ModalActionButton";
+import ModalActionButton from "../../../styles/shared/buttons/ModalActionButton";
+import { ButtonFormWrap } from "./styles/IrregularitiesStyles";
 
 interface IrregularitiesProps {
   openModal: () => void;
@@ -13,7 +14,12 @@ const Irregularities = (props: IrregularitiesProps) => {
 
   return (
     <>
-      <ModalActionButton openModal={openModal} />
+      <ButtonFormWrap>
+        <ModalActionButton
+          text={"Zgłoś nieprawidłowości w opisie"}
+          openModal={openModal}
+        />
+      </ButtonFormWrap>
       <IrregularitiesModal
         isModalOpen={isModalOpen}
         onClose={handleCloseModal}
