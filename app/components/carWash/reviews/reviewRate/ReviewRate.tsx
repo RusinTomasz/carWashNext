@@ -16,7 +16,7 @@ const ReviewRate = (props: ReviewRateProps) => {
     <RaterWrap>
       <ReviewRateWrap>
         <ReviewSmallText>Ocena:</ReviewSmallText>
-        {rate.toFixed(1)}
+        {rate && rate.toFixed(1)}
       </ReviewRateWrap>
     </RaterWrap>
   );

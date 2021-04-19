@@ -37,7 +37,7 @@ const ReviewsModal = (props: ReviewsModalProps) => {
       <FlexWrapper justifyContent="center" wrap="wrap">
         <Title>{carWashData.name}</Title>
         <Label>
-          Ocena: {reviewsScore.toFixed(1)} ({reviewsCount} ocen)
+          Ocena: {reviewsScore && reviewsScore.toFixed(1)} ({reviewsCount} ocen)
         </Label>
       </FlexWrapper>
 

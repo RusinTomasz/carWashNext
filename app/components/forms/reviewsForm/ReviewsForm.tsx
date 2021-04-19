@@ -58,15 +58,13 @@ const ReviewsForm = (props: ReviewsFormProps) => {
         onChange={handleMessageChange}
         required
       />
-      <div>
-        <SubmitButton
-          backgroundColor="blue"
-          color="white"
-          font="teko"
-          type="submit"
-          value="Wyślij recenzje"
-        />
-      </div>
+      <SubmitButton
+        backgroundColor="blue"
+        color="white"
+        font="teko"
+        type="submit"
+        value="Wyślij recenzje"
+      />
     </StyledReviewsForm>
   );
 };

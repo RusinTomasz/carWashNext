@@ -26,7 +26,7 @@ const Ratings = (props: RatingsProps) => {
           height={175}
           className="radius-50"
         />
-        <ServiceRate>{reviewsScore.toFixed(1)}</ServiceRate>
+        <ServiceRate>{reviewsScore && reviewsScore.toFixed(1)}</ServiceRate>
       </RateWrap>
       <RateCount>Zaufanych ocen: {reviewsCount}</RateCount>
       <FlexWrapper alignItems={"center"}>
