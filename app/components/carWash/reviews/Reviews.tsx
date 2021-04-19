@@ -25,7 +25,7 @@ const Reviews = (props: ReviewsProps) => {
   return (
     <ReviewsWrap>
       <Title>Opinie ({reviewsCount})</Title>
-      <ReviewsList reviews={reviews} />
+      <ReviewsList reviews={reviews.slice(0, 5)} />
       <ReviewsModalList
         openModal={openModal}
         handleCloseModal={handleCloseModal}
