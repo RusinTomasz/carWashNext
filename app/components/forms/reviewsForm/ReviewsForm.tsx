@@ -6,6 +6,7 @@ import {
   SubmitButton,
   StarsRaterReview,
   Input,
+  StyledReviewsForm,
 } from "./styles/ReviewsFormStyles";
 
 interface ReviewsFormProps {
@@ -30,7 +31,7 @@ const ReviewsForm = (props: ReviewsFormProps) => {
   } = props;
 
   return (
-    <form onSubmit={onConfirm}>
+    <StyledReviewsForm onSubmit={onConfirm}>
       <h3>Wyraź swoją opinię</h3>
       <Label>
         Twoja ocena:
@@ -66,7 +67,7 @@ const ReviewsForm = (props: ReviewsFormProps) => {
           value="Wyślij recenzje"
         />
       </div>
-    </form>
+    </StyledReviewsForm>
   );
 };
 

@@ -39,4 +39,15 @@ const StarsRaterReview = styled(StarsRater)`
   margin-left: 1rem;
 `;
 
-export { Label, TextArea, Input, SubmitButton, StarsRaterReview };
+const StyledReviewsForm = styled.form`
+  margin-top: 6rem;
+`;
+
+export {
+  Label,
+  TextArea,
+  Input,
+  SubmitButton,
+  StarsRaterReview,
+  StyledReviewsForm,
+};
