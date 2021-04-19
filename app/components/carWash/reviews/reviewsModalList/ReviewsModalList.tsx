@@ -1,8 +1,9 @@
 import React from "react";
 import ReviewsModal from "../../../modals/reviewsModal/ReviewsModal";
-import ModalActionButton from "../../../../styles/shared/buttons/ModalActionButton";
 import Review from "../../../../types/Review";
 import CarWashType from "../../../../types/CarWash";
+import { ModalActionButtonWrap } from "./styles/ReviewsModalListStyles";
+import ModalActionButton from "../../../../styles/shared/buttons/ModalActionButton";
 
 interface ReviewsModalListProps {
   isModalOpen: boolean;
@@ -27,10 +28,12 @@ const ReviewsModalList = (props: ReviewsModalListProps) => {
 
   return (
     <>
-      <ModalActionButton
-        text={"Zobacz wszystkie opinie"}
-        openModal={openModal}
-      />
+      <ModalActionButtonWrap>
+        <ModalActionButton
+          text={"Zobacz wszystkie opinie"}
+          openModal={openModal}
+        />
+      </ModalActionButtonWrap>
       <ReviewsModal
         carWashData={carWashData}
         reviewsScore={reviewsScore}
