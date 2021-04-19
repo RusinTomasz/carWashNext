@@ -40,7 +40,7 @@ const StarsRaterReview = styled(StarsRater)`
 `;
 
 const StyledReviewsForm = styled.form`
-  margin-top: 6rem;
+  margin-top: 3rem;
 `;
 
 export {

@@ -12,6 +12,7 @@ const ReviewRateWrap = styled.p`
   font-size: 26px;
   line-height: 35px;
   margin: 0;
+  text-align: right;
 `;
 
 const ReviewSmallText = styled.span`

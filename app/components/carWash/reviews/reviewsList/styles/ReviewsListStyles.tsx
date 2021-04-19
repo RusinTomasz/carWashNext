@@ -13,7 +13,7 @@ const ReviewFlexWrapper = styled(FlexWrapper)`
 `;
 
 const TextContent = styled.div`
-  width: calc(100% - 170px);
+  width: calc(100% - 160px);
   padding-left: 1.5rem;
   ${maxWidth(breakpoints.md)} {
     justify-content: flex-start;
