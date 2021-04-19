@@ -122,7 +122,7 @@ export async function getStaticProps(
 
   try {
     const carWashCommentsResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_HOST}/comments/car-wash:${props.carWashData.id}?blocked=false`
+      `${process.env.NEXT_PUBLIC_HOST}/comments/car-wash:${props.carWashData.id}?blocked=false&_sort=created_at:DESC`
     );
     props.carWashReviews = carWashCommentsResponse.data;
     props.carWashReviewsCount = props.carWashReviews.length;
