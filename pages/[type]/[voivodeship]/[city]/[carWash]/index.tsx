@@ -11,7 +11,6 @@ import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
 import CarWashType from "../../../../../app/types/CarWash";
 import Content from "../../../../../app/components/carWash/content";
 import Reviews from "../../../../../app/components/carWash/reviews";
-import { reviews } from "../../../../../app/components/carWash/reviews/mockData/MOCK_REVIEWS";
 import Review from "../../../../../app/types/Review";
 
 interface CarWashParams extends ParsedUrlQuery {
