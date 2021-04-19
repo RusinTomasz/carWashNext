@@ -3,6 +3,7 @@ import styled from "styled-components";
 const RaterWrap = styled.div`
   width: 100px;
   display: flex;
+  justify-content: flex-end;
 `;
 
 const ReviewRateWrap = styled.p`

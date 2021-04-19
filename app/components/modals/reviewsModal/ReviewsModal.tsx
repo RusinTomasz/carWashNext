@@ -1,22 +1,48 @@
 import React from "react";
-import { BasicModal, CloseButton } from "../styles/GlobalModalsStyles";
-import { Title } from "./styles/ReviewsModalStyles";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
+import CarWashType from "../../../types/CarWash";
+import Review from "../../../types/Review";
+import ReviewsList from "../../carWash/reviews/reviewsList/ReviewsList";
+import { CloseButton } from "../styles/GlobalModalsStyles";
+import { Title, StyledReviewsModal, Label } from "./styles/ReviewsModalStyles";
 
-const ReviewsModal = (props) => {
-  const { isModalOpen, onClose } = props;
+interface ReviewsModalProps {
+  isModalOpen: boolean;
+  reviews: Review[];
+  carWashData: CarWashType;
+  reviewsScore: number;
+  reviewsCount: number;
+  onClose: () => void;
+}
+
+const ReviewsModal = (props: ReviewsModalProps) => {
+  const {
+    carWashData,
+    reviewsScore,
+    reviewsCount,
+    reviews,
+    isModalOpen,
+    onClose,
+  } = props;
 
   return (
-    <BasicModal
+    <StyledReviewsModal
       isOpen={isModalOpen}
       onRequestClose={onClose}
       contentLabel="Irregularities Modal"
       ariaHideApp={false}
     >
       <CloseButton onClick={onClose}>X</CloseButton>
-      <Title>NAZWA MYJNI:</Title>
-      <p>Całkowita ocena: 5,0 (99 opnii) </p>
-      <p>Gwiazdki</p>
-    </BasicModal>
+
+      <FlexWrapper justifyContent="center" wrap="wrap">
+        <Title>{carWashData.name}</Title>
+        <Label>
+          Ocena: {reviewsScore.toFixed(1)} ({reviewsCount} ocen)
+        </Label>
+      </FlexWrapper>
+
+      <ReviewsList reviews={reviews} />
+    </StyledReviewsModal>
   );
 };
 

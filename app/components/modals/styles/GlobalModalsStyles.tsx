@@ -22,7 +22,6 @@ const BasicModal = styled(Modal)`
   left: 50%;
   right: auto;
   bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
   background: rgb(116, 161, 255);
   padding: 20px 15px 25px 15px;

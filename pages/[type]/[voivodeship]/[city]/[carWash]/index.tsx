@@ -68,8 +68,10 @@ const CarWash = (props: CarWashProps) => {
                 isCarWashFetchDataError={isCarWashFetchDataError}
               />
               <Reviews
+                carWashData={carWashData}
                 reviews={carWashReviews}
                 reviewsCount={carWashReviewsCount}
+                reviewsScore={carWashReviewsScore}
                 isCarWashFetchReviewsError={isCarWashFetchReviewsError}
               />
             </ContentWrap>

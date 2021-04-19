@@ -20,3 +20,11 @@ a {
 .radius-50 {
   border-radius: 50%;
 }
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
+.ReactModal__Overlay {
+  overflow-y: scroll;
+}

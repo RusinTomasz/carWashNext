@@ -3,7 +3,7 @@ import { breakpoints, maxWidth } from "../../../../../styles/breakpoints";
 import FlexWrapper from "../../../../../styles/shared/FlexWrapper";
 
 const ReviewItem = styled.article`
-  padding: 1.5rem;
+  padding: 1.5rem 0;
 `;
 
 const ReviewFlexWrapper = styled(FlexWrapper)`
