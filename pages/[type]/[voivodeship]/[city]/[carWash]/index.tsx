@@ -4,16 +4,14 @@ import Ads from "../../../../../app/components/ads/Ads";
 import { breakpoints, maxWidth } from "../../../../../app/styles/breakpoints";
 import Container from "../../../../../app/styles/shared/Container";
 import FlexWrapper from "../../../../../app/styles/shared/FlexWrapper";
-import Reviews from "../../../../../app/components/reviews/Reviews";
 import { GetStaticPropsContext } from "next";
 import axios from "axios";
 import { ParsedUrlQuery } from "node:querystring";
 import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
 import CarWashType from "../../../../../app/types/CarWash";
-import CarWashContentContainer from "../../../../../app/components/carWashContentContainer/CarWashContentContainer";
-import { useState } from "react";
-import ErrorCarWashContentUI from "../../../../../app/components/errors/ErrorCarWashContentUI";
-import ErrorCarWashReviewsUI from "../../../../../app/components/errors/ErrorCarWashReviewsUI";
+import Content from "../../../../../app/components/carWash/content";
+import Reviews from "../../../../../app/components/carWash/reviews";
+import { reviews } from "../../../../../app/components/carWash/reviews/mockData/MOCK_REVIEWS";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -21,11 +19,11 @@ interface CarWashParams extends ParsedUrlQuery {
 
 interface CarWashProps {
   carWashData: CarWashType;
-  carWashFetchDataError: boolean;
-  carWashFetchReviewsError: boolean;
+  isCarWashFetchDataError: boolean;
+  isCarWashFetchReviewsError: boolean;
 }
 
-const Content = styled.div`
+const ContentWrap = styled.div`
   width: 75%;
   padding-right: 1.5rem;
   ${maxWidth(breakpoints.lg)} {
@@ -36,19 +34,9 @@ const Content = styled.div`
 const CarWash = (props: CarWashProps) => {
   const {
     carWashData,
-    carWashFetchDataError,
-    carWashFetchReviewsError,
+    isCarWashFetchDataError,
+    isCarWashFetchReviewsError,
   } = props;
-
-  const [isModalOpen, setModalIsOpen] = useState(false);
-
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-  };
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
 
   return (
     <>
@@ -63,23 +51,16 @@ const CarWash = (props: CarWashProps) => {
       <main>
         <Container>
           <FlexWrapper wrap={"wrap"}>
-            <Content>
-              {!carWashFetchDataError ? (
-                <CarWashContentContainer
-                  carWashData={carWashData}
-                  openModal={openModal}
-                  handleCloseModal={handleCloseModal}
-                  isModalOpen={isModalOpen}
-                />
-              ) : (
-                <ErrorCarWashContentUI />
-              )}
-              {!carWashFetchReviewsError ? (
-                <Reviews />
-              ) : (
-                <ErrorCarWashReviewsUI />
-              )}
-            </Content>
+            <ContentWrap>
+              <Content
+                carWashData={carWashData}
+                isCarWashFetchDataError={isCarWashFetchDataError}
+              />
+              <Reviews
+                reviews={reviews}
+                isCarWashFetchReviewsError={isCarWashFetchReviewsError}
+              />
+            </ContentWrap>
             <Ads />
           </FlexWrapper>
         </Container>
@@ -95,16 +76,16 @@ export async function getStaticProps(
 
   interface Props {
     carWashData: CarWashType | null;
-    carWashFetchDataError: boolean;
+    isCarWashFetchDataError: boolean;
     carWashReviews: any[] | null;
-    carWashFetchReviewsError: boolean;
+    isCarWashFetchReviewsError: boolean;
   }
 
   const props: Props = {
     carWashData: null,
-    carWashFetchDataError: false,
+    isCarWashFetchDataError: false,
     carWashReviews: null,
-    carWashFetchReviewsError: false,
+    isCarWashFetchReviewsError: false,
   };
 
   try {
@@ -113,7 +94,7 @@ export async function getStaticProps(
     );
     props.carWashData = carWashResponse.data[0];
   } catch (err) {
-    props.carWashFetchDataError = true;
+    props.isCarWashFetchDataError = true;
     console.log(err);
   }
 
@@ -123,16 +104,16 @@ export async function getStaticProps(
     );
     props.carWashReviews = carWashCommentsResponse.data;
   } catch (err) {
-    props.carWashFetchReviewsError = true;
+    props.isCarWashFetchReviewsError = true;
     console.log(err);
   }
 
   return {
     props: {
       carWashData: props.carWashData,
-      carWashFetchDataError: props.carWashFetchDataError,
+      carWashFetchDataError: props.isCarWashFetchDataError,
       carWashReviews: props.carWashReviews,
-      carWashFetchReviewsError: props.carWashFetchReviewsError,
+      carWashFetchReviewsError: props.isCarWashFetchReviewsError,
     },
   };
 }

@@ -47,7 +47,7 @@ const TopBarText = styled.p`
   }
 `;
 
-const CarWashContent = styled(FlexWrapper)`
+const Content = styled(FlexWrapper)`
   padding: 2rem 1rem;
 `;
 
@@ -124,8 +124,6 @@ const ContentWrap = styled.div`
   }
 `;
 
-
-
 const City = (props: CityProps) => {
   const {
     type,
@@ -186,7 +184,7 @@ const City = (props: CityProps) => {
                         interactive={true}
                       />
                     </ContentTopBar>
-                    <CarWashContent alignItems="center">
+                    <Content alignItems="center">
                       <ImageWrap>
                         {type === "autospa" ? (
                           <Image
@@ -214,7 +212,7 @@ const City = (props: CityProps) => {
                           <Address>{carWash.full_address}</Address>
                         </div>
                       </Wrap>
-                    </CarWashContent>
+                    </Content>
                   </article>
                 ))}
               <Pagination
