@@ -4,7 +4,7 @@ import Review from "../../../types/Review";
 import ReviewsForm from "../../forms/reviewsForm";
 import ReviewsList from "./reviewsList/ReviewsList";
 import ReviewsModalList from "./reviewsModalList/ReviewsModalList";
-import { ReviewsWrap, Title } from "./styles/ReviewStyles";
+import { EmptyReviews, ReviewsWrap, Title } from "./styles/ReviewStyles";
 
 interface ReviewsProps {
   reviews: Review[];
@@ -30,16 +30,23 @@ const Reviews = (props: ReviewsProps) => {
   return (
     <ReviewsWrap>
       <Title>Opinie ({reviewsCount})</Title>
-      <ReviewsList reviews={reviews.slice(0, 5)} />
-      <ReviewsModalList
-        reviewsCount={reviewsCount}
-        reviewsScore={reviewsScore}
-        carWashData={carWashData}
-        openModal={openModal}
-        handleCloseModal={handleCloseModal}
-        isModalOpen={isModalOpen}
-        reviews={reviews}
-      />
+      {reviews.length ? (
+        <>
+          <ReviewsList reviews={reviews.slice(0, 5)} />
+          <ReviewsModalList
+            reviewsCount={reviewsCount}
+            reviewsScore={reviewsScore}
+            carWashData={carWashData}
+            openModal={openModal}
+            handleCloseModal={handleCloseModal}
+            isModalOpen={isModalOpen}
+            reviews={reviews}
+          />
+        </>
+      ) : (
+        <EmptyReviews>Brak opinii</EmptyReviews>
+      )}
+
       <ReviewsForm />
     </ReviewsWrap>
   );

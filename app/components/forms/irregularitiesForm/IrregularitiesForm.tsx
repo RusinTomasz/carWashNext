@@ -47,7 +47,7 @@ const IrregularitiesForm = () => {
 
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    console.log(state);
+
   };
 
   const handleChangeFormValues = (evt: InputEvent): void => {

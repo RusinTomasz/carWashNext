@@ -44,9 +44,6 @@ const CarWash = (props: CarWashProps) => {
     carWashReviewsScore,
   } = props;
 
-  console.log(carWashReviews);
-  console.log(carWashReviewsCount);
-
   return (
     <>
       <Head>

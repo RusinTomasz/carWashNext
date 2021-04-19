@@ -23,41 +23,37 @@ const ReviewsList = (props: ReviewsListProps) => {
 
   return (
     <>
-      {reviews ? (
-        reviews.map((review) => {
-          return (
-            <ReviewItem key={review.id}>
-              <ReviewFlexWrapper>
-                {/* It should be removed below 768px */}
-                <Image
-                  src="/img/carWash/avatar-review.svg"
-                  alt="awatar"
-                  width={60}
-                  height={60}
-                />
-                {/* end */}
-                <TextContent>
-                  <FlexWrapper alignItems="center" wrap="wrap">
-                    <AuthorName>{review.authorName}</AuthorName>
-                    <StarsRater
-                      starsLinkColor={"#e5e5e5"}
-                      total={5}
-                      rating={review.points ? review.points : 5}
-                      interactive={false}
-                    />
-                  </FlexWrapper>
-                  <ReviewMessage>{review.content}</ReviewMessage>
-                </TextContent>
-                {/* It should be removed below 768px */}
-                <ReviewRate rate={review.points ? review.points : 5} />
-                {/* end */}
-              </ReviewFlexWrapper>
-            </ReviewItem>
-          );
-        })
-      ) : (
-        <EmptyReviews>Brak opinii</EmptyReviews>
-      )}
+      {reviews.map((review) => {
+        return (
+          <ReviewItem key={review.id}>
+            <ReviewFlexWrapper>
+              {/* It should be removed below 768px */}
+              <Image
+                src="/img/carWash/avatar-review.svg"
+                alt="awatar"
+                width={60}
+                height={60}
+              />
+              {/* end */}
+              <TextContent>
+                <FlexWrapper alignItems="center" wrap="wrap">
+                  <AuthorName>{review.authorName}</AuthorName>
+                  <StarsRater
+                    starsLinkColor={"#e5e5e5"}
+                    total={5}
+                    rating={review.points ? review.points : 5}
+                    interactive={false}
+                  />
+                </FlexWrapper>
+                <ReviewMessage>{review.content}</ReviewMessage>
+              </TextContent>
+              {/* It should be removed below 768px */}
+              <ReviewRate rate={review.points ? review.points : 5} />
+              {/* end */}
+            </ReviewFlexWrapper>
+          </ReviewItem>
+        );
+      })}
     </>
   );
 };
