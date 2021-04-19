@@ -9,7 +9,14 @@ import {
   RatingLabel,
 } from "./styles/RatingsStyles";
 
-const Ratings = () => {
+interface RatingsProps {
+  reviewsCount: number;
+  reviewsScore: number;
+}
+
+const Ratings = (props: RatingsProps) => {
+  const { reviewsCount, reviewsScore } = props;
+
   return (
     <>
       <RateWrap>
@@ -19,15 +26,15 @@ const Ratings = () => {
           height={175}
           className="radius-50"
         />
-        <ServiceRate>4.3</ServiceRate>
+        <ServiceRate>{reviewsScore.toFixed(1)}</ServiceRate>
       </RateWrap>
-      <RateCount>Zaufanych ocen: 55</RateCount>
+      <RateCount>Zaufanych ocen: {reviewsCount}</RateCount>
       <FlexWrapper alignItems={"center"}>
         <RatingLabel>Ocena:</RatingLabel>
         <CarWashStarsRater
           starsLinkColor={"#e5e5e5"}
           total={5}
-          rating={4}
+          rating={reviewsScore}
           interactive={false}
         />
       </FlexWrapper>

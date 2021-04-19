@@ -6,10 +6,17 @@ import Content from "./Content";
 interface ContentContainerProps {
   carWashData: CarWashType;
   isCarWashFetchDataError: boolean;
+  reviewsCount: number;
+  reviewsScore: number;
 }
 
 const ContentContainer = (props: ContentContainerProps) => {
-  const { carWashData, isCarWashFetchDataError } = props;
+  const {
+    carWashData,
+    isCarWashFetchDataError,
+    reviewsCount,
+    reviewsScore,
+  } = props;
 
   const [isModalOpen, setModalIsOpen] = useState(false);
 
@@ -28,6 +35,8 @@ const ContentContainer = (props: ContentContainerProps) => {
           handleCloseModal={handleCloseModal}
           openModal={openModal}
           carWashData={carWashData}
+          reviewsCount={reviewsCount}
+          reviewsScore={reviewsScore}
           isModalOpen={isModalOpen}
         />
       ) : (

@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import Review from "../../../types/Review";
 import ReviewsForm from "../../forms/reviewsForm/ReviewsForm";
 import ReviewsList from "./reviewsList/ReviewsList";
 import { ReviewsWrap, Title, EmptyReviews } from "./styles/ReviewStyles";
 
 interface ReviewsProps {
-  reviews: any;
+  reviews: Review[];
+  reviewsCount: number;
 }
 
 const Reviews = (props: ReviewsProps) => {
-  const { reviews } = props;
+  const { reviews, reviewsCount } = props;
 
   return (
     <ReviewsWrap>
-      <Title>Opinie (55)</Title>
+      <Title>Opinie ({reviewsCount})</Title>
       <ReviewsList reviews={reviews} />
       <ReviewsForm />
     </ReviewsWrap>

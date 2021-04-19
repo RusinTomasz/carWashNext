@@ -21,17 +21,26 @@ interface ContentContainerProps {
   handleCloseModal: () => void;
   openModal: () => void;
   isModalOpen: boolean;
+  reviewsCount: number;
+  reviewsScore: number;
 }
 
 const Content = (props: ContentContainerProps) => {
-  const { carWashData, handleCloseModal, openModal, isModalOpen } = props;
+  const {
+    carWashData,
+    reviewsCount,
+    reviewsScore,
+    handleCloseModal,
+    openModal,
+    isModalOpen,
+  } = props;
 
   return (
     <article>
       <FlexWrapper>
         <LeftSideWrap>
           {/* It should be removed below 768px */}
-          <Ratings />
+          <Ratings reviewsCount={reviewsCount} reviewsScore={reviewsScore}/>
           {/* end */}
           <PhoneNumber phoneNumber={carWashData.phone} />
           <OpenHours

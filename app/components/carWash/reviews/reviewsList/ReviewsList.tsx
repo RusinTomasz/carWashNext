@@ -4,6 +4,7 @@ import FlexWrapper from "../../../../styles/shared/FlexWrapper";
 import StarsRater from "../../../starsRater/StarsRater";
 import { EmptyReviews } from "../styles/ReviewStyles";
 import ReviewRate from "../reviewRate/ReviewRate";
+import Review from "../../../../types/Review";
 
 import {
   ReviewItem,
@@ -14,7 +15,7 @@ import {
 } from "./styles/ReviewsListStyles";
 
 interface ReviewsListProps {
-  reviews: any;
+  reviews: Review[];
 }
 
 const ReviewsList = (props: ReviewsListProps) => {
@@ -25,7 +26,7 @@ const ReviewsList = (props: ReviewsListProps) => {
       {reviews ? (
         reviews.map((review) => {
           return (
-            <ReviewItem>
+            <ReviewItem key={review.id}>
               <ReviewFlexWrapper>
                 {/* It should be removed below 768px */}
                 <Image
@@ -37,13 +38,18 @@ const ReviewsList = (props: ReviewsListProps) => {
                 {/* end */}
                 <TextContent>
                   <FlexWrapper alignItems="center" wrap="wrap">
-                    <AuthorName>Review Author</AuthorName>
-                    <StarsRater total={5} rating={5} interactive={false} />
+                    <AuthorName>{review.authorName}</AuthorName>
+                    <StarsRater
+                      starsLinkColor={"#e5e5e5"}
+                      total={5}
+                      rating={review.points ? review.points : 5}
+                      interactive={false}
+                    />
                   </FlexWrapper>
-                  <ReviewMessage>Review message</ReviewMessage>
+                  <ReviewMessage>{review.content}</ReviewMessage>
                 </TextContent>
                 {/* It should be removed below 768px */}
-                <ReviewRate rate={5} />
+                <ReviewRate rate={review.points ? review.points : 5} />
                 {/* end */}
               </ReviewFlexWrapper>
             </ReviewItem>

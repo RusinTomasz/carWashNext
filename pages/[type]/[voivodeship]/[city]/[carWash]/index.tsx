@@ -12,6 +12,7 @@ import CarWashType from "../../../../../app/types/CarWash";
 import Content from "../../../../../app/components/carWash/content";
 import Reviews from "../../../../../app/components/carWash/reviews";
 import { reviews } from "../../../../../app/components/carWash/reviews/mockData/MOCK_REVIEWS";
+import Review from "../../../../../app/types/Review";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -19,6 +20,9 @@ interface CarWashParams extends ParsedUrlQuery {
 
 interface CarWashProps {
   carWashData: CarWashType;
+  carWashReviews: Review[];
+  carWashReviewsCount: number;
+  carWashReviewsScore: number;
   isCarWashFetchDataError: boolean;
   isCarWashFetchReviewsError: boolean;
 }
@@ -36,7 +40,13 @@ const CarWash = (props: CarWashProps) => {
     carWashData,
     isCarWashFetchDataError,
     isCarWashFetchReviewsError,
+    carWashReviews,
+    carWashReviewsCount,
+    carWashReviewsScore,
   } = props;
+
+  console.log(carWashReviews);
+  console.log(carWashReviewsCount);
 
   return (
     <>
@@ -54,10 +64,13 @@ const CarWash = (props: CarWashProps) => {
             <ContentWrap>
               <Content
                 carWashData={carWashData}
+                reviewsCount={carWashReviewsCount}
+                reviewsScore={carWashReviewsScore}
                 isCarWashFetchDataError={isCarWashFetchDataError}
               />
               <Reviews
-                reviews={reviews}
+                reviews={carWashReviews}
+                reviewsCount={carWashReviewsCount}
                 isCarWashFetchReviewsError={isCarWashFetchReviewsError}
               />
             </ContentWrap>
@@ -69,6 +82,12 @@ const CarWash = (props: CarWashProps) => {
   );
 };
 
+const countReviewsScore = (reviews: Review[]) => {
+  let score = 0;
+  reviews.map((review) => (score += review.points));
+  return score / reviews.length;
+};
+
 export async function getStaticProps(
   context: GetStaticPropsContext<CarWashParams>
 ) {
@@ -77,7 +96,9 @@ export async function getStaticProps(
   interface Props {
     carWashData: CarWashType | null;
     isCarWashFetchDataError: boolean;
-    carWashReviews: any[] | null;
+    carWashReviews: Review[] | null;
+    carWashReviewsCount: number;
+    carWashReviewsScore: number;
     isCarWashFetchReviewsError: boolean;
   }
 
@@ -85,6 +106,8 @@ export async function getStaticProps(
     carWashData: null,
     isCarWashFetchDataError: false,
     carWashReviews: null,
+    carWashReviewsCount: 0,
+    carWashReviewsScore: 0,
     isCarWashFetchReviewsError: false,
   };
 
@@ -100,9 +123,11 @@ export async function getStaticProps(
 
   try {
     const carWashCommentsResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_HOST}/comments/car-wash:${props.carWashData.id}`
+      `${process.env.NEXT_PUBLIC_HOST}/comments/car-wash:${props.carWashData.id}?blocked=false`
     );
     props.carWashReviews = carWashCommentsResponse.data;
+    props.carWashReviewsCount = props.carWashReviews.length;
+    props.carWashReviewsScore = countReviewsScore(props.carWashReviews);
   } catch (err) {
     props.isCarWashFetchReviewsError = true;
     console.log(err);
@@ -113,6 +138,8 @@ export async function getStaticProps(
       carWashData: props.carWashData,
       carWashFetchDataError: props.isCarWashFetchDataError,
       carWashReviews: props.carWashReviews,
+      carWashReviewsCount: props.carWashReviewsCount,
+      carWashReviewsScore: props.carWashReviewsScore,
       carWashFetchReviewsError: props.isCarWashFetchReviewsError,
     },
   };
