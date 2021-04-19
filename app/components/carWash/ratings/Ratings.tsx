@@ -26,9 +26,11 @@ const Ratings = (props: RatingsProps) => {
           height={175}
           className="radius-50"
         />
-        <ServiceRate>{reviewsScore && reviewsScore.toFixed(1)}</ServiceRate>
+        <ServiceRate>
+          {reviewsScore ? reviewsScore.toFixed(1) : "0.0"}
+        </ServiceRate>
       </RateWrap>
-      <RateCount>Zaufanych ocen: {reviewsCount}</RateCount>
+      <RateCount>Zaufanych ocen: {reviewsCount ? reviewsCount : 0}</RateCount>
       <FlexWrapper alignItems={"center"}>
         <RatingLabel>Ocena:</RatingLabel>
         <CarWashStarsRater
