@@ -1,6 +1,6 @@
 import React from "react";
 import Review from "../../../types/Review";
-import ReviewsForm from "../../forms/reviewsForm/ReviewsForm";
+import ReviewsForm from "../../forms/reviewsForm";
 import ReviewsList from "./reviewsList/ReviewsList";
 import { ReviewsWrap, Title, EmptyReviews } from "./styles/ReviewStyles";
 
