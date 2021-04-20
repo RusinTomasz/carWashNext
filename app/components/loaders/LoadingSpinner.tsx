@@ -1,7 +1,15 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { breakpoints, maxWidth } from "../../styles/breakpoints";
 import { colors } from "../../styles/variables";
+
+interface RingProps {
+  size: number;
+}
+
+interface RingElementProps {
+  size: number;
+  borderSize: number;
+}
 
 const animate = keyframes`
     0% {
@@ -12,24 +20,20 @@ const animate = keyframes`
     }
 `;
 
-const Ring = styled.div`
+const Ring = styled.div<RingProps>`
   display: inline-block;
   position: relative;
-  width: 37px;
-  height: 37px;
+  width: ${(props) => props.size + "px"};
+  height: ${(props) => props.size + "px"};
   margin-left: 2rem;
-  ${maxWidth(breakpoints.lg)} {
-    width: 37px;
-    height: 37px;
-  }
 `;
 
-const RingElement = styled.div`
+const RingElement = styled.div<RingElementProps>`
   display: block;
   position: absolute;
-  width: 37px;
-  height: 37px;
-  border: 4px solid ${colors.blue};
+  width: ${(props) => props.size + "px"};
+  height: ${(props) => props.size + "px"};
+  border: ${(props) => `${props.borderSize}px solid ${colors.blue}`};
   border-radius: 50%;
   animation: ${animate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: ${colors.blue} transparent transparent transparent;
@@ -46,13 +50,20 @@ const RingElementFourth = styled(RingElement)`
   animation-delay: -0.15s;
 `;
 
-const LoadingSpinner = () => {
+interface LoadingSpinnerProps {
+  size: number;
+  borderSize: number;
+}
+
+const LoadingSpinner = (props: LoadingSpinnerProps) => {
+  const { size, borderSize } = props;
+
   return (
-    <Ring>
-      <RingElement />
-      <RingElementSecond />
-      <RingElementThird />
-      <RingElementFourth />
+    <Ring size={size}>
+      <RingElement size={size} borderSize={borderSize} />
+      <RingElementSecond size={size} borderSize={borderSize} />
+      <RingElementThird size={size} borderSize={borderSize} />
+      <RingElementFourth size={size} borderSize={borderSize} />
     </Ring>
   );
 };
