@@ -1,10 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-import styled from "styled-components";
-import FlexWrapper from "../../styles/shared/FlexWrapper";
-import Container from "../../styles/shared/Container";
-
 import PromotedItems from "./promotedItems/PromotedItems";
 import {
   PromotedTitle,
@@ -12,8 +8,15 @@ import {
   PromotedContainer,
   PromotedFlexWrapper,
 } from "./styles/PromotedStyles";
+import CarWashType from "../../types/CarWash";
 
-const Promoted = () => {
+interface PromotedProps {
+  promotedCarWashes: CarWashType[];
+}
+
+const Promoted = (props: PromotedProps) => {
+  const { promotedCarWashes } = props;
+  //#review
   //Must be implemented
   //   let containerHeight;
   //   if (props.windowWidth > 991) {
@@ -30,7 +33,7 @@ const Promoted = () => {
       <ContentWrap>
         <PromotedContainer z-index={1}>
           <PromotedFlexWrapper wrap="wrap" alignItems="center">
-            <PromotedItems promotedItems={["1", "2", "3"]} />
+            <PromotedItems promotedCarWashes={promotedCarWashes} />
           </PromotedFlexWrapper>
         </PromotedContainer>
         <Image

@@ -1,3 +1,5 @@
+import Review from "./Review";
+
 export interface CarWashTypes {
   autospa: { alias: string; id: number };
   touchless: { alias: string; id: number };
@@ -40,5 +42,5 @@ export default interface CarWashType {
   sunday_open_hours: string;
   promoted_frontpage: boolean | null;
   slug: string;
+  cooments: Review[];
 }
-

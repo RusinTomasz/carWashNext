@@ -12,41 +12,48 @@ import {
   PromotedImageWrap,
   ActionLinkWrap,
 } from "./styles/PromoteditemsStyles";
+import CarWashType from "../../../types/CarWash";
 
-const PromotedItems = (props) => {
-  return props.promotedItems.map((el, index) => {
-    return (
-      <PromotedItem key={index}>
-        <PromotedItemContent>
-          {/* <Name>{el.attributes.field_name.value}</Name> */}
-          <Name>Myjnia okręgowa</Name>
-          <PromotedImageWrap>
-            <Image
-              //   src={el.attributes.field_image_from_maps.value}
-              src="https://lh5.googleusercontent.com/p/AF1QipNGWV3-YIf1a8ohhb3nWmQyhRZN3LnQfk2YLztS=w408-h270-k-no"
-              layout="fill"
-              objectFit="cover"
-            />
-          </PromotedImageWrap>
-          <CityWrap>
-            {/* <City>{el.attributes.field_city.value}</City> */}
-            <City>Warszawa</City>
-          </CityWrap>
-          <ActionLinkWrap>
-            <Link
-              //   href={`/autospa/${el.attributes.field_voivodeship_slug.value}/${el.attributes.field_city_slug.value}${el.attributes.path.alias}`}
-              href="/"
-              passHref
-            >
-              <ActionLink font="teko" backgroundColor="blue">
-                Zobacz
-              </ActionLink>
-            </Link>
-          </ActionLinkWrap>
-        </PromotedItemContent>
-      </PromotedItem>
-    );
-  });
+interface PromotedItemsPorps {
+  promotedCarWashes: CarWashType[];
+}
+
+const PromotedItems = (props: PromotedItemsPorps) => {
+  const { promotedCarWashes } = props;
+
+  return (
+    <>
+      {promotedCarWashes.map((carWash, index) => {
+        return (
+          <PromotedItem key={index}>
+            <PromotedItemContent>
+              <Name>{carWash.name}</Name>
+              <PromotedImageWrap>
+                <Image
+                  src={carWash.image_from_maps}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </PromotedImageWrap>
+              <CityWrap>
+                <City>{carWash.city}</City>
+              </CityWrap>
+              <ActionLinkWrap>
+                <Link
+                  href={`/autospa/${carWash.voivodeship_slug}/${carWash.city_slug}/${carWash.slug}`}
+                  passHref
+                >
+                  <ActionLink font="teko" backgroundColor="blue">
+                    Zobacz
+                  </ActionLink>
+                </Link>
+              </ActionLinkWrap>
+            </PromotedItemContent>
+          </PromotedItem>
+        );
+      })}
+    </>
+  );
 };
 
 export default PromotedItems;
