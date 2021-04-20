@@ -24,6 +24,11 @@ const AddCarWashLink = styled.a`
   margin-left: 4rem;
 `;
 
+const LogoLink = styled.a`
+  display: flex;
+  align-items: center;
+`;
+
 const Header = () => {
   return (
     <HeaderContent>
@@ -33,7 +38,11 @@ const Header = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Logo />
+          <Link href="/" passHref>
+            <LogoLink>
+              <Logo />
+            </LogoLink>
+          </Link>
           <Link href="/kontakt" passHref>
             <AddCarWashLink>+ Dodaj myjnię</AddCarWashLink>
           </Link>
