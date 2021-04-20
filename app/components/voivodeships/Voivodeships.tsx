@@ -1,43 +1,15 @@
 import React, { useState } from "react";
-
-//Styles
-import styled from "styled-components";
-import Container from "../../styles/shared/Container";
-import BasicButton from "../../styles/shared/buttons/BasicButton";
-import { maxWidth, breakpoints } from "../../styles/breakpoints";
-
-//Utils
 import carWashTypes from "../../utils/carWashTypes";
 
-//Components
 import VoivodeshipsList from "./voivodeshipsList/VoivodeshipsList";
+import voivodeships from "./data/voivodeshipsData";
 
-const VoivodeshipsWrap = styled(Container)`
-  margin-top: 6rem;
-
-  ${maxWidth(breakpoints.sm)} {
-    margin-top: 2rem;
-  }
-`;
-
-const Title = styled.h2`
-  text-align: center;
-`;
-
-const ButtonsWrap = styled.div`
-  margin: 3rem 0;
-  text-align: center;
-  ${maxWidth(breakpoints.sm)} {
-    margin: 1rem 0;
-  }
-`;
-
-const TypeButton = styled(BasicButton)`
-  margin: 0 1rem;
-  ${maxWidth(breakpoints.sm)} {
-    margin: 0.5rem 1.5rem 0.5rem 0;
-  }
-`;
+import {
+  VoivodeshipsWrap,
+  Title,
+  ButtonsWrap,
+  TypeButton,
+} from "./styles/VoivodeshipsStyles";
 
 const Voivodeships = () => {
   const [type, setType] = useState(carWashTypes.autospa);
@@ -65,16 +37,7 @@ const Voivodeships = () => {
           Myjnie bezdotykowe
         </TypeButton>
       </ButtonsWrap>
-      <VoivodeshipsList
-        type={type.alias}
-        voivodeships={[
-          { slug: "dolnoslaskie", name: "dolnośląskie" },
-          {
-            slug: "kujawsko-pomorskie",
-            name: "kujawsko-pomorskie",
-          },
-        ]}
-      />
+      <VoivodeshipsList type={type.alias} voivodeships={voivodeships} />
     </VoivodeshipsWrap>
   );
 };
