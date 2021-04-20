@@ -1,11 +1,16 @@
 import React, { SyntheticEvent, useState } from "react";
 import addReview from "../../../api/addReview";
 import InputEvent from "../../../types/InputEvent";
-import ErrorMessage from "./errorMessage/ErrorMessage";
+import FormStatusMessage from "./formStatusMessage/FormStatusMessage";
 import ReviewsForm from "./ReviewsForm";
-import SuccessMessage from "./successMessage/SuccessMessage";
 
 const ReviewsFormContainer = () => {
+  const successTitle = "Gratulacje - Twoja opinia została przesłana";
+  const successMessage =
+    "Gratulacje Twoja opinia została przesłana. Opinia wymaga zatwierdzenia przez administora. Powinna pojawić się w ciągu 24h.";
+  const errorTitle = "Błąd - Nie udało się wysłać opinii";
+  const errorMessage =
+    "Niestety nie udało się przesłać Twojej opinii. Spróbuj ponownie później.";
   const [starsValue, setStarsValue] = useState(5);
   const [reviewMessage, setReviewMessage] = useState("");
   const [authorName, setAuthorName] = useState("");
@@ -70,10 +75,23 @@ const ReviewsFormContainer = () => {
         handleInputChange={handleInputChange}
         reviewMessage={reviewMessage}
         handleMessageChange={handleMessageChange}
+        isLoading={isLoading}
       />
-      {isLoading && <div>Loading...</div>}
-      {isSuccess && <SuccessMessage />}
-      {isError && <ErrorMessage />}
+
+      {isSuccess && (
+        <FormStatusMessage
+          title={successTitle}
+          message={successMessage}
+          type="success"
+        />
+      )}
+      {isError && (
+        <FormStatusMessage
+          title={errorTitle}
+          message={errorMessage}
+          type="error"
+        />
+      )}
     </>
   );
 };

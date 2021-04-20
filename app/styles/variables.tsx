@@ -10,6 +10,8 @@ interface Colors {
   barBlue: string;
   red: string;
   carWashAddress: string;
+  successBg: string;
+  errorBg: string;
 }
 
 interface StarsRaterColors {
@@ -39,6 +41,8 @@ export const colors: Colors = {
   barBlue: "#a2bffd",
   red: "#e74c3c",
   carWashAddress: "#c4c4c4",
+  successBg: "#4F8A10",
+  errorBg: "#ef5350",
 };
 
 export const fontFamilies: FontFamilies = {

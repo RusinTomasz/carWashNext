@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import FlexWrapper from "../../../../styles/shared/FlexWrapper";
 import SubmitInput from "../../../../styles/shared/inputs/SubmitInput";
 import { colors, fontFamilies } from "../../../../styles/variables";
 import StarsRater from "../../../starsRater/StarsRater";
@@ -31,7 +32,6 @@ const TextArea = styled.textarea`
 `;
 
 const SubmitButton = styled(SubmitInput)`
-  margin-top: 3rem;
   outline: none;
 `;
 
@@ -43,6 +43,10 @@ const StyledReviewsForm = styled.form`
   margin-top: 3rem;
 `;
 
+const ActionsWrap = styled(FlexWrapper)`
+  margin-top: 3rem;
+`;
+
 export {
   Label,
   TextArea,
@@ -50,4 +54,5 @@ export {
   SubmitButton,
   StarsRaterReview,
   StyledReviewsForm,
+  ActionsWrap,
 };

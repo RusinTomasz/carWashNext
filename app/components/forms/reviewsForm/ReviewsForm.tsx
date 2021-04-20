@@ -1,5 +1,7 @@
 import React, { SyntheticEvent } from "react";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
 import InputEvent from "../../../types/InputEvent";
+import LoadingSpinner from "../../loaders/LoadingSpinner";
 import {
   Label,
   TextArea,
@@ -7,12 +9,14 @@ import {
   StarsRaterReview,
   Input,
   StyledReviewsForm,
+  ActionsWrap,
 } from "./styles/ReviewsFormStyles";
 
 interface ReviewsFormProps {
   starsValue: number;
   authorName: string;
   reviewMessage: string;
+  isLoading: boolean;
   onRate: ({ rating }: { rating: number }) => void;
   onConfirm: (evt: SyntheticEvent) => Promise<void>;
   handleInputChange: (evt: InputEvent) => void;
@@ -24,6 +28,7 @@ const ReviewsForm = (props: ReviewsFormProps) => {
     starsValue,
     authorName,
     reviewMessage,
+    isLoading,
     onRate,
     onConfirm,
     handleInputChange,
@@ -58,13 +63,16 @@ const ReviewsForm = (props: ReviewsFormProps) => {
         onChange={handleMessageChange}
         required
       />
-      <SubmitButton
-        backgroundColor="blue"
-        color="white"
-        font="teko"
-        type="submit"
-        value="Wyślij recenzje"
-      />
+      <ActionsWrap alignItems="center">
+        <SubmitButton
+          backgroundColor="blue"
+          color="white"
+          font="teko"
+          type="submit"
+          value="Wyślij recenzje"
+        />
+        {isLoading && <LoadingSpinner />}
+      </ActionsWrap>
     </StyledReviewsForm>
   );
 };
