@@ -3,14 +3,14 @@ import addReview from "../../../api/addReview";
 import InputEvent from "../../../types/InputEvent";
 import FormStatusMessage from "./formStatusMessage/FormStatusMessage";
 import ReviewsForm from "./ReviewsForm";
+import {
+  successReviewTitle,
+  successReviewMessage,
+  errorReviewTitle,
+  errorReviewMessage,
+} from "../../../constants/formsMessages/FormMessages";
 
 const ReviewsFormContainer = () => {
-  const successTitle = "Gratulacje - Twoja opinia została przesłana";
-  const successMessage =
-    "Gratulacje Twoja opinia została przesłana. Opinia wymaga zatwierdzenia przez administora. Powinna pojawić się w ciągu 24h.";
-  const errorTitle = "Błąd - Nie udało się wysłać opinii";
-  const errorMessage =
-    "Niestety nie udało się przesłać Twojej opinii. Spróbuj ponownie później.";
   const [starsValue, setStarsValue] = useState(5);
   const [reviewMessage, setReviewMessage] = useState("");
   const [authorName, setAuthorName] = useState("");
@@ -80,15 +80,15 @@ const ReviewsFormContainer = () => {
 
       {isSuccess && (
         <FormStatusMessage
-          title={successTitle}
-          message={successMessage}
+          title={successReviewTitle}
+          message={successReviewMessage}
           type="success"
         />
       )}
       {isError && (
         <FormStatusMessage
-          title={errorTitle}
-          message={errorMessage}
+          title={errorReviewTitle}
+          message={errorReviewMessage}
           type="error"
         />
       )}
