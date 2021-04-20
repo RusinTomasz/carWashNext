@@ -71,7 +71,7 @@ const ReviewsForm = (props: ReviewsFormProps) => {
           type="submit"
           value="Wyślij recenzje"
         />
-        {isLoading && <LoadingSpinner />}
+        {isLoading && <LoadingSpinner size={37} borderSize={4} />}
       </ActionsWrap>
     </StyledReviewsForm>
   );

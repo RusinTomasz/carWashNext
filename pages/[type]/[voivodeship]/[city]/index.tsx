@@ -17,6 +17,7 @@ import paginationUtils from "../../../../app/utils/paginationUtils";
 import Ads from "../../../../app/components/ads/Ads";
 import Voivodeship from "../../../../app/types/Voivodeship";
 import carWashTypes from "../../../../app/utils/carWashTypes";
+import LoadingScreen from "../../../../app/components/loadingScreen/LoadingScreen";
 
 interface CityParams extends VoivodeshipParams {
   city: string;
@@ -119,11 +120,16 @@ const Address = styled.p`
 `;
 
 const ContentWrap = styled.div`
+  position: relative;
   padding-right: 1.5rem;
   width: 75%;
   ${maxWidth(breakpoints.sm)} {
     width: 100%;
   }
+`;
+
+const ContentListWrap = styled.div`
+  position: relative;
 `;
 
 const City = (props: CityProps) => {
@@ -172,51 +178,54 @@ const City = (props: CityProps) => {
           <FlexWrapper wrap="wrap">
             <ContentWrap>
               <h1>Tymczasowy tytuł</h1>
-              {loading && <h1>Loading..</h1>}
-              {carWashes.length > 0 &&
-                carWashes.map((carWash, index) => (
-                  <article key={carWash.id}>
-                    <ContentTopBar wrap="wrap" alignItems="center">
-                      <TopBarText>
-                        {carWash.total_reviews_maps} Zaufanych ocen
-                      </TopBarText>
-                      <StarsRater
-                        total={5}
-                        rating={carWash.rating_maps}
-                        interactive={true}
-                      />
-                    </ContentTopBar>
-                    <Content alignItems="center">
-                      <ImageWrap>
-                        {type === "autospa" ? (
-                          <Image
-                            src="/img/city/autospa-default.jpg"
-                            layout="fill"
-                            className="radius-50"
-                          />
-                        ) : (
-                          <Image
-                            src="/img/citys/bezdot-default.jpg"
-                            layout="fill"
-                            className="radius-50"
-                          />
-                        )}
+              {carWashes.length > 0 && (
+                <ContentListWrap>
+                  {loading && <LoadingScreen />}
+                  {carWashes.map((carWash, index) => (
+                    <article key={carWash.id}>
+                      <ContentTopBar wrap="wrap" alignItems="center">
+                        <TopBarText>
+                          {carWash.total_reviews_maps} Zaufanych ocen
+                        </TopBarText>
+                        <StarsRater
+                          total={5}
+                          rating={carWash.rating_maps}
+                          interactive={true}
+                        />
+                      </ContentTopBar>
+                      <Content alignItems="center">
+                        <ImageWrap>
+                          {type === "autospa" ? (
+                            <Image
+                              src="/img/city/autospa-default.jpg"
+                              layout="fill"
+                              className="radius-50"
+                            />
+                          ) : (
+                            <Image
+                              src="/img/citys/bezdot-default.jpg"
+                              layout="fill"
+                              className="radius-50"
+                            />
+                          )}
 
-                        <Index>{startingIndex + index + 1}</Index>
-                      </ImageWrap>
-                      <Wrap>
-                        <Link
-                          href={`/${type}/${voivodeship}/${city}/${carWash.slug}`}
-                        >
-                          {carWash.name}
-                        </Link>
-                        <div>
-                          <Address>{carWash.full_address}</Address>
-                        </div>
-                      </Wrap>
-                    </Content>
-                  </article>
-                ))}
+                          <Index>{startingIndex + index + 1}</Index>
+                        </ImageWrap>
+                        <Wrap>
+                          <Link
+                            href={`/${type}/${voivodeship}/${city}/${carWash.slug}`}
+                          >
+                            {carWash.name}
+                          </Link>
+                          <div>
+                            <Address>{carWash.full_address}</Address>
+                          </div>
+                        </Wrap>
+                      </Content>
+                    </article>
+                  ))}
+                </ContentListWrap>
+              )}
               <Pagination
                 page={currentPage}
                 onPageChange={onPageChange}

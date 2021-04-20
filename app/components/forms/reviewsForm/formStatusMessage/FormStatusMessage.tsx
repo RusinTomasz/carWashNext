@@ -16,7 +16,7 @@ const MessageWrap = styled.div<MessageWrapProps>`
 const Title = styled.h3`
   color: white;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 300;
 `;
 const Message = styled.p`
   font-size: 14px;
