@@ -140,6 +140,7 @@ export async function getStaticProps(
       carWashReviewsScore: props.carWashReviewsScore,
       carWashFetchReviewsError: props.isCarWashFetchReviewsError,
     },
+    revalidate: 18000,
   };
 }
 
