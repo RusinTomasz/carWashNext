@@ -15,6 +15,8 @@ import { getCarWashTypeIdByAlias } from "../../../../app/utils/carWashTypes";
 import Router from "next/router";
 import paginationUtils from "../../../../app/utils/paginationUtils";
 import Ads from "../../../../app/components/ads/Ads";
+import Voivodeship from "../../../../app/types/Voivodeship";
+import carWashTypes from "../../../../app/utils/carWashTypes";
 
 interface CityParams extends VoivodeshipParams {
   city: string;
