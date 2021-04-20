@@ -15,8 +15,6 @@ import { getCarWashTypeIdByAlias } from "../../../../app/utils/carWashTypes";
 import Router from "next/router";
 import paginationUtils from "../../../../app/utils/paginationUtils";
 import Ads from "../../../../app/components/ads/Ads";
-import Voivodeship from "../../../../app/types/Voivodeship";
-import carWashTypes from "../../../../app/utils/carWashTypes";
 import LoadingScreen from "../../../../app/components/loadingScreen/LoadingScreen";
 
 interface CityParams extends VoivodeshipParams {
@@ -28,6 +26,7 @@ interface CityProps {
   type: string;
   voivodeship: string;
   city: string;
+  cityName: string;
   page: number;
   limit: number;
   carWashes: any[];
@@ -137,6 +136,7 @@ const City = (props: CityProps) => {
     type,
     voivodeship,
     city,
+    cityName,
     page,
     carWashes,
     carWashesCount,
@@ -177,7 +177,9 @@ const City = (props: CityProps) => {
         <Container ref={carWashListRef}>
           <FlexWrapper wrap="wrap">
             <ContentWrap>
-              <h1>Tymczasowy tytuł</h1>
+              <h1>
+                {cityName} ({type})
+              </h1>
               {carWashes.length > 0 && (
                 <ContentListWrap>
                   {loading && <LoadingScreen />}
@@ -247,23 +249,35 @@ export const getServerSideProps = async ({ query }) => {
   const currentPage = +page || 1;
   let carWashesData = null;
   let carWashesCount = 0;
-
+  let cityName = null;
   const limit = 5;
   const startIndex = limit * (currentPage - 1);
   const carWashTypeId = getCarWashTypeIdByAlias(type);
 
   try {
-    let carWashesDataUrl = `http://localhost:1337/car-washes?_limit=${limit}&_start=${startIndex}&voivodeship_slug=${voivodeship}&car_wash_type=${carWashTypeId}&city_slug=${city}`;
-    let carWashesCountUrl = `http://localhost:1337/car-washes/count?&voivodeship_slug=${voivodeship}&car_wash_type=${carWashTypeId}&city_slug=${city}`;
+    let carWashesDataUrl = `${process.env.NEXT_PUBLIC_HOST}/car-washes?_limit=${limit}&_start=${startIndex}&voivodeship_slug=${voivodeship}&car_wash_type=${carWashTypeId}&city_slug=${city}`;
+    let carWashesCountUrl = `${process.env.NEXT_PUBLIC_HOST}/car-washes/count?&voivodeship_slug=${voivodeship}&car_wash_type=${carWashTypeId}&city_slug=${city}`;
+    let citiesByCurrentVoivodeshipUrl = `${process.env.NEXT_PUBLIC_HOST}/car-washes/cities/${type}/${voivodeship}`;
 
     const resFirst = await axios.get(carWashesDataUrl);
     const resSecond = await axios.get(carWashesCountUrl);
+    const resThird = await axios.get(citiesByCurrentVoivodeshipUrl);
 
-    if (resFirst.status !== 200 || resSecond.status !== 200) {
+    if (
+      resFirst.status !== 200 ||
+      resSecond.status !== 200 ||
+      resThird.status !== 200
+    ) {
       throw new Error("Failed to fetch");
     }
+
     carWashesData = resFirst.data;
     carWashesCount = resSecond.data;
+
+    const currentCityObj = resThird.data.filter(
+      (cityObj: { name: string; slug: string }) => cityObj.slug === city
+    );
+    cityName = currentCityObj[0].name;
   } catch (err) {
     carWashesData = { error: { message: err.message } };
   }
@@ -273,6 +287,7 @@ export const getServerSideProps = async ({ query }) => {
       type,
       voivodeship,
       city,
+      cityName,
       limit,
       page: currentPage,
       carWashes: carWashesData,
