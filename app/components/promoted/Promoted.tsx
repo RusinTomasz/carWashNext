@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 
 import PromotedItems from "./promotedItems/PromotedItems";
@@ -9,6 +9,7 @@ import {
   PromotedFlexWrapper,
 } from "./styles/PromotedStyles";
 import CarWashType from "../../types/CarWash";
+import { AppContext } from "../../context/AppContext";
 
 interface PromotedProps {
   promotedCarWashes: CarWashType[];
@@ -16,21 +17,20 @@ interface PromotedProps {
 
 const Promoted = (props: PromotedProps) => {
   const { promotedCarWashes } = props;
-  //#review
-  //Must be implemented
-  //   let containerHeight;
-  //   if (props.windowWidth > 991) {
-  //     containerHeight = 680;
-  //   } else if (props.windowWidth > 767 && props.windowWidth <= 991) {
-  //     containerHeight = 1100;
-  //   } else {
-  //     containerHeight = 1620;
-  //   }
+  const { windowWidth } = useContext(AppContext);
+
+  let containerHeight = 1620;
+
+  if (windowWidth > 991) {
+    containerHeight = 680;
+  } else if (windowWidth > 767 && windowWidth <= 991) {
+    containerHeight = 1100;
+  }
 
   return (
     <section>
       <PromotedTitle>Wyróżnione myjnie</PromotedTitle>
-      <ContentWrap>
+      <ContentWrap containerHeight={containerHeight}>
         <PromotedContainer z-index={1}>
           <PromotedFlexWrapper wrap="wrap" alignItems="center">
             <PromotedItems promotedCarWashes={promotedCarWashes} />
