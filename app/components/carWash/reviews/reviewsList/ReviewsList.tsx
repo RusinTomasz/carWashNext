@@ -1,8 +1,7 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import FlexWrapper from "../../../../styles/shared/FlexWrapper";
 import StarsRater from "../../../starsRater/StarsRater";
-import { EmptyReviews } from "../styles/ReviewStyles";
 import ReviewRate from "../reviewRate/ReviewRate";
 import Review from "../../../../types/Review";
 
@@ -13,6 +12,7 @@ import {
   ReviewMessage,
   TextContent,
 } from "./styles/ReviewsListStyles";
+import { AppContext } from "../../../../context/AppContext";
 
 interface ReviewsListProps {
   reviews: Review[];
@@ -20,6 +20,7 @@ interface ReviewsListProps {
 
 const ReviewsList = (props: ReviewsListProps) => {
   const { reviews } = props;
+  const { windowWidth } = useContext(AppContext);
 
   return (
     <>
@@ -27,14 +28,14 @@ const ReviewsList = (props: ReviewsListProps) => {
         return (
           <ReviewItem key={review.id}>
             <ReviewFlexWrapper>
-              {/* It should be removed below 768px */}
-              <Image
-                src="/img/carWash/avatar-review.svg"
-                alt="awatar"
-                width={60}
-                height={60}
-              />
-              {/* end */}
+              {windowWidth >= 768 && (
+                <Image
+                  src="/img/carWash/avatar-review.svg"
+                  alt="awatar"
+                  width={60}
+                  height={60}
+                />
+              )}
               <TextContent>
                 <FlexWrapper alignItems="center" wrap="wrap">
                   <AuthorName>{review.authorName}</AuthorName>
@@ -47,9 +48,9 @@ const ReviewsList = (props: ReviewsListProps) => {
                 </FlexWrapper>
                 <ReviewMessage>{review.content}</ReviewMessage>
               </TextContent>
-              {/* It should be removed below 768px */}
-              <ReviewRate rate={review.points ? review.points : 5} />
-              {/* end */}
+              {windowWidth >= 768 && (
+                <ReviewRate rate={review.points ? review.points : 5} />
+              )}
             </ReviewFlexWrapper>
           </ReviewItem>
         );

@@ -21,6 +21,7 @@ const ReviewsContainer = (props: ReviewsContainerProps) => {
     reviewsScore,
   } = props;
 
+
   const [isModalOpen, setModalIsOpen] = useState(false);
 
   const handleCloseModal = () => {
