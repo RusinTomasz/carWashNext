@@ -47,7 +47,7 @@ const Reviews = (props: ReviewsProps) => {
         <EmptyReviews>Brak opinii</EmptyReviews>
       )}
 
-      <ReviewsForm />
+      <ReviewsForm refId={carWashData.id} />
     </ReviewsWrap>
   );
 };

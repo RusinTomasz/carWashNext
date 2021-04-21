@@ -10,7 +10,12 @@ import {
   errorReviewMessage,
 } from "../../../constants/formsMessages/FormMessages";
 
-const ReviewsFormContainer = () => {
+interface ReviewsFormProps {
+  refId: number;
+}
+
+const ReviewsFormContainer = (props: ReviewsFormProps) => {
+  const { refId } = props;
   const [starsValue, setStarsValue] = useState(5);
   const [reviewMessage, setReviewMessage] = useState("");
   const [authorName, setAuthorName] = useState("");
@@ -27,7 +32,7 @@ const ReviewsFormContainer = () => {
       authorName: authorName,
       message: reviewMessage,
       starsValue: starsValue,
-      refId: 2639,
+      refId: refId,
     });
 
     setLoadingStatus(false);
