@@ -50,25 +50,33 @@ export const ServiceRate = styled.p`
     height: 7rem;
     background-image: url("/img/carWash/background-star.png");
   }
-  ${maxWidth(breakpoints.md)} {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0;
-    width: 30px;
-    height: 30px;
-    background-color: #fff50e;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 21px;
-  }
 `;
 
 export const RatingLabel = styled.span`
   font-weight: 500;
   font-size: 18px;
   line-height: 32px;
+`;
+
+export const MobileRatingWrap = styled.div`
+  position: relative;
+  width: 70px;
+  padding: 2rem 1rem;
+  align-items: center;
+`;
+
+export const MobileServiceRate = styled.p`
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #fff50e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 21px;
 `;
