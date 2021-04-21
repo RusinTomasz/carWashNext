@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import { breakpoints, maxWidth } from "../../../../styles/breakpoints";
 import { colors } from "../../../../styles/variables";
 
 const PhoneWrap = styled.div`
   margin-top: 2rem;
+  ${maxWidth(breakpoints.md)} {
+    order: 2;
+  }
 `;
 
 const PhoneNumberLink = styled.a`
