@@ -2,6 +2,13 @@ import styled from "styled-components";
 import { breakpoints, maxWidth } from "../../../../styles/breakpoints";
 import { colors } from "../../../../styles/variables";
 
+const HeaderWrap = styled.div`
+  ${maxWidth(breakpoints.md)} {
+    width: calc(100% - 90px);
+    margin-left: 2rem;
+  }
+`;
+
 const Name = styled.h1`
   font-weight: 500;
   margin-bottom: 0;
@@ -30,5 +37,4 @@ const Address = styled.p`
   }
 `;
 
-
-export { Name, Address };
+export { HeaderWrap, Name, Address };
