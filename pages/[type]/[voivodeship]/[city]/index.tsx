@@ -205,7 +205,7 @@ const City = (props: CityProps) => {
                             />
                           ) : (
                             <Image
-                              src="/img/citys/bezdot-default.jpg"
+                              src="/img/city/bezdot-default.jpg"
                               layout="fill"
                               className="radius-50"
                             />
