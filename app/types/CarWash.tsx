@@ -42,5 +42,5 @@ export default interface CarWashType {
   sunday_open_hours: string;
   promoted_frontpage: boolean | null;
   slug: string;
-  cooments: Review[];
+  comments: Review[];
 }

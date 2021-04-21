@@ -12,6 +12,7 @@ import CarWashType from "../../../../../app/types/CarWash";
 import Content from "../../../../../app/components/carWash/content";
 import Reviews from "../../../../../app/components/carWash/reviews";
 import Review from "../../../../../app/types/Review";
+import countScoreFromReviews from "../../../../../app/utils/countScoreFromReviews";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -80,12 +81,6 @@ const CarWash = (props: CarWashProps) => {
   );
 };
 
-const countReviewsScore = (reviews: Review[]) => {
-  let score = 0;
-  reviews.map((review) => (score += review.points));
-  return score / reviews.length;
-};
-
 export async function getStaticProps(
   context: GetStaticPropsContext<CarWashParams>
 ) {
@@ -125,7 +120,7 @@ export async function getStaticProps(
     );
     props.carWashReviews = carWashCommentsResponse.data;
     props.carWashReviewsCount = props.carWashReviews.length;
-    props.carWashReviewsScore = countReviewsScore(props.carWashReviews);
+    props.carWashReviewsScore = countScoreFromReviews(props.carWashReviews);
   } catch (err) {
     props.isCarWashFetchReviewsError = true;
     console.log(err);

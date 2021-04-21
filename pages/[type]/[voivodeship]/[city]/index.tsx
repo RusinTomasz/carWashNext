@@ -16,6 +16,8 @@ import Router from "next/router";
 import paginationUtils from "../../../../app/utils/paginationUtils";
 import Ads from "../../../../app/components/ads/Ads";
 import LoadingScreen from "../../../../app/components/loadingScreen/LoadingScreen";
+import CarWashType from "../../../../app/types/CarWash";
+import countScoreFromReviews from "../../../../app/utils/countScoreFromReviews";
 
 interface CityParams extends VoivodeshipParams {
   city: string;
@@ -29,7 +31,7 @@ interface CityProps {
   cityName: string;
   page: number;
   limit: number;
-  carWashes: any[];
+  carWashes: CarWashType[];
   carWashesCount: number;
 }
 
@@ -183,49 +185,52 @@ const City = (props: CityProps) => {
               {carWashes.length > 0 && (
                 <ContentListWrap>
                   {loading && <LoadingScreen />}
-                  {carWashes.map((carWash, index) => (
-                    <article key={carWash.id}>
-                      <ContentTopBar wrap="wrap" alignItems="center">
-                        <TopBarText>
-                          {carWash.total_reviews_maps} Zaufanych ocen
-                        </TopBarText>
-                        <StarsRater
-                          total={5}
-                          rating={carWash.rating_maps}
-                          interactive={true}
-                        />
-                      </ContentTopBar>
-                      <Content alignItems="center">
-                        <ImageWrap>
-                          {type === "autospa" ? (
-                            <Image
-                              src="/img/city/autospa-default.jpg"
-                              layout="fill"
-                              className="radius-50"
-                            />
-                          ) : (
-                            <Image
-                              src="/img/city/bezdot-default.jpg"
-                              layout="fill"
-                              className="radius-50"
-                            />
-                          )}
+                  {carWashes.map((carWash, index) => {
+                    const score = countScoreFromReviews(carWash.comments);
+                    return (
+                      <article key={carWash.id}>
+                        <ContentTopBar wrap="wrap" alignItems="center">
+                          <TopBarText>
+                            {carWash.comments.length} Zaufanych ocen
+                          </TopBarText>
+                          <StarsRater
+                            total={5}
+                            rating={score}
+                            interactive={true}
+                          />
+                        </ContentTopBar>
+                        <Content alignItems="center">
+                          <ImageWrap>
+                            {type === "autospa" ? (
+                              <Image
+                                src="/img/city/autospa-default.jpg"
+                                layout="fill"
+                                className="radius-50"
+                              />
+                            ) : (
+                              <Image
+                                src="/img/city/bezdot-default.jpg"
+                                layout="fill"
+                                className="radius-50"
+                              />
+                            )}
 
-                          <Index>{startingIndex + index + 1}</Index>
-                        </ImageWrap>
-                        <Wrap>
-                          <Link
-                            href={`/${type}/${voivodeship}/${city}/${carWash.slug}`}
-                          >
-                            {carWash.name}
-                          </Link>
-                          <div>
-                            <Address>{carWash.full_address}</Address>
-                          </div>
-                        </Wrap>
-                      </Content>
-                    </article>
-                  ))}
+                            <Index>{startingIndex + index + 1}</Index>
+                          </ImageWrap>
+                          <Wrap>
+                            <Link
+                              href={`/${type}/${voivodeship}/${city}/${carWash.slug}`}
+                            >
+                              {carWash.name}
+                            </Link>
+                            <div>
+                              <Address>{carWash.full_address}</Address>
+                            </div>
+                          </Wrap>
+                        </Content>
+                      </article>
+                    );
+                  })}
                 </ContentListWrap>
               )}
               <Pagination
