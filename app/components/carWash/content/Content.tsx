@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import FlexWrapper from "../../../styles/shared/FlexWrapper";
 import dynamic from "next/dynamic";
 import Ratings from "../ratings/Ratings";
@@ -8,6 +8,8 @@ import { LeftSideWrap, RightSideWrap } from "./styles/ContentStyles";
 import CarWashType from "../../../types/CarWash";
 import Header from "../header/Header";
 import Irregularities from "../irregularities/Irregularities";
+import { AppContext } from "../../../context/AppContext";
+import RatingsMobile from "../ratings/RatingsMobile";
 
 const Map = dynamic(import("../../locationMap/LocationMap"), {
   ssr: false,
@@ -34,14 +36,16 @@ const Content = (props: ContentContainerProps) => {
     openModal,
     isModalOpen,
   } = props;
+  const { windowWidth } = useContext(AppContext);
 
   return (
     <article>
-      <FlexWrapper>
+      <FlexWrapper wrap="wrap">
         <LeftSideWrap>
-          {/* It should be removed below 768px */}
-          <Ratings reviewsCount={reviewsCount} reviewsScore={reviewsScore}/>
-          {/* end */}
+          {windowWidth >= 768 && (
+            <Ratings reviewsCount={reviewsCount} reviewsScore={reviewsScore} />
+          )}
+
           <PhoneNumber phoneNumber={carWashData.phone} />
           <OpenHours
             monday={carWashData.monday_open_hours}
@@ -54,9 +58,16 @@ const Content = (props: ContentContainerProps) => {
           />
         </LeftSideWrap>
         <RightSideWrap>
+          {windowWidth < 768 && (
+            <RatingsMobile
+              reviewsCount={reviewsCount}
+              reviewsScore={reviewsScore}
+            />
+          )}
           <Header
             name={carWashData.name}
             fullAddress={carWashData.full_address}
+            reviewsScore={reviewsScore}
           />
           <Map
             position={[carWashData.lat, carWashData.lng]}
