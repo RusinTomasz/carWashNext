@@ -7,6 +7,10 @@ import carWashTypes from "../../../app/utils/carWashTypes";
 import VoivodeshipType from "../../../app/types/Voivodeship";
 import axios from "axios";
 import City from "../../../app/types/City";
+import Container from "../../../app/styles/shared/Container";
+import styled from "styled-components";
+import { breakpoints, maxWidth } from "../../../app/styles/breakpoints";
+import { colors } from "../../../app/styles/variables";
 
 export interface VoivodeshipParams extends ParsedUrlQuery {
   type: string;
@@ -20,6 +24,39 @@ interface VoivodeshipProps {
   isCitiesError: boolean;
 }
 
+const Title = styled.h1`
+  margin: 2rem 0 4rem;
+  text-align: center;
+`;
+
+const CitiesList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+`;
+
+const CitiesListItem = styled.li`
+  width: 25%;
+  padding-right: 15px;
+  padding-left: 15px;
+  list-style: none;
+  margin: 0.25rem 0;
+  ${maxWidth(breakpoints.lg)} {
+    width: 50%;
+    margin: 0;
+  }
+`;
+
+const CitiesListLint = styled.a`
+  padding: 5px 10px;
+  ${maxWidth(breakpoints.sm)} {
+    font-size: 12px;
+  }
+  &:hover {
+    background-color: ${colors.yellow};
+  }
+`;
+
 const Voivodeship = (props: VoivodeshipProps) => {
   const { cities, type, voivodeship, isCitiesError } = props;
 
@@ -30,22 +67,18 @@ const Voivodeship = (props: VoivodeshipProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="container single-voivo-container">
-          <ul className="cities-list list-grid">
-            <div className="row">
-              <h2 className="col-12 main-secondary-title text-center">
-                Wszystkie miasta
-              </h2>
-              {cities.map((city, index) => (
-                <li className="col-6 col-sm-6 col-md-3 list-item" key={index}>
-                  <Link href={`/${type}/${voivodeship}/${city.slug}`}>
-                    {city.name}
-                  </Link>
-                </li>
-              ))}
-            </div>
-          </ul>
-        </div>
+        <Container>
+          <Title>Wszystkie miasta</Title>
+          <CitiesList>
+            {cities.map((city, index) => (
+              <CitiesListItem key={index}>
+                <Link href={`/${type}/${voivodeship}/${city.slug}`} passHref>
+                  <CitiesListLint>{city.name}</CitiesListLint>
+                </Link>
+              </CitiesListItem>
+            ))}
+          </CitiesList>
+        </Container>
       </main>
     </>
   );
