@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { breakpoints, maxWidth } from "../../styles/breakpoints";
 
 interface OpenHoursProps {
   monday?: string;
@@ -23,6 +24,12 @@ const Hours = styled.p`
   font-size: 14px;
 `;
 
+const OpenHoursWrap = styled.div`
+  ${maxWidth(breakpoints.md)} {
+    padding-right: 2rem;
+  }
+`;
+
 const OpenHours = (props: OpenHoursProps) => {
   const {
     monday,
@@ -43,7 +50,7 @@ const OpenHours = (props: OpenHoursProps) => {
       friday ||
       saturday ||
       sunday ? (
-        <div className="open-hours">
+        <OpenHoursWrap>
           <Title>Godziny otwarcia:</Title>
           {monday && <Hours>Poniedziałek: {monday}</Hours>}
           {tuesday && <Hours>Wtorek: {tuesday}</Hours>}
@@ -52,7 +59,7 @@ const OpenHours = (props: OpenHoursProps) => {
           {friday && <Hours>Piątek: {friday}</Hours>}
           {saturday && <Hours>Sobota: {saturday}</Hours>}
           {sunday && <Hours>Niedziela: {sunday}</Hours>}
-        </div>
+        </OpenHoursWrap>
       ) : null}
     </>
   );
