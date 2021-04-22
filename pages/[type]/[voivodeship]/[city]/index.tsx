@@ -196,7 +196,7 @@ const City = (props: CityProps) => {
                           <StarsRater
                             total={5}
                             rating={score}
-                            interactive={true}
+                            interactive={false}
                           />
                         </ContentTopBar>
                         <Content alignItems="center">

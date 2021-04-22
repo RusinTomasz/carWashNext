@@ -1,62 +1,22 @@
-import React, { SyntheticEvent, useState } from "react";
-import styled, { css } from "styled-components";
-import SubmitInput from "../../../styles/shared/inputs/SubmitInput";
-import { colors, fontFamilies } from "../../../styles/variables";
+import React from "react";
+import { IrregularitiesFormValues } from ".";
 import InputEvent from "../../../types/InputEvent";
 
-const inputsCss = css`
-  font-family: ${fontFamilies.exo};
-  font-size: 14px;
-  line-height: 24px;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  border: 1px solid ${colors.grayText};
-  box-shadow: none;
-  outline: none;
-  width: 100%;
-`;
+import {
+  SubmitButton,
+  InputLabelParagraph,
+  Input,
+  TextArea,
+} from "./styles/IrregularitiesFormStyles";
 
-const SubmitButton = styled(SubmitInput)`
-  display: block;
-  margin: 1rem 0 0 auto;
-  padding: 0.5rem 3rem;
-`;
+interface IrregularitiesFormProps {
+  handleChangeFormValues: (evt: InputEvent) => void;
+  handleSubmit: (evt: any) => void;
+  state: IrregularitiesFormValues;
+}
 
-const InputLabelParagraph = styled.p`
-  margin: 0.5rem 0;
-  color: white;
-`;
-
-const Input = styled.input`
-  ${inputsCss}
-`;
-
-const TextArea = styled.textarea`
-  ${inputsCss}
-`;
-
-const IrregularitiesForm = () => {
-  const formValues = {
-    message: "",
-    name: "",
-    subject: "",
-    email: "",
-  };
-
-  const [state, setState] = useState(formValues);
-
-  const handleSubmit = (evt: SyntheticEvent) => {
-    evt.preventDefault();
-
-  };
-
-  const handleChangeFormValues = (evt: InputEvent): void => {
-    const value: string = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
-  };
+const IrregularitiesForm = (props: IrregularitiesFormProps) => {
+  const { state, handleChangeFormValues, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -114,6 +74,7 @@ const IrregularitiesForm = () => {
         type="submit"
         value="Wyślij"
       />
+      {/* #review */}
       {/* <Recaptcha
         ref={(ref) => (this.recaptcha = ref)}
         sitekey="6LfA0-EUAAAAAIvZze0LTAhrKfjGLhX9s7n_vG9e"
