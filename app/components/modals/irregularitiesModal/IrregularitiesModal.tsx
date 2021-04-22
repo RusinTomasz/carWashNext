@@ -1,5 +1,5 @@
 import React from "react";
-import IrregularitiesForm from "../../forms/irregularitiesForm/IrregularitiesForm";
+import IrregularitiesForm from "../../forms/irregularitiesForm";
 import { CloseButton, BasicModal } from "../styles/GlobalModalsStyles";
 import { Title } from "./styles/IrregularitiesModalStyles";
 

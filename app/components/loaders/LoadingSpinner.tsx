@@ -9,6 +9,7 @@ interface RingProps {
 interface RingElementProps {
   size: number;
   borderSize: number;
+  borderColor?: string;
 }
 
 const animate = keyframes`
@@ -33,10 +34,16 @@ const RingElement = styled.div<RingElementProps>`
   position: absolute;
   width: ${(props) => props.size + "px"};
   height: ${(props) => props.size + "px"};
-  border: ${(props) => `${props.borderSize}px solid ${colors.blue}`};
+  border: ${(props) =>
+    props.borderColor
+      ? `${props.borderSize}px solid ${props.borderColor}`
+      : `${props.borderSize}px solid ${colors.blue}`};
   border-radius: 50%;
   animation: ${animate} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: ${colors.blue} transparent transparent transparent;
+  border-color: ${(props) =>
+    props.borderColor
+      ? `${props.borderColor} transparent transparent transparent;`
+      : `${colors.blue} transparent transparent transparent`};
 `;
 
 const RingElementSecond = styled(RingElement)`
@@ -53,17 +60,34 @@ const RingElementFourth = styled(RingElement)`
 interface LoadingSpinnerProps {
   size: number;
   borderSize: number;
+  borderColor?: string;
 }
 
 const LoadingSpinner = (props: LoadingSpinnerProps) => {
-  const { size, borderSize } = props;
+  const { size, borderSize, borderColor } = props;
 
   return (
     <Ring size={size}>
-      <RingElement size={size} borderSize={borderSize} />
-      <RingElementSecond size={size} borderSize={borderSize} />
-      <RingElementThird size={size} borderSize={borderSize} />
-      <RingElementFourth size={size} borderSize={borderSize} />
+      <RingElement
+        size={size}
+        borderSize={borderSize}
+        borderColor={borderColor}
+      />
+      <RingElementSecond
+        size={size}
+        borderSize={borderSize}
+        borderColor={borderColor}
+      />
+      <RingElementThird
+        size={size}
+        borderSize={borderSize}
+        borderColor={borderColor}
+      />
+      <RingElementFourth
+        size={size}
+        borderSize={borderSize}
+        borderColor={borderColor}
+      />
     </Ring>
   );
 };

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import FlexWrapper from "../../../../styles/shared/FlexWrapper";
 import SubmitInput from "../../../../styles/shared/inputs/SubmitInput";
 import { colors, fontFamilies } from "../../../../styles/variables";
 
@@ -16,13 +17,16 @@ const inputsCss = css`
 
 const SubmitButton = styled(SubmitInput)`
   display: block;
-  margin: 1rem 0 0 auto;
   padding: 0.5rem 3rem;
 `;
 
 const InputLabelParagraph = styled.p`
   margin: 0.5rem 0;
   color: white;
+`;
+
+const ActionsWrap = styled(FlexWrapper)`
+  margin-top: 1rem;
 `;
 
 const Input = styled.input`
@@ -33,4 +37,4 @@ const TextArea = styled.textarea`
   ${inputsCss}
 `;
 
-export { SubmitButton, InputLabelParagraph, Input, TextArea };
+export { SubmitButton, InputLabelParagraph, Input, TextArea, ActionsWrap };

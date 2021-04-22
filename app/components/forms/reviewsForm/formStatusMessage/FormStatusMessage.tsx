@@ -10,7 +10,7 @@ const MessageWrap = styled.div<MessageWrapProps>`
   padding: 1rem 3rem;
   background-color: ${(props) =>
     props.type === "error" ? colors.errorBg : colors.successBg};
-  margin: 4rem 0 6rem;
+  margin: 4rem 0 2rem;
 `;
 
 const Title = styled.h3`

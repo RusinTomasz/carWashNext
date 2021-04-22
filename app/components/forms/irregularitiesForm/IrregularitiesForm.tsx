@@ -1,22 +1,26 @@
 import React from "react";
 import { IrregularitiesFormValues } from ".";
+import { colors } from "../../../styles/variables";
 import InputEvent from "../../../types/InputEvent";
+import LoadingSpinner from "../../loaders/LoadingSpinner";
 
 import {
   SubmitButton,
   InputLabelParagraph,
   Input,
   TextArea,
+  ActionsWrap,
 } from "./styles/IrregularitiesFormStyles";
 
 interface IrregularitiesFormProps {
+  state: IrregularitiesFormValues;
+  isLoading: boolean;
   handleChangeFormValues: (evt: InputEvent) => void;
   handleSubmit: (evt: any) => void;
-  state: IrregularitiesFormValues;
 }
 
 const IrregularitiesForm = (props: IrregularitiesFormProps) => {
-  const { state, handleChangeFormValues, handleSubmit } = props;
+  const { state, isLoading, handleChangeFormValues, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -67,13 +71,23 @@ const IrregularitiesForm = (props: IrregularitiesFormProps) => {
           required
         />
       </label>
-      <SubmitButton
-        backgroundColor="yellow"
-        color="default"
-        font="teko"
-        type="submit"
-        value="Wyślij"
-      />
+      <ActionsWrap justifyContent="flex-end" alignItems="center">
+        <SubmitButton
+          backgroundColor="yellow"
+          color="default"
+          font="teko"
+          type="submit"
+          value="Wyślij"
+          disabled={isLoading}
+        />
+        {isLoading && (
+          <LoadingSpinner
+            size={37}
+            borderSize={4}
+            borderColor={colors.yellow}
+          />
+        )}
+      </ActionsWrap>
       {/* #review */}
       {/* <Recaptcha
         ref={(ref) => (this.recaptcha = ref)}

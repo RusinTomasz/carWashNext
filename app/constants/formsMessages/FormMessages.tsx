@@ -4,3 +4,11 @@ export const successReviewMessage =
 export const errorReviewTitle = "Błąd - Nie udało się wysłać opinii";
 export const errorReviewMessage =
   "Niestety nie udało się przesłać Twojej opinii. Spróbuj ponownie później.";
+
+export const successEmailTitle =
+  "Gratulacje - Twoja wiadomość została przesłana";
+export const successEmailMessage =
+  "Gratulacje Twoja wiadomość została przesłana. Postaramy się zareagować najszybciej jak to możliwe.";
+export const errorEmailTitle = "Błąd - Nie udało się wysłać emaila";
+export const errorEmailMessage =
+  "Niestety nie udało się wysłać emaila z formularza. Spróbuj ponownie później.";

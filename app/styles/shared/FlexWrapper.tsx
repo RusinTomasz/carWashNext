@@ -6,7 +6,10 @@ interface FlexWrapperProps {
     | "space-around"
     | "space-evenly"
     | "center"
-    | "start";
+    | "start"
+    | "end"
+    | "flex-start"
+    | "flex-end";
   alignItems?: "center" | "stretch" | "start" | "end";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
 }
