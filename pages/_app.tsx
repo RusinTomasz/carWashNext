@@ -13,6 +13,7 @@ import Header from "../app/components/header/Header";
 import Footer from "../app/components/footer/Footer";
 import Voivodeships from "../app/components/voivodeships/Voivodeships";
 import { AppDataProvider } from "../app/context/AppContext";
+import MainMenu from "../app/components/mainMenu/MainMenu";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -20,6 +21,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
       <GlobalStyle />
       <Provider store={store}>
         <Header />
+        <MainMenu />
         <AppDataProvider>
           <Component {...pageProps} />
         </AppDataProvider>

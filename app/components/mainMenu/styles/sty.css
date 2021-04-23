@@ -1,0 +1,11 @@
+.mobile-logo {
+  display: none;
+  background: url(mobile-logo.svg) center no-repeat;
+  height: 50px;
+  background-size: 15rem;
+}
+.mobile-nav.active .mobile-logo {
+  position: absolute;
+  width: 200px;
+  display: inline-block;
+}
