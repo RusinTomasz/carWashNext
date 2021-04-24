@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { colors, fontFamilies } from "../../styles/variables";
 import { maxWidth, breakpoints } from "../../styles/breakpoints";
 import FlexWrapper from "../../styles/shared/FlexWrapper";
+import SearchForm from "../forms/searchForm";
 
 const FrontPageMainBannerContainer = styled(FlexWrapper)`
   height: 500px;
@@ -74,7 +75,7 @@ const FrontPageMainBanner = () => {
       <ContentWrap>
         <Title>Znajdź najlepszą myjnię</Title>
         <Subtitle>W twojej lokalizacji!</Subtitle>
-        {/* <Search /> */}
+        <SearchForm />
       </ContentWrap>
       <Image
         className="bg-index"
