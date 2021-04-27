@@ -6,19 +6,25 @@ const carWashTypes: CarWashTypes = {
 };
 
 export const getCarWashTypeIdByAlias = (alias: string): number => {
+  let carWashId: number | undefined;
   const carWashType: string[] = Object.keys(carWashTypes).filter(
     (key) => carWashTypes[key].alias === alias
   );
-  const carWashId: number = carWashTypes[carWashType[0]].id;
+  if (carWashTypes[carWashType[0]]) {
+    carWashId = carWashTypes[carWashType[0]].id;
+  }
 
   return carWashId;
 };
 
 export const getCarWashTypeAliasById = (id: number): string => {
+  let carWashAlias: string | undefined;
   const carWashType: string[] = Object.keys(carWashTypes).filter(
     (key) => carWashTypes[key].id === id
   );
-  const carWashAlias: string = carWashTypes[carWashType[0]].alias;
+  if (carWashTypes[carWashType[0]]) {
+    carWashAlias = carWashTypes[carWashType[0]].alias;
+  }
 
   return carWashAlias;
 };
