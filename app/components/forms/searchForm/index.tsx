@@ -1,5 +1,7 @@
-import React, { SyntheticEvent, useState } from "react";
+import { useRouter } from "next/router";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import InputEvent from "../../../types/InputEvent";
+import Query from "../../../types/Search";
 import SearchForm from "./SearchForm";
 
 export interface SelectType {
@@ -8,20 +10,38 @@ export interface SelectType {
 }
 
 const SearchFormContainer = () => {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
   const [selectedType, setSelectedType] = useState<SelectType>({
     value: "autospa",
     label: "Auto spa",
   });
-  const [query, setQuery] = useState("");
-
+  const { query: queryString }: { query: Query } = router;
   const selectOptions = [
     { value: "autospa", label: "Auto spa" },
     { value: "myjniebezdotykowe", label: "Myjnie bezdotykowe" },
   ];
 
+  useEffect(() => {
+    if (router.isReady) {
+      if (queryString.q) {
+        setQuery(queryString.q);
+      }
+      if (queryString.type) {
+        const option = selectOptions.filter(
+          (option) => option.value === queryString.type
+        );
+        setSelectedType(option[0]);
+      }
+    }
+  }, [queryString.q, queryString.type]);
+
   const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
-    console.log("Submit");
+    router.push({
+      pathname: "/wyszukaj",
+      query: { type: selectedType.value, q: query },
+    });
   };
 
   const handleOnChangeSelect = (selectedType: SelectType) => {
