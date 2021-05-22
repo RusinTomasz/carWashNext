@@ -29,7 +29,10 @@ const Pagination = (props: PaginationProps) => {
     if (page > 1) {
       onPageChange(page - 1);
       const path = getPathFromUrl(router.asPath);
-      router.push({ pathname: path, query: { page: +page - 1 } });
+      router.push({
+        pathname: path,
+        query: { ...router.query, page: +page - 1 },
+      });
     }
   };
 
@@ -38,7 +41,10 @@ const Pagination = (props: PaginationProps) => {
     if (isNextPage) {
       const path = getPathFromUrl(router.asPath);
       onPageChange(+page + 1);
-      router.push({ pathname: path, query: { page: +page + 1 } });
+      router.push({
+        pathname: path,
+        query: { ...router.query, page: +page + 1 },
+      });
     }
   };
 
