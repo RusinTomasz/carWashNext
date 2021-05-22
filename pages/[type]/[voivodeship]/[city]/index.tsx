@@ -15,6 +15,15 @@ import Ads from "../../../../app/components/ads/Ads";
 import CarWashType from "../../../../app/types/CarWash";
 import CarWashesList from "../../../../app/components/carWash/carWashesList/CarWashesList";
 
+const ContentWrap = styled.div`
+  position: relative;
+  padding-right: 1.5rem;
+  width: 75%;
+  ${maxWidth(breakpoints.sm)} {
+    width: 100%;
+  }
+`;
+
 interface CityParams extends VoivodeshipParams {
   city: string;
   queryParam?: string;
@@ -31,25 +40,18 @@ interface CityProps {
   carWashesCount: number;
 }
 
-const ContentWrap = styled.div`
-  position: relative;
-  padding-right: 1.5rem;
-  width: 75%;
-  ${maxWidth(breakpoints.sm)} {
-    width: 100%;
-  }
-`;
-
 const City = (props: CityProps) => {
   const { type, cityName, page, carWashes, carWashesCount, limit } = props;
+
   const startCountingIndex = paginationUtils.countStartingIndex(page, limit);
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+
   const [currentPage, setCurrentPage] = useState(page);
   const [loading, setLoading] = useState(false);
   const [startingIndex, setStartingIndex] = useState(startCountingIndex);
 
   const carWashListRef = useRef(null);
-  const startLoading = () => setLoading(true);
-  const stopLoading = () => setLoading(false);
 
   useEffect(() => {
     Router.events.on("routeChangeStart", startLoading);
@@ -81,21 +83,22 @@ const City = (props: CityProps) => {
                 {cityName} ({type})
               </h1>
               {carWashes.length > 0 && (
-                <CarWashesList
-                  type={type}
-                  startingIndex={startingIndex}
-                  loading={loading}
-                  carWashes={carWashes}
-                />
+                <>
+                  <CarWashesList
+                    type={type}
+                    startingIndex={startingIndex}
+                    loading={loading}
+                    carWashes={carWashes}
+                  />
+                  <Pagination
+                    page={currentPage}
+                    onPageChange={onPageChange}
+                    count={carWashesCount}
+                    limit={limit}
+                  />
+                </>
               )}
-              <Pagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                count={carWashesCount}
-                limit={limit}
-              />
             </ContentWrap>
-
             <Ads />
           </FlexWrapper>
         </Container>
