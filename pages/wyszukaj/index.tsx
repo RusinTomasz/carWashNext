@@ -109,7 +109,7 @@ const SearchPage = () => {
         <Container>
           <h1>Witamy na stronie wyszukiwań</h1>
           <SearchForm />
-          
+
           {searchResults && (
             <>
               <SearchResults
@@ -118,18 +118,20 @@ const SearchPage = () => {
                 startingIndex={startingIndex}
                 queryType={queryType}
               />
-              <Pagination
-                page={currentPage}
-                onPageChange={onPageChange}
-                count={numberOfSearchResults}
-                limit={resultsLimit}
-              />
+              {searchResults.length > 0 && (
+                <Pagination
+                  page={currentPage}
+                  onPageChange={onPageChange}
+                  count={numberOfSearchResults}
+                  limit={resultsLimit}
+                />
+              )}
             </>
           )}
 
           {!searchResults && loading && (
             <FlexWrapper justifyContent="center">
-              <LoadingSpinner size={180} borderSize={4} />{" "}
+              <LoadingSpinner size={180} borderSize={4} />
             </FlexWrapper>
           )}
 
