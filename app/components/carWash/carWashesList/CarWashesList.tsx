@@ -19,7 +19,6 @@ import {
 
 interface CarWashesListProps {
   type: string;
-
   startingIndex: number;
   loading: boolean;
   carWashes: CarWashType[];
@@ -33,6 +32,11 @@ const CarWashesList = (props: CarWashesListProps) => {
       {loading && <LoadingScreen />}
       {carWashes.sort(sortByNumberOfComments).map((carWash, index) => {
         const score = countScoreFromReviews(carWash.comments);
+        const imageSrc =
+          type === "autospa"
+            ? "/img/city/autospa-default.jpg"
+            : "/img/city/bezdot-default.jpg";
+
         return (
           <article key={carWash.id}>
             <ContentTopBar wrap="wrap" alignItems="center">
@@ -41,20 +45,7 @@ const CarWashesList = (props: CarWashesListProps) => {
             </ContentTopBar>
             <Content alignItems="center">
               <ImageWrap>
-                {type === "autospa" ? (
-                  <Image
-                    src="/img/city/autospa-default.jpg"
-                    layout="fill"
-                    className="radius-50"
-                  />
-                ) : (
-                  <Image
-                    src="/img/city/bezdot-default.jpg"
-                    layout="fill"
-                    className="radius-50"
-                  />
-                )}
-
+                <Image src={imageSrc} layout="fill" className="radius-50" />
                 <Index>{startingIndex + index + 1}</Index>
               </ImageWrap>
               <Wrap>
