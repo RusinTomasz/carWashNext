@@ -1,25 +1,36 @@
 import axios from "axios";
 
-interface IrregularitiesEmailBody {
+interface BasicEmailBody {
+  formType: string;
   name: string;
   subject: string;
   email: string;
   message: string;
+  regulations: string;
 }
 
-const sendIrregularitiesEmail = async (body: IrregularitiesEmailBody) => {
-  const { name, subject, email: authorEmail, message } = body;
+const sendBasicEmail = async (body: BasicEmailBody) => {
+  const {
+    formType,
+    name,
+    subject,
+    email: authorEmail,
+    message,
+    regulations,
+  } = body;
 
   try {
     const email = {
+      formType,
       name,
       subject,
       email: authorEmail,
       message,
+      regulations,
     };
 
     await axios.post(
-      `${process.env.NEXT_PUBLIC_HOST}/car-washes/sendemail/irregularities`,
+      `${process.env.NEXT_PUBLIC_HOST}/car-washes/sendemail/basic`,
       email,
       {
         headers: {
@@ -36,4 +47,4 @@ const sendIrregularitiesEmail = async (body: IrregularitiesEmailBody) => {
   }
 };
 
-export { sendIrregularitiesEmail };
+export { sendBasicEmail };
