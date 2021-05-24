@@ -1,16 +1,16 @@
 import React, { SyntheticEvent, useState } from "react";
 import { sendBasicEmail } from "../../../api/sendEmails";
+import {
+  successEmailTitle,
+  successEmailMessage,
+  errorEmailTitle,
+  errorEmailMessage,
+} from "../../../constants/formsMessages/FormMessages";
 import InputEvent from "../../../types/InputEvent";
 import FormStatusMessage from "../reviewsForm/formStatusMessage/FormStatusMessage";
-import IrregularitiesForm from "./IrregularitiesForm";
-import {
-  successEmailMessage,
-  successEmailTitle,
-  errorEmailMessage,
-  errorEmailTitle,
-} from "../../../constants/formsMessages/FormMessages";
+import ContactForm from "./ContactForm";
 
-export interface IrregularitiesFormValues {
+export interface ContactFormValues {
   regulations: boolean;
   message: string;
   name: string;
@@ -18,7 +18,7 @@ export interface IrregularitiesFormValues {
   email: string;
 }
 
-const IttegularitiesFormContainer = () => {
+const ContactFormContainer = () => {
   const formValues = {
     regulations: false,
     message: "",
@@ -27,7 +27,7 @@ const IttegularitiesFormContainer = () => {
     email: "",
   };
 
-  const [state, setState] = useState<IrregularitiesFormValues>(formValues);
+  const [state, setState] = useState<ContactFormValues>(formValues);
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
@@ -45,7 +45,7 @@ const IttegularitiesFormContainer = () => {
 
   const sendEmail = async () => {
     const isEmailSend = await sendBasicEmail({
-      formType: "Irregularities Form",
+      formType: "Kontakt Form",
       name: state.name,
       subject: state.subject,
       email: state.email,
@@ -72,14 +72,6 @@ const IttegularitiesFormContainer = () => {
     setSuccess(false);
   };
 
-  const handleChangeFormValues = (evt: InputEvent): void => {
-    const value: string = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
-  };
-
   const handleChangeCheckbox = (evt: InputEvent): void => {
     let value: boolean = (evt.target as HTMLInputElement).checked;
 
@@ -89,9 +81,17 @@ const IttegularitiesFormContainer = () => {
     });
   };
 
+  const handleChangeFormValues = (evt: InputEvent): void => {
+    let value: string = evt.target.value;
+
+    setState({
+      ...state,
+      [evt.target.name]: value,
+    });
+  };
   return (
     <>
-      <IrregularitiesForm
+      <ContactForm
         handleChangeFormValues={handleChangeFormValues}
         handleChangeCheckbox={handleChangeCheckbox}
         handleSubmit={handleSubmit}
@@ -116,4 +116,4 @@ const IttegularitiesFormContainer = () => {
   );
 };
 
-export default IttegularitiesFormContainer;
+export default ContactFormContainer;

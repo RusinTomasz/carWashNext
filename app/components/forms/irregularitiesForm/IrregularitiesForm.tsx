@@ -1,9 +1,14 @@
+import Link from "next/link";
 import React from "react";
 import { IrregularitiesFormValues } from ".";
+import {
+  CheckboxDescription,
+  CheckboxInput,
+  CheckboxLabel,
+} from "../../../styles/shared/inputs/ChecboxInput";
 import { colors } from "../../../styles/variables";
 import InputEvent from "../../../types/InputEvent";
 import LoadingSpinner from "../../loaders/LoadingSpinner";
-
 import {
   SubmitButton,
   InputLabelParagraph,
@@ -16,11 +21,18 @@ interface IrregularitiesFormProps {
   state: IrregularitiesFormValues;
   isLoading: boolean;
   handleChangeFormValues: (evt: InputEvent) => void;
+  handleChangeCheckbox: (evt: InputEvent) => void;
   handleSubmit: (evt: any) => void;
 }
 
 const IrregularitiesForm = (props: IrregularitiesFormProps) => {
-  const { state, isLoading, handleChangeFormValues, handleSubmit } = props;
+  const {
+    state,
+    isLoading,
+    handleChangeFormValues,
+    handleChangeCheckbox,
+    handleSubmit,
+  } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -71,6 +83,26 @@ const IrregularitiesForm = (props: IrregularitiesFormProps) => {
           required
         />
       </label>
+      <CheckboxLabel isCheckboxChecked={state.regulations} color="white">
+        Wyrażam zgodę
+        <CheckboxInput
+          type="checkbox"
+          name="regulations"
+          onChange={(evt) => handleChangeCheckbox(evt)}
+          checked={state.regulations}
+          required
+        />
+        <CheckboxDescription>
+          Klikając „Wyślij” zgadzasz się na przetwarzanie Twoich danych
+          osobowych w celu realizacji zapytania przez rankingmyjni.pl oraz
+          potwierdzasz zapoznanie się z &nbsp;
+          <Link href="/polityka-prywatnosci-i-cookies">
+            Polityką Prywatności i Cookies
+          </Link>
+          &nbsp; oraz &nbsp;
+          <Link href="/regulamin">Regulaminem serwisu</Link>
+        </CheckboxDescription>
+      </CheckboxLabel>
       <ActionsWrap justifyContent="flex-end" alignItems="center">
         <SubmitButton
           backgroundColor="yellow"
