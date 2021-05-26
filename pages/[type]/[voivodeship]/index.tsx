@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticPropsContext } from "next";
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
 import carWashTypes from "../../../app/utils/carWashTypes";
 import VoivodeshipType from "../../../app/types/Voivodeship";
 import axios from "axios";

@@ -6,7 +6,7 @@ import Container from "../../../../../app/styles/shared/Container";
 import FlexWrapper from "../../../../../app/styles/shared/FlexWrapper";
 import { GetStaticPropsContext } from "next";
 import axios from "axios";
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
 import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
 import CarWashType from "../../../../../app/types/CarWash";
 import Content from "../../../../../app/components/carWash/content";
