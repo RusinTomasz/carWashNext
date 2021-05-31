@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "leaflet": "^1.7.1",
     "next": "10.0.9",
     "next-redux-wrapper": "^6.0.2",
     "nextjs-breadcrumbs": "^0.9.9",
