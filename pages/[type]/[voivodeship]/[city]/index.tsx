@@ -14,6 +14,7 @@ import paginationUtils from "../../../../app/utils/paginationUtils";
 import Ads from "../../../../app/components/ads/Ads";
 import CarWashType from "../../../../app/types/CarWash";
 import CarWashesList from "../../../../app/components/carWash/carWashesList/CarWashesList";
+import BreadcrumbsComponent from "../../../../app/components/breadcrumbs/Breadcrumbs";
 
 const ContentWrap = styled.div`
   position: relative;
@@ -76,6 +77,7 @@ const City = (props: CityProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <BreadcrumbsComponent />
         <Container ref={carWashListRef}>
           <FlexWrapper wrap="wrap">
             <ContentWrap>

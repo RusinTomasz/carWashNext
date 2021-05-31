@@ -5,6 +5,7 @@ import ContactForm from "../../app/components/forms/contactForm";
 import { breakpoints, maxWidth } from "../../app/styles/breakpoints";
 import Container from "../../app/styles/shared/Container";
 import FlexWrapper from "../../app/styles/shared/FlexWrapper";
+import BreadcrumbsComponent from "../../app/components/breadcrumbs/Breadcrumbs";
 
 const Contact = styled(Container)`
   margin-top: 8rem;
@@ -36,6 +37,7 @@ const ContactPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <BreadcrumbsComponent />
         <Contact>
           <FlexWrapper wrap="wrap">
             <LeftColumn>

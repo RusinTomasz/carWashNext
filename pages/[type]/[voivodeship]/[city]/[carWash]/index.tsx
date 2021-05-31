@@ -6,13 +6,14 @@ import Container from "../../../../../app/styles/shared/Container";
 import FlexWrapper from "../../../../../app/styles/shared/FlexWrapper";
 import { GetStaticPropsContext } from "next";
 import axios from "axios";
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
 import { getCarWashTypeAliasById } from "../../../../../app/utils/carWashTypes";
 import CarWashType from "../../../../../app/types/CarWash";
 import Content from "../../../../../app/components/carWash/content";
 import Reviews from "../../../../../app/components/carWash/reviews";
 import Review from "../../../../../app/types/Review";
 import countScoreFromReviews from "../../../../../app/utils/countScoreFromReviews";
+import BreadcrumbsComponent from "../../../../../app/components/breadcrumbs/Breadcrumbs";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -56,6 +57,7 @@ const CarWash = (props: CarWashProps) => {
         />
       </Head>
       <main>
+        <BreadcrumbsComponent />
         <Container>
           <FlexWrapper wrap={"wrap"}>
             <ContentWrap>

@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { GetStaticPropsContext } from "next";
-import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "querystring";
 import carWashTypes from "../../../app/utils/carWashTypes";
 import VoivodeshipType from "../../../app/types/Voivodeship";
 import axios from "axios";
@@ -11,6 +11,7 @@ import Container from "../../../app/styles/shared/Container";
 import styled from "styled-components";
 import { breakpoints, maxWidth } from "../../../app/styles/breakpoints";
 import { colors } from "../../../app/styles/variables";
+import BreadcrumbsComponent from "../../../app/components/breadcrumbs/Breadcrumbs";
 
 export interface VoivodeshipParams extends ParsedUrlQuery {
   type: string;
@@ -67,6 +68,7 @@ const Voivodeship = (props: VoivodeshipProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <BreadcrumbsComponent />
         <Container>
           <Title>Wszystkie miasta</Title>
           <CitiesList>

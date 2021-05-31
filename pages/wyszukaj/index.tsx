@@ -14,6 +14,7 @@ import {
 import Pagination from "../../app/components/pagination/Pagination";
 import FlexWrapper from "../../app/styles/shared/FlexWrapper";
 import LoadingSpinner from "../../app/components/loaders/LoadingSpinner";
+import BreadcrumbsComponent from "../../app/components/breadcrumbs/Breadcrumbs";
 
 interface SearchResultsInterface {
   data: CarWashType[];
@@ -106,6 +107,7 @@ const SearchPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <BreadcrumbsComponent />
         <Container>
           <h1>Witamy na stronie wyszukiwań</h1>
           <SearchForm />
