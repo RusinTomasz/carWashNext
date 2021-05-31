@@ -94,6 +94,7 @@ const IttegularitiesFormContainer = () => {
 
   const onCaptchaChange = () => {
     const recaptchaValue = recaptchaRef.current.getValue();
+    console.log(recaptchaValue);
     if (recaptchaValue) {
       setCaptchaVerified(true);
     }
