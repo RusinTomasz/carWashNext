@@ -6,6 +6,7 @@ interface SubmitInputProps {
   backgroundColor?: "blue" | "red" | "yellow" | "default";
   font?: "teko" | "exo";
   color?: "white" | "default";
+  disabled?: boolean;
 }
 
 const SubmitInput = styled.input<SubmitInputProps>`
@@ -21,6 +22,7 @@ const SubmitInput = styled.input<SubmitInputProps>`
   background-color: ${(props) =>
     `${colors[props.backgroundColor]}` || `${colors.default}`};
   font-family: ${(props) => Fonts[props.font] || '"Exo", sans-serif'};
+  opacity: ${(props) => (props.disabled ? 0.2 : 1)};
 `;
 
 export default SubmitInput;
