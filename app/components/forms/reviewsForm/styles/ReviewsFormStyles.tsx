@@ -47,6 +47,10 @@ const ActionsWrap = styled(FlexWrapper)`
   margin-top: 3rem;
 `;
 
+const CaptchaWrap = styled.div`
+  margin: 2rem 0;
+`;
+
 export {
   Label,
   TextArea,
@@ -55,4 +59,5 @@ export {
   StarsRaterReview,
   StyledReviewsForm,
   ActionsWrap,
+  CaptchaWrap,
 };

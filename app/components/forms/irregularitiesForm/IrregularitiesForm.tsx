@@ -9,12 +9,16 @@ import {
 import { colors } from "../../../styles/variables";
 import InputEvent from "../../../types/InputEvent";
 import LoadingSpinner from "../../loaders/LoadingSpinner";
+import CaptchaProps from "../../../types/Captcha";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   SubmitButton,
   InputLabelParagraph,
   Input,
   TextArea,
   ActionsWrap,
+  CaptchaWrap,
 } from "./styles/IrregularitiesFormStyles";
 
 interface IrregularitiesFormProps {
@@ -25,10 +29,13 @@ interface IrregularitiesFormProps {
   handleSubmit: (evt: any) => void;
 }
 
-const IrregularitiesForm = (props: IrregularitiesFormProps) => {
+const IrregularitiesForm = (props: IrregularitiesFormProps & CaptchaProps) => {
   const {
     state,
     isLoading,
+    recaptchaRef,
+    isCaptchaVerified,
+    onCaptchaChange,
     handleChangeFormValues,
     handleChangeCheckbox,
     handleSubmit,
@@ -103,6 +110,15 @@ const IrregularitiesForm = (props: IrregularitiesFormProps) => {
           <Link href="/regulamin">Regulaminem serwisu</Link>
         </CheckboxDescription>
       </CheckboxLabel>
+      <FlexWrapper justifyContent="flex-end">
+        <CaptchaWrap>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+            onChange={onCaptchaChange}
+          />
+        </CaptchaWrap>
+      </FlexWrapper>
       <ActionsWrap justifyContent="flex-end" alignItems="center">
         <SubmitButton
           backgroundColor="yellow"
@@ -110,7 +126,7 @@ const IrregularitiesForm = (props: IrregularitiesFormProps) => {
           font="teko"
           type="submit"
           value="Wyślij"
-          disabled={isLoading}
+          disabled={isLoading || !isCaptchaVerified}
         />
         {isLoading && (
           <LoadingSpinner
@@ -120,12 +136,6 @@ const IrregularitiesForm = (props: IrregularitiesFormProps) => {
           />
         )}
       </ActionsWrap>
-      {/* #review */}
-      {/* <Recaptcha
-        ref={(ref) => (this.recaptcha = ref)}
-        sitekey="6LfA0-EUAAAAAIvZze0LTAhrKfjGLhX9s7n_vG9e"
-        onResolved={this.onResolved}
-      /> */}
     </form>
   );
 };

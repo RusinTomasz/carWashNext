@@ -6,6 +6,7 @@ import {
   Input,
   TextArea,
   SubmitButton,
+  CaptchaWrap,
 } from "./styles/ContactFormStyles";
 import { colors } from "../../../styles/variables";
 import LoadingSpinner from "../../loaders/LoadingSpinner";
@@ -16,6 +17,9 @@ import {
   CheckboxDescription,
 } from "../../../styles/shared/inputs/ChecboxInput";
 import { ContactFormValues } from ".";
+import ReCAPTCHA from "react-google-recaptcha";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
+import CaptchaProps from '../../../types/Captcha';
 
 
 interface ContactFormProps {
@@ -26,10 +30,13 @@ interface ContactFormProps {
   handleSubmit: (evt: any) => void;
 }
 
-const ContactForm = (props: ContactFormProps) => {
+const ContactForm = (props: ContactFormProps & CaptchaProps) => {
   const {
     state,
     isLoading,
+    recaptchaRef,
+    isCaptchaVerified,
+    onCaptchaChange,
     handleChangeFormValues,
     handleChangeCheckbox,
     handleSubmit,
@@ -103,12 +110,22 @@ const ContactForm = (props: ContactFormProps) => {
             <Link href="/regulamin">Regulaminem serwisu</Link>
           </CheckboxDescription>
         </CheckboxLabel>
+        <FlexWrapper justifyContent="flex-end">
+          <CaptchaWrap>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+              onChange={onCaptchaChange}
+            />
+          </CaptchaWrap>
+        </FlexWrapper>
         <ActionsWrap justifyContent="flex-end" alignItems="center">
           <SubmitButton
             type="submit"
             value="Wyślij"
             backgroundColor="blue"
             color="white"
+            disabled={!isCaptchaVerified}
           />
           {isLoading && (
             <LoadingSpinner

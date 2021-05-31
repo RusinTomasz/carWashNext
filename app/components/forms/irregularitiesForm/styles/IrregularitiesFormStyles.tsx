@@ -37,4 +37,15 @@ const TextArea = styled.textarea`
   ${inputsCss}
 `;
 
-export { SubmitButton, InputLabelParagraph, Input, TextArea, ActionsWrap };
+const CaptchaWrap = styled.div`
+  margin: 2rem 0;
+`;
+
+export {
+  SubmitButton,
+  InputLabelParagraph,
+  Input,
+  TextArea,
+  ActionsWrap,
+  CaptchaWrap,
+};

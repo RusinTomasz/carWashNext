@@ -1,6 +1,9 @@
 import React, { SyntheticEvent } from "react";
 import InputEvent from "../../../types/InputEvent";
 import LoadingSpinner from "../../loaders/LoadingSpinner";
+import CaptchaProps from "../../../types/Captcha";
+import FlexWrapper from "../../../styles/shared/FlexWrapper";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Label,
   TextArea,
@@ -9,6 +12,7 @@ import {
   Input,
   StyledReviewsForm,
   ActionsWrap,
+  CaptchaWrap,
 } from "./styles/ReviewsFormStyles";
 
 interface ReviewsFormProps {
@@ -22,12 +26,15 @@ interface ReviewsFormProps {
   handleMessageChange: (evt: InputEvent) => void;
 }
 
-const ReviewsForm = (props: ReviewsFormProps) => {
+const ReviewsForm = (props: ReviewsFormProps & CaptchaProps) => {
   const {
     starsValue,
     authorName,
     reviewMessage,
     isLoading,
+    recaptchaRef,
+    isCaptchaVerified,
+    onCaptchaChange,
     onRate,
     onConfirm,
     handleInputChange,
@@ -62,6 +69,15 @@ const ReviewsForm = (props: ReviewsFormProps) => {
         onChange={handleMessageChange}
         required
       />
+      <FlexWrapper justifyContent="flex-end">
+        <CaptchaWrap>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+            onChange={onCaptchaChange}
+          />
+        </CaptchaWrap>
+      </FlexWrapper>
       <ActionsWrap alignItems="center">
         <SubmitButton
           backgroundColor="blue"
@@ -69,6 +85,7 @@ const ReviewsForm = (props: ReviewsFormProps) => {
           font="teko"
           type="submit"
           value="Wyślij recenzje"
+          disabled={isLoading || !isCaptchaVerified}
         />
         {isLoading && <LoadingSpinner size={37} borderSize={4} />}
       </ActionsWrap>

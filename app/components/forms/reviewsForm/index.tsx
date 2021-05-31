@@ -3,6 +3,7 @@ import addReview from "../../../api/addReview";
 import InputEvent from "../../../types/InputEvent";
 import FormStatusMessage from "./formStatusMessage/FormStatusMessage";
 import ReviewsForm from "./ReviewsForm";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   successReviewTitle,
   successReviewMessage,
@@ -16,12 +17,14 @@ interface ReviewsFormProps {
 
 const ReviewsFormContainer = (props: ReviewsFormProps) => {
   const { refId } = props;
+  const recaptchaRef = React.createRef<ReCAPTCHA>();
   const [starsValue, setStarsValue] = useState(5);
   const [reviewMessage, setReviewMessage] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [isLoading, setLoadingStatus] = useState(false);
   const [isError, setError] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  const [isCaptchaVerified, setCaptchaVerified] = useState(false);
 
   const onConfirm = async (evt: SyntheticEvent) => {
     evt.preventDefault();
@@ -70,9 +73,19 @@ const ReviewsFormContainer = (props: ReviewsFormProps) => {
     setError(false);
   };
 
+  const onCaptchaChange = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    if (recaptchaValue) {
+      setCaptchaVerified(true);
+    }
+  };
+
   return (
     <>
       <ReviewsForm
+        recaptchaRef={recaptchaRef}
+        onCaptchaChange={onCaptchaChange}
+        isCaptchaVerified={isCaptchaVerified}
         onConfirm={onConfirm}
         onRate={onRate}
         starsValue={starsValue}

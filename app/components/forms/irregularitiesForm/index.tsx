@@ -9,6 +9,7 @@ import {
   errorEmailMessage,
   errorEmailTitle,
 } from "../../../constants/formsMessages/FormMessages";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export interface IrregularitiesFormValues {
   regulations: boolean;
@@ -19,6 +20,7 @@ export interface IrregularitiesFormValues {
 }
 
 const IttegularitiesFormContainer = () => {
+  const recaptchaRef = React.createRef<ReCAPTCHA>();
   const formValues = {
     regulations: false,
     message: "",
@@ -31,6 +33,7 @@ const IttegularitiesFormContainer = () => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  const [isCaptchaVerified, setCaptchaVerified] = useState(false);
 
   const handleSubmit = async (evt: SyntheticEvent) => {
     evt.preventDefault();
@@ -89,9 +92,19 @@ const IttegularitiesFormContainer = () => {
     });
   };
 
+  const onCaptchaChange = () => {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    if (recaptchaValue) {
+      setCaptchaVerified(true);
+    }
+  };
+
   return (
     <>
       <IrregularitiesForm
+        recaptchaRef={recaptchaRef}
+        onCaptchaChange={onCaptchaChange}
+        isCaptchaVerified={isCaptchaVerified}
         handleChangeFormValues={handleChangeFormValues}
         handleChangeCheckbox={handleChangeCheckbox}
         handleSubmit={handleSubmit}

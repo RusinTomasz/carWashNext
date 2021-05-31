@@ -34,4 +34,15 @@ const SubmitButton = styled(SubmitInput)`
   padding: 0.5rem 3rem;
 `;
 
-export { ContactFormEL, Input, TextArea, SubmitButton, ActionsWrap };
+const CaptchaWrap = styled.div`
+  margin: 2rem 0;
+`;
+
+export {
+  ContactFormEL,
+  Input,
+  TextArea,
+  SubmitButton,
+  ActionsWrap,
+  CaptchaWrap,
+};
