@@ -34,22 +34,17 @@ function FooterNavigation() {
       <FooterNav>
         <FooterNavListItem>
           <Link href="/kontakt" passHref>
-            <FooterLink>Dodaj myjnię</FooterLink>
-          </Link>
-        </FooterNavListItem>
-        <FooterNavListItem>
-          <Link href="/kontakt" passHref>
             <FooterLink>Kontakt</FooterLink>
           </Link>
         </FooterNavListItem>
         <FooterNavListItem>
-          <Link href="/policy" passHref>
-            <FooterLink>Polityka prywatności</FooterLink>
+          <Link href="/polityka-prywatnosci-i-cookies" passHref>
+            <FooterLink>Polityka prywatności i cookies</FooterLink>
           </Link>
         </FooterNavListItem>
         <FooterNavListItem>
-          <Link href="/cookies" passHref>
-            <FooterLink>Polityka cookies</FooterLink>
+          <Link href="/regulamin" passHref>
+            <FooterLink>Regulamin</FooterLink>
           </Link>
         </FooterNavListItem>
       </FooterNav>
