@@ -51,10 +51,10 @@ const CarWash = (props: CarWashProps) => {
       <Head>
         <title>Myjnia</title>
         <link rel="icon" href="/favicon.ico" />
-        {/* <link
+        <link
           rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"
-        /> */}
+        />
       </Head>
       <main>
         <BreadcrumbsComponent />
