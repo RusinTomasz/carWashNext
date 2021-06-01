@@ -30,6 +30,11 @@ a {
   z-index: 9;
 }
 
+.ReactModal__Content.ReactModal__Content--after-open {
+  top: 1.5rem;
+  transform: translate(-50%, 0);
+}
+
 .breadcrumb {
   margin: 0;
   padding: 0;
