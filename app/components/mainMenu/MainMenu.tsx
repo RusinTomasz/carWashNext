@@ -37,7 +37,7 @@ const MainMenu = () => {
           </Link>
         </MenuItem>
         <MenuItem isOpen={isOpen}>
-          <Link href="/wyszukwiarka" passHref>
+          <Link href="/wyszukaj" passHref>
             <MenuLink onClick={handleLinkClick}>Wyszukiwarka</MenuLink>
           </Link>
         </MenuItem>
@@ -47,23 +47,13 @@ const MainMenu = () => {
           </Link>
         </MenuItem>
         <MenuItem isOpen={isOpen}>
-          <Link href="/kontakt" passHref>
-            <MenuLink onClick={handleLinkClick}>Regulamin</MenuLink>
-          </Link>
-        </MenuItem>
-        <MenuItem isOpen={isOpen}>
-          <Link href="/kontakt" passHref>
+          <Link href="/polityka-prywatnosci-i-cookies" passHref>
             <MenuLink onClick={handleLinkClick}>Polityka prywatności</MenuLink>
           </Link>
         </MenuItem>
         <MenuItem isOpen={isOpen}>
-          <Link href="/kontakt" passHref>
-            <MenuLink onClick={handleLinkClick}>Cookies</MenuLink>
-          </Link>
-        </MenuItem>
-        <MenuItem isOpen={isOpen}>
-          <Link href="/kontakt" passHref>
-            <MenuLink onClick={handleLinkClick}>RODO</MenuLink>
+          <Link href="/regulamin" passHref>
+            <MenuLink onClick={handleLinkClick}>Regulamin</MenuLink>
           </Link>
         </MenuItem>
       </Menu>
