@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { colors } from "../../styles/variables";
 import Container from "../../styles/shared/Container";
 import FlexWrapper from "../../styles/shared/FlexWrapper";
+import { breakpoints, maxWidth } from "../../styles/breakpoints";
 
 const HeaderContent = styled.header`
   background-color: ${colors.lightBlue};
@@ -22,6 +23,9 @@ const AddCarWashLink = styled.a`
   padding: 1rem 1.5rem 1rem;
   height: 42px;
   margin-left: 4rem;
+  ${maxWidth(breakpoints.sm)} {
+    display: none;
+  }
 `;
 
 const LogoLink = styled.a`
