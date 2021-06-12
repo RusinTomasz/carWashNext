@@ -41,7 +41,6 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <Voivodeships />
         <Footer />
         <CookieConsent
-          debug={true}
           style={{ background: "#74a1ff", alignItems: "center" }}
           buttonStyle={cookieButtonStyles}
           buttonText="Zamknij"
