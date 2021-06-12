@@ -14,6 +14,19 @@ import Footer from "../app/components/footer/Footer";
 import Voivodeships from "../app/components/voivodeships/Voivodeships";
 import { AppDataProvider } from "../app/context/AppContext";
 import MainMenu from "../app/components/mainMenu/MainMenu";
+import CookieConsent from "react-cookie-consent";
+
+const cookieButtonStyles = {
+  padding: "1rem 1.5rem 1rem",
+  height: "42px",
+  cursor: "pointer",
+  background: "#fff50e",
+  textTransform: "uppercase",
+  fontFamily: "Teko",
+  fontSize: "21px",
+  lineHeight: "25px",
+  borderRadius: "3px",
+};
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -27,6 +40,17 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         </AppDataProvider>
         <Voivodeships />
         <Footer />
+        <CookieConsent
+          debug={true}
+          style={{ background: "#74a1ff", alignItems: "center" }}
+          buttonStyle={cookieButtonStyles}
+          buttonText="Zamknij"
+        >
+          Strona korzysta z ciasteczek, aby świadczyć usługi na najwyższym
+          poziomie. Dalsze korzystanie ze strony oznacza, że zgadzasz się na ich
+          użycie zgodnie z Polityką prywatności oraz akceptujesz Regulamin
+          Strony.
+        </CookieConsent>
       </Provider>
     </>
   );
