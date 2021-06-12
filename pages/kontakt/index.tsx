@@ -9,14 +9,14 @@ import BreadcrumbsComponent from "../../app/components/breadcrumbs/Breadcrumbs";
 
 const Contact = styled(Container)`
   margin-top: 8rem;
-  ${maxWidth(breakpoints.md)} {
+  ${maxWidth(breakpoints.lg)} {
     margin-top: 3rem;
   }
 `;
 
 const LeftColumn = styled.div`
   width: 40%;
-  ${maxWidth(breakpoints.md)} {
+  ${maxWidth(breakpoints.lg)} {
     width: 100%;
   }
 `;
@@ -24,8 +24,9 @@ const LeftColumn = styled.div`
 const RightColumn = styled.div`
   width: calc(60% - 10rem);
   padding-left: 10rem;
-  ${maxWidth(breakpoints.md)} {
+  ${maxWidth(breakpoints.lg)} {
     width: 100%;
+    padding-left: 0;
   }
 `;
 
