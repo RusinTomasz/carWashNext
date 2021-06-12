@@ -24,7 +24,7 @@ const FooterBackground = styled.div`
   position: relative;
   height: 700px;
   margin-bottom: -8rem;
-  @include sm {
+  ${maxWidth(breakpoints.sm)} {
     height: 450px;
   }
 `;
