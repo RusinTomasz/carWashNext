@@ -70,4 +70,10 @@ a {
     padding: 0.3rem;
     font-size: 12px;
   }
+  .react-select-container {
+    width: 100%;
+  }
+  .react-select-container .react-select__control {
+    width: 100%;
+  }
 }

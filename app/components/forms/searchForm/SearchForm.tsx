@@ -9,6 +9,7 @@ import Select from "react-select";
 import InputEvent from "../../../types/InputEvent";
 import { SelectType } from ".";
 
+
 interface SearchFormProps {
   selectOptions: {
     value: string;
