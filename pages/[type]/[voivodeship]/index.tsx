@@ -25,6 +25,7 @@ interface VoivodeshipProps {
   voivodeship: string;
   cities: City[];
   isCitiesError: boolean;
+  canonicalUrl: string;
 }
 
 const Title = styled.h1`
@@ -61,7 +62,7 @@ const CitiesListLint = styled.a`
 `;
 
 const Voivodeship = (props: VoivodeshipProps) => {
-  const { cities, type, voivodeship } = props;
+  const { cities, type, voivodeship, canonicalUrl } = props;
 
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
@@ -82,6 +83,7 @@ const Voivodeship = (props: VoivodeshipProps) => {
       <Head>
         <title>Ranking Myjni</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <main>
         <BreadcrumbsComponent />
@@ -107,12 +109,14 @@ export async function getStaticProps(
   context: GetStaticPropsContext<VoivodeshipParams>
 ) {
   const { type, voivodeship }: VoivodeshipParams = context.params;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_CLIENT_HOST}/${context.params.type}/${context.params.voivodeship}`;
 
   interface Props {
     type: string;
     voivodeship: string;
     cities: City[];
     isCitiesError: boolean;
+    canonicalUrl: string;
   }
 
   const props: Props = {
@@ -120,6 +124,7 @@ export async function getStaticProps(
     voivodeship: voivodeship,
     cities: [],
     isCitiesError: false,
+    canonicalUrl: canonicalUrl,
   };
 
   try {
@@ -138,6 +143,7 @@ export async function getStaticProps(
       voivodeship: props.voivodeship,
       cities: props.cities,
       isCitiesError: props.isCitiesError,
+      canonicalUrl: props.canonicalUrl,
     },
     revalidate: 86400,
   };

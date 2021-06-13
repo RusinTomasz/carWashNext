@@ -105,6 +105,7 @@ const SearchPage = () => {
       <Head>
         <title>Wyszukaj</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="robots" content="noindex" />
       </Head>
       <main>
         <BreadcrumbsComponent />

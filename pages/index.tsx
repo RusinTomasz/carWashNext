@@ -17,6 +17,7 @@ export default function Home(props: HomeProps) {
       <Head>
         <title>Ranking Myjni</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_CLIENT_HOST}`} />
       </Head>
       <main>
         <FrontPageMainBanner />

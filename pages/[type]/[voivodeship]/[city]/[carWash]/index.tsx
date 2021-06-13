@@ -29,6 +29,7 @@ interface CarWashProps {
   carWashReviewsScore: number;
   isCarWashFetchDataError: boolean;
   isCarWashFetchReviewsError: boolean;
+  canonicalUrl: string;
 }
 
 const ContentWrap = styled.div`
@@ -48,6 +49,7 @@ const CarWash = (props: CarWashProps) => {
     carWashReviews,
     carWashReviewsCount,
     carWashReviewsScore,
+    canonicalUrl,
   } = props;
 
   const startLoading = () => setLoading(true);
@@ -73,6 +75,7 @@ const CarWash = (props: CarWashProps) => {
           rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"
         />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <main>
         <BreadcrumbsComponent />
@@ -107,6 +110,8 @@ export async function getStaticProps(
 ) {
   const { carWash } = context.params;
 
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_CLIENT_HOST}/${context.params.type}/${context.params.voivodeship}/${context.params.city}/${context.params.carWash}`;
+
   interface Props {
     carWashData: CarWashType | null;
     isCarWashFetchDataError: boolean;
@@ -114,6 +119,7 @@ export async function getStaticProps(
     carWashReviewsCount: number;
     carWashReviewsScore: number;
     isCarWashFetchReviewsError: boolean;
+    canonicalUrl: string;
   }
 
   const props: Props = {
@@ -123,6 +129,7 @@ export async function getStaticProps(
     carWashReviewsCount: 0,
     carWashReviewsScore: 0,
     isCarWashFetchReviewsError: false,
+    canonicalUrl: canonicalUrl,
   };
 
   try {
@@ -155,6 +162,7 @@ export async function getStaticProps(
       carWashReviewsCount: props.carWashReviewsCount,
       carWashReviewsScore: props.carWashReviewsScore,
       carWashFetchReviewsError: props.isCarWashFetchReviewsError,
+      canonicalUrl: props.canonicalUrl,
     },
     revalidate: 18000,
   };
@@ -162,7 +170,6 @@ export async function getStaticProps(
 
 export async function getStaticPaths() {
   let allCarWashes = [];
-
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_HOST}/car-washes?_limit=6000`
   );
