@@ -33,7 +33,7 @@ const CarWashesList = (props: CarWashesListProps) => {
       {carWashes.sort(sortByNumberOfComments).map((carWash, index) => {
         const score = countScoreFromReviews(carWash.comments);
         const imageSrc =
-          type === "autospa"
+          type === "autodetailing"
             ? "/img/city/autospa-default.jpg"
             : "/img/city/bezdot-default.jpg";
 

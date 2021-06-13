@@ -40,7 +40,7 @@ const PromotedItems = (props: PromotedItemsPorps) => {
               </CityWrap>
               <ActionLinkWrap>
                 <Link
-                  href={`/autospa/${carWash.voivodeship_slug}/${carWash.city_slug}/${carWash.slug}`}
+                  href={`/autodetailing/${carWash.voivodeship_slug}/${carWash.city_slug}/${carWash.slug}`}
                   passHref
                 >
                   <ActionLink font="teko" backgroundColor="blue">

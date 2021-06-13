@@ -1,7 +1,7 @@
 import { CarWashTypes } from "../types/CarWash";
 
 const carWashTypes: CarWashTypes = {
-  autospa: { alias: "autospa", id: 2 },
+  autodetailing: { alias: "autodetailing", id: 2 },
   touchless: { alias: "myjniebezdotykowe", id: 1 },
 };
 

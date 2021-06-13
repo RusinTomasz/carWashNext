@@ -12,20 +12,20 @@ import {
 } from "./styles/VoivodeshipsStyles";
 
 const Voivodeships = () => {
-  const [type, setType] = useState(carWashTypes.autospa);
+  const [type, setType] = useState(carWashTypes.autodetailing);
 
   return (
     <VoivodeshipsWrap>
       <Title>Województwa</Title>
       <ButtonsWrap>
         <TypeButton
-          color={type === carWashTypes.autospa ? "white" : "default"}
+          color={type === carWashTypes.autodetailing ? "white" : "default"}
           backgroundColor={
-            type === carWashTypes.autospa ? "blue" : "grayButton"
+            type === carWashTypes.autodetailing ? "blue" : "grayButton"
           }
-          onClick={() => setType(carWashTypes.autospa)}
+          onClick={() => setType(carWashTypes.autodetailing)}
         >
-          Auto Spa
+          Auto Detailing
         </TypeButton>
         <TypeButton
           color={type === carWashTypes.touchless ? "white" : "default"}

@@ -13,12 +13,12 @@ const SearchFormContainer = () => {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [selectedType, setSelectedType] = useState<SelectType>({
-    value: "autospa",
-    label: "Auto spa",
+    value: "autodetailing",
+    label: "Auto detailing",
   });
   const { query: queryString }: { query: Query } = router;
   const selectOptions = [
-    { value: "autospa", label: "Auto spa" },
+    { value: "autodetailing", label: "Auto detailing" },
     { value: "myjniebezdotykowe", label: "Myjnie bezdotykowe" },
   ];
 

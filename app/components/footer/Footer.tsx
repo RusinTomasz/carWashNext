@@ -72,10 +72,10 @@ function Footer() {
               <Logo />
               <FooterParagraph>
                 Serwis rankingmyjni.pl to największy ranking myjni bezdotykowych
-                oraz autospa w Polsce. Zachęcamy do dodawania swoich doświadczeń
-                w komentarzach. Razem stworzymy rzetelny portal, gdzie każdy
-                zaczerpnie opinii przed potencjalną wizytą w salonie detailingu
-                lub szybką wizytą na myjnii bezdotykowej.
+                oraz auto detailingu w Polsce. Zachęcamy do dodawania swoich
+                doświadczeń w komentarzach. Razem stworzymy rzetelny portal,
+                gdzie każdy zaczerpnie opinii przed potencjalną wizytą w salonie
+                detailingu lub szybką wizytą na myjnii bezdotykowej.
               </FooterParagraph>
             </FooterColumn>
             <FooterColumn>

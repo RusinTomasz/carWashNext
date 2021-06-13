@@ -1,7 +1,7 @@
 import Review from "./Review";
 
 export interface CarWashTypes {
-  autospa: { alias: string; id: number };
+  autodetailing: { alias: string; id: number };
   touchless: { alias: string; id: number };
 }
 
