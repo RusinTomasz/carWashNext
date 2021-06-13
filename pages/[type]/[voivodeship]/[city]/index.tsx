@@ -48,8 +48,8 @@ const City = (props: CityProps) => {
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
 
-  const [currentPage, setCurrentPage] = useState(page);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(page);
   const [startingIndex, setStartingIndex] = useState(startCountingIndex);
 
   const carWashListRef = useRef(null);

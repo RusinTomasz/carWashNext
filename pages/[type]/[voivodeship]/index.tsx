@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import Router from "next/router";
 import Link from "next/link";
 import { GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
@@ -12,6 +13,7 @@ import styled from "styled-components";
 import { breakpoints, maxWidth } from "../../../app/styles/breakpoints";
 import { colors } from "../../../app/styles/variables";
 import BreadcrumbsComponent from "../../../app/components/breadcrumbs/Breadcrumbs";
+import LoadingScreen from "../../../app/components/loadingScreen/LoadingScreen";
 
 export interface VoivodeshipParams extends ParsedUrlQuery {
   type: string;
@@ -59,7 +61,21 @@ const CitiesListLint = styled.a`
 `;
 
 const Voivodeship = (props: VoivodeshipProps) => {
-  const { cities, type, voivodeship, isCitiesError } = props;
+  const { cities, type, voivodeship } = props;
+
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    Router.events.on("routeChangeStart", startLoading);
+    Router.events.on("routeChangeComplete", stopLoading);
+    return () => {
+      Router.events.off("routeChangeStart", startLoading);
+      Router.events.off("routeChangeComplete", stopLoading);
+    };
+  }, []);
 
   return (
     <>
@@ -82,6 +98,7 @@ const Voivodeship = (props: VoivodeshipProps) => {
           </CitiesList>
         </Container>
       </main>
+      {loading && <LoadingScreen />}
     </>
   );
 };

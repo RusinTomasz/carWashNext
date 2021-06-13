@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Router from "next/router";
 import styled from "styled-components";
 import Ads from "../../../../../app/components/ads/Ads";
 import { breakpoints, maxWidth } from "../../../../../app/styles/breakpoints";
@@ -14,6 +16,7 @@ import Reviews from "../../../../../app/components/carWash/reviews";
 import Review from "../../../../../app/types/Review";
 import countScoreFromReviews from "../../../../../app/utils/countScoreFromReviews";
 import BreadcrumbsComponent from "../../../../../app/components/breadcrumbs/Breadcrumbs";
+import LoadingScreen from "../../../../../app/components/loadingScreen/LoadingScreen";
 
 interface CarWashParams extends ParsedUrlQuery {
   carWash: string;
@@ -46,6 +49,20 @@ const CarWash = (props: CarWashProps) => {
     carWashReviewsCount,
     carWashReviewsScore,
   } = props;
+
+  const startLoading = () => setLoading(true);
+  const stopLoading = () => setLoading(false);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    Router.events.on("routeChangeStart", startLoading);
+    Router.events.on("routeChangeComplete", stopLoading);
+    return () => {
+      Router.events.off("routeChangeStart", startLoading);
+      Router.events.off("routeChangeComplete", stopLoading);
+    };
+  }, []);
 
   return (
     <>
@@ -80,6 +97,7 @@ const CarWash = (props: CarWashProps) => {
           </FlexWrapper>
         </Container>
       </main>
+      {loading && <LoadingScreen />}
     </>
   );
 };
