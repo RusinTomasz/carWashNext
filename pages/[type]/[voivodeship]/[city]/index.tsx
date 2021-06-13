@@ -39,10 +39,19 @@ interface CityProps {
   limit: number;
   carWashes: CarWashType[];
   carWashesCount: number;
+  canonicalUrl: string;
 }
 
 const City = (props: CityProps) => {
-  const { type, cityName, page, carWashes, carWashesCount, limit } = props;
+  const {
+    type,
+    cityName,
+    page,
+    carWashes,
+    carWashesCount,
+    limit,
+    canonicalUrl,
+  } = props;
 
   const startCountingIndex = paginationUtils.countStartingIndex(page, limit);
   const startLoading = () => setLoading(true);
@@ -75,6 +84,7 @@ const City = (props: CityProps) => {
       <Head>
         <title>Ranking Myjni Podstrona Miasto</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
       <main>
         <BreadcrumbsComponent />
@@ -109,8 +119,9 @@ const City = (props: CityProps) => {
   );
 };
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ req, query }) => {
   const { type, voivodeship, city, page }: CityParams = query;
+
   const currentPage = +page || 1;
   let carWashesData = null;
   let carWashesCount = 0;
@@ -146,7 +157,6 @@ export const getServerSideProps = async ({ query }) => {
   } catch (err) {
     carWashesData = { error: { message: err.message } };
   }
-
   return {
     props: {
       type,
@@ -157,6 +167,7 @@ export const getServerSideProps = async ({ query }) => {
       page: currentPage,
       carWashes: carWashesData,
       carWashesCount: carWashesCount,
+      canonicalUrl: `https://${req.headers.host}${req.url}`,
     },
   };
 };
