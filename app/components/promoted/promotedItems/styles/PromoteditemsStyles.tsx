@@ -4,10 +4,10 @@ import { breakpoints, maxWidth } from "../../../../styles/breakpoints";
 const PromotedItem = styled.article`
   width: 33.33%;
   padding: 0 1.5rem;
-  ${maxWidth(breakpoints.md)} {
+  ${maxWidth(breakpoints.lg)} {
     width: 50%;
   }
-  ${maxWidth(breakpoints.sm)} {
+  ${maxWidth(breakpoints.md)} {
     width: 100%;
   }
 `;
@@ -27,6 +27,10 @@ const Name = styled.h3`
   min-height: 100px;
   display: flex;
   align-items: center;
+  line-height: 32px;
+  ${maxWidth(breakpoints.lg)} {
+    font-size: 24px;
+  }
 `;
 
 const CityWrap = styled.div`
