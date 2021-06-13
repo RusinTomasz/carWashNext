@@ -172,10 +172,7 @@ const PrivacyAndCookiesPolicy = () => {
                 <li>
                   ○ Internet Explorer: www.support.microsoft.com/kb/278835/pl
                 </li>
-                <li>
-                  ○ Google Chrome:
-                  www.support.google.com/chrome/bin/answer.py?hl=pl&amp;answer=95647
-                </li>
+                <li>○ Google Chrome: support.google.com/chrome/answer/95647</li>
                 <li>
                   ○ Safari:
                   www.safari.helpmax.net/pl/oszczedzanie-czasu/blokowanie-zawartosci/

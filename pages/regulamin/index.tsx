@@ -6,6 +6,7 @@ import Container from "../../app/styles/shared/Container";
 
 const Heading = styled.h2`
   font-size: 24px;
+  line-height: 32px;
 `;
 
 const Regulations = () => {

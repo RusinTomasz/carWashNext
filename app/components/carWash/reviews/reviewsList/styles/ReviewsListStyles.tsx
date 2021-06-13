@@ -4,6 +4,9 @@ import FlexWrapper from "../../../../../styles/shared/FlexWrapper";
 
 const ReviewItem = styled.article`
   padding: 1.5rem 0;
+  ${maxWidth(breakpoints.sm)} {
+    padding: 0.5rem 0;
+  }
 `;
 
 const ReviewFlexWrapper = styled(FlexWrapper)`

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { breakpoints, maxWidth } from "../../../../styles/breakpoints";
 import { BasicModal } from "../../styles/GlobalModalsStyles";
 
 const Title = styled.h2`
@@ -10,11 +11,14 @@ const Title = styled.h2`
 `;
 
 const StyledReviewsModal = styled(BasicModal)`
-  width: 40%;
+  width: 50%;
   top: 2rem;
   transform: translate(-50%, 0);
   background-color: #fff;
   box-shadow: 0 16px 32px rgb(180 180 180 / 40%);
+  ${maxWidth(breakpoints.lg)} {
+    width: calc(100% - 3rem);
+  }
 `;
 
 const Label = styled.p`

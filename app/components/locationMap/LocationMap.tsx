@@ -1,6 +1,7 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import styled from "styled-components";
+import { breakpoints, maxWidth } from "../../styles/breakpoints";
 
 interface LocationMapProps {
   position: [number, number];
@@ -12,6 +13,9 @@ const Map = styled(MapContainer)`
   position: relative;
   outline: none;
   margin: 5rem 0;
+  ${maxWidth(breakpoints.md)} {
+    margin: 1rem 0 3rem;
+  }
 `;
 
 const LocationMap = (props: LocationMapProps) => {

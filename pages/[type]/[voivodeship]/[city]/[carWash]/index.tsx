@@ -33,6 +33,7 @@ const ContentWrap = styled.div`
   padding-right: 1.5rem;
   ${maxWidth(breakpoints.lg)} {
     width: 100%;
+    padding-right: 0;
   }
 `;
 
