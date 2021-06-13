@@ -1,5 +1,6 @@
 import { useRouter } from "next/dist/client/router";
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useEffect } from "react";
+import Link from "next/link";
 import {
   PaginationLink,
   PaginationNavItem,
@@ -51,20 +52,39 @@ const Pagination = (props: PaginationProps) => {
   return (
     <PaginationNav>
       <PaginationNavItem>
-        <PaginationLink
-          disable={currentPage < 1 ? true : false}
-          onClick={prevPage}
+        <Link
+          href={{
+            pathname: getPathFromUrl(router.asPath),
+            query: { ...router.query, page: +page - 1 },
+          }}
+          passHref
         >
-          {"<"}
-        </PaginationLink>
+          <PaginationLink
+            disable={currentPage < 1 ? true : false}
+            onClick={prevPage}
+          >
+            {"<"}
+          </PaginationLink>
+        </Link>
       </PaginationNavItem>
       <PaginationNavItem>
         <PaginationCurrentPage>{page}</PaginationCurrentPage>
       </PaginationNavItem>
       <PaginationNavItem>
-        <PaginationLink disable={isNextPage ? false : true} onClick={nextPage}>
-          {">"}
-        </PaginationLink>
+        <Link
+          href={{
+            pathname: getPathFromUrl(router.asPath),
+            query: { ...router.query, page: +page + 1 },
+          }}
+          passHref
+        >
+          <PaginationLink
+            disable={isNextPage ? false : true}
+            onClick={nextPage}
+          >
+            {">"}
+          </PaginationLink>
+        </Link>
       </PaginationNavItem>
     </PaginationNav>
   );
