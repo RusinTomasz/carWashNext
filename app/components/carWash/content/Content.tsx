@@ -10,21 +10,37 @@ import Header from "../header/Header";
 import Irregularities from "../irregularities/Irregularities";
 import { AppContext } from "../../../context/AppContext";
 import RatingsMobile from "../ratings/RatingsMobile";
+import MapPlaceholder from "../../locationMap/MapPlaceholder";
+import LoadingSpinner from "../../loaders/LoadingSpinner";
 
 const Map = dynamic(import("../../locationMap/LocationMap"), {
   ssr: false,
   loading: () => (
-    <div style={{ textAlign: "center", paddingTop: 20 }}>Loading…</div>
+    <div
+      style={{
+        height: "300px",
+        position: "relative",
+        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "3rem",
+      }}
+    >
+      <LoadingSpinner size={120} borderSize={5} />
+    </div>
   ),
 });
 
 interface ContentContainerProps {
   carWashData: CarWashType;
-  handleCloseModal: () => void;
-  openModal: () => void;
   isModalOpen: boolean;
   reviewsCount: number;
   reviewsScore: number;
+  isMapPlaceholder: boolean;
+  handleCloseModal: () => void;
+  openModal: () => void;
+  showMap: () => void;
 }
 
 const Content = (props: ContentContainerProps) => {
@@ -32,9 +48,11 @@ const Content = (props: ContentContainerProps) => {
     carWashData,
     reviewsCount,
     reviewsScore,
+    isMapPlaceholder,
+    isModalOpen,
     handleCloseModal,
     openModal,
-    isModalOpen,
+    showMap,
   } = props;
   const { windowWidth } = useContext(AppContext);
 
@@ -69,10 +87,14 @@ const Content = (props: ContentContainerProps) => {
             fullAddress={carWashData.full_address}
             reviewsScore={reviewsScore}
           />
-          <Map
-            position={[carWashData.lat, carWashData.lng]}
-            popupTitle={carWashData.name}
-          />
+          {isMapPlaceholder ? (
+            <MapPlaceholder showMap={showMap} />
+          ) : (
+            <Map
+              position={[carWashData.lat, carWashData.lng]}
+              popupTitle={carWashData.name}
+            />
+          )}
           <Irregularities
             openModal={openModal}
             isModalOpen={isModalOpen}
