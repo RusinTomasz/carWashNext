@@ -5,6 +5,7 @@ import Fonts from "../fonts";
 interface BasicButtonProps {
   backgroundColor?: "blue" | "red" | "grayButton";
   color?: "white" | "default";
+  zIndex?: number;
 }
 
 const BasicButton = styled.button<BasicButtonProps>`
@@ -22,6 +23,7 @@ const BasicButton = styled.button<BasicButtonProps>`
   background-color: ${(props) =>
     props.backgroundColor ? colors[props.backgroundColor] : colors.grayButton};
   color: ${(props) => (props.color ? colors[props.color] : colors.default)};
+  z-index: ${(props) => (props.zIndex ? props.zIndex : 0)};
 `;
 
 export default BasicButton;
