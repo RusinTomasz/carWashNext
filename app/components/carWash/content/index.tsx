@@ -11,14 +11,11 @@ interface ContentContainerProps {
 }
 
 const ContentContainer = (props: ContentContainerProps) => {
-  const {
-    carWashData,
-    isCarWashFetchDataError,
-    reviewsCount,
-    reviewsScore,
-  } = props;
+  const { carWashData, isCarWashFetchDataError, reviewsCount, reviewsScore } =
+    props;
 
   const [isModalOpen, setModalIsOpen] = useState(false);
+  const [isMapPlaceholder, setIsMapPlaceholder] = useState(true);
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
@@ -28,12 +25,18 @@ const ContentContainer = (props: ContentContainerProps) => {
     setModalIsOpen(true);
   };
 
+  const showMap = () => {
+    setIsMapPlaceholder(false);
+  };
+
   return (
     <>
       {!isCarWashFetchDataError ? (
         <Content
           handleCloseModal={handleCloseModal}
           openModal={openModal}
+          showMap={showMap}
+          isMapPlaceholder={isMapPlaceholder}
           carWashData={carWashData}
           reviewsCount={reviewsCount}
           reviewsScore={reviewsScore}
