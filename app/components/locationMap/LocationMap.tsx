@@ -25,7 +25,6 @@ const LocationMap = (props: LocationMapProps) => {
     '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
 
   return (
-    // <div>Mapa</div>
     <Map center={position} maxZoom={18} zoom={9}>
       <TileLayer url={titleLayerUrl} attribution={attribution} />
       <Marker key={1} position={position}>
