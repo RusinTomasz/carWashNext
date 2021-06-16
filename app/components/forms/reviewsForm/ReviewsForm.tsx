@@ -20,10 +20,12 @@ interface ReviewsFormProps {
   authorName: string;
   reviewMessage: string;
   isLoading: boolean;
+  isFormFocused: boolean;
   onRate: ({ rating }: { rating: number }) => void;
   onConfirm: (evt: SyntheticEvent) => Promise<void>;
   handleInputChange: (evt: InputEvent) => void;
   handleMessageChange: (evt: InputEvent) => void;
+  handleOnFocus: () => void;
 }
 
 const ReviewsForm = (props: ReviewsFormProps & CaptchaProps) => {
@@ -34,11 +36,13 @@ const ReviewsForm = (props: ReviewsFormProps & CaptchaProps) => {
     isLoading,
     recaptchaRef,
     isCaptchaVerified,
+    isFormFocused,
     onCaptchaChange,
     onRate,
     onConfirm,
     handleInputChange,
     handleMessageChange,
+    handleOnFocus,
   } = props;
 
   return (
@@ -59,6 +63,7 @@ const ReviewsForm = (props: ReviewsFormProps & CaptchaProps) => {
         placeholder="Imię / Nazwisko / Pseudonim"
         value={authorName}
         onChange={handleInputChange}
+        onFocus={handleOnFocus}
         required
       />
       <TextArea
@@ -67,17 +72,20 @@ const ReviewsForm = (props: ReviewsFormProps & CaptchaProps) => {
         value={reviewMessage}
         placeholder="Wpisz treść opinii"
         onChange={handleMessageChange}
+        onFocus={handleOnFocus}
         required
       />
-      <FlexWrapper justifyContent="flex-end">
-        <CaptchaWrap>
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
-            onChange={onCaptchaChange}
-          />
-        </CaptchaWrap>
-      </FlexWrapper>
+      {isFormFocused && (
+        <FlexWrapper justifyContent="flex-end">
+          <CaptchaWrap>
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY}
+              onChange={onCaptchaChange}
+            />
+          </CaptchaWrap>
+        </FlexWrapper>
+      )}
       <ActionsWrap alignItems="center">
         <SubmitButton
           backgroundColor="blue"

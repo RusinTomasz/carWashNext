@@ -25,6 +25,7 @@ const ReviewsFormContainer = (props: ReviewsFormProps) => {
   const [isError, setError] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
   const [isCaptchaVerified, setCaptchaVerified] = useState(false);
+  const [isFormFocused, setIsFormFocused] = useState(false);
 
   const onConfirm = async (evt: SyntheticEvent) => {
     evt.preventDefault();
@@ -62,6 +63,13 @@ const ReviewsFormContainer = (props: ReviewsFormProps) => {
     setAuthorName(value);
   };
 
+  const handleOnFocus = () => {
+    if (isFormFocused) {
+      return;
+    }
+    setIsFormFocused(true);
+  };
+
   const resetForm = (): void => {
     setAuthorName("");
     setReviewMessage("");
@@ -91,9 +99,11 @@ const ReviewsFormContainer = (props: ReviewsFormProps) => {
         starsValue={starsValue}
         authorName={authorName}
         handleInputChange={handleInputChange}
+        handleOnFocus={handleOnFocus}
         reviewMessage={reviewMessage}
         handleMessageChange={handleMessageChange}
         isLoading={isLoading}
+        isFormFocused={isFormFocused}
       />
 
       {isSuccess && (
