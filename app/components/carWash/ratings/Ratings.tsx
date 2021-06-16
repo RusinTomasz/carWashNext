@@ -21,6 +21,7 @@ const Ratings = (props: RatingsProps) => {
     <>
       <RateWrap>
         <Image
+          priority={true}
           src="/img/city/autospa-default.jpg"
           width={175}
           height={175}

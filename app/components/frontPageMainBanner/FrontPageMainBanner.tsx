@@ -78,6 +78,7 @@ const FrontPageMainBanner = () => {
         <SearchForm />
       </ContentWrap>
       <Image
+        priority={true}
         className="bg-index"
         src="/img/frontPageMainBanner/main-image-big.jpg"
         alt="Mycie szyby gąbką"

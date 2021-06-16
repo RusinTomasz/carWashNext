@@ -37,6 +37,7 @@ const Promoted = (props: PromotedProps) => {
           </PromotedFlexWrapper>
         </PromotedContainer>
         <Image
+          priority={true}
           className="bg-index"
           src="/img/promoted/carwash-promoted-bg.jpg"
           alt="Tło sekcji z żóltego Lamborghini"

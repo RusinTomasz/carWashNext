@@ -16,6 +16,7 @@ const BreadcrumbsComponent = () => {
         <div>{breadcrumbs}</div>
       </BreadcrumbsContent>
       <Image
+        priority={true}
         className="bg-index"
         src="/img/breadcrumbs/breadcrumbs-big.jpg"
         alt="Mycie szyby gąbką"
