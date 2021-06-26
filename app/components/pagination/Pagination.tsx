@@ -30,9 +30,11 @@ const Pagination = (props: PaginationProps) => {
     if (page > 1) {
       onPageChange(page - 1);
       const path = getPathFromUrl(router.asPath);
+      const query = page === 2 ? {} : { ...router.query, page: +page - 1 };
+
       router.push({
         pathname: path,
-        query: { ...router.query, page: +page - 1 },
+        query: query,
       });
     }
   };
@@ -51,41 +53,45 @@ const Pagination = (props: PaginationProps) => {
 
   return (
     <PaginationNav>
-      <PaginationNavItem>
-        <Link
-          href={{
-            pathname: getPathFromUrl(router.asPath),
-            query: { ...router.query, page: +page - 1 },
-          }}
-          passHref
-        >
-          <PaginationLink
-            disable={currentPage < 1 ? true : false}
-            onClick={prevPage}
+      {currentPage >= 1 && (
+        <PaginationNavItem>
+          <Link
+            href={{
+              pathname: getPathFromUrl(router.asPath),
+              query: page === 2 ? {} : { ...router.query, page: +page - 1 },
+            }}
+            passHref
           >
-            {"<"}
-          </PaginationLink>
-        </Link>
-      </PaginationNavItem>
+            <PaginationLink
+              disable={currentPage < 1 ? true : false}
+              onClick={prevPage}
+            >
+              {"<"}
+            </PaginationLink>
+          </Link>
+        </PaginationNavItem>
+      )}
       <PaginationNavItem>
         <PaginationCurrentPage>{page}</PaginationCurrentPage>
       </PaginationNavItem>
-      <PaginationNavItem>
-        <Link
-          href={{
-            pathname: getPathFromUrl(router.asPath),
-            query: { ...router.query, page: +page + 1 },
-          }}
-          passHref
-        >
-          <PaginationLink
-            disable={isNextPage ? false : true}
-            onClick={nextPage}
+      {isNextPage && (
+        <PaginationNavItem>
+          <Link
+            href={{
+              pathname: getPathFromUrl(router.asPath),
+              query: { ...router.query, page: +page + 1 },
+            }}
+            passHref
           >
-            {">"}
-          </PaginationLink>
-        </Link>
-      </PaginationNavItem>
+            <PaginationLink
+              disable={isNextPage ? false : true}
+              onClick={nextPage}
+            >
+              {">"}
+            </PaginationLink>
+          </Link>
+        </PaginationNavItem>
+      )}
     </PaginationNav>
   );
 };
