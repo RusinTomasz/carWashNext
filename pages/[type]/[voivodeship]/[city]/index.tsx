@@ -126,7 +126,7 @@ export const getServerSideProps = async ({ req, query }) => {
   let carWashesData = null;
   let carWashesCount = 0;
   let cityName = null;
-  const limit = 5;
+  const limit = 15;
   const startIndex = limit * (currentPage - 1);
   const carWashTypeId = getCarWashTypeIdByAlias(type);
 

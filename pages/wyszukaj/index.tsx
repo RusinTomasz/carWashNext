@@ -25,7 +25,7 @@ interface SearchResultsInterface {
 const SearchPage = () => {
   const router = useRouter();
   const { query }: { query: Query } = router;
-  const resultsLimit = 10;
+  const resultsLimit = 15;
 
   const startLoading = () => setLoading(true);
   const stopLoading = () => setLoading(false);
