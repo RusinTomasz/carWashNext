@@ -5,15 +5,22 @@ import {
   BreadcrumbsContent,
 } from "./styles/BreadcrumbsStyles";
 
-import { Breadcrumbs } from "nextjs-breadcrumbs";
+import Breadcrumbs from "nextjs-breadcrumbs";
 
 const BreadcrumbsComponent = () => {
-  const breadcrumbs = Breadcrumbs();
+  const removeQueryString = (url: string) => {
+    const splitedUrl = url.split("?");
+    const urlWithoutQUeryString = splitedUrl[0];
+    return urlWithoutQUeryString;
+  };
 
   return (
     <BreadcrumbsWrap justifyContent="center" wrap="wrap" alignItems="center">
       <BreadcrumbsContent>
-        <div>{breadcrumbs}</div>
+        <Breadcrumbs
+          containerClassName="breadcrumb"
+          transformLabel={(title: string) => removeQueryString(title)}
+        />
       </BreadcrumbsContent>
       <Image
         priority={true}
