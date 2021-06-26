@@ -20,7 +20,7 @@ const ContentWrap = styled.div`
   position: relative;
   padding-right: 1.5rem;
   width: 75%;
-  ${maxWidth(breakpoints.sm)} {
+  ${maxWidth(breakpoints.lg)} {
     width: 100%;
   }
 `;
