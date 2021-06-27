@@ -56,8 +56,11 @@ const CarWash = (props: CarWashProps) => {
   const stopLoading = () => setLoading(false);
 
   const [loading, setLoading] = useState(false);
+  const [pageTitle, setPageTitle] = useState("");
 
   useEffect(() => {
+    const pageTitle = createPageTitle();
+    setPageTitle(pageTitle);
     Router.events.on("routeChangeStart", startLoading);
     Router.events.on("routeChangeComplete", stopLoading);
     return () => {
@@ -66,10 +69,17 @@ const CarWash = (props: CarWashProps) => {
     };
   }, []);
 
+  const createPageTitle = (): string => {
+    if (carWashData.car_wash_type.id === 1) {
+      return `${carWashData.name} - ${carWashData.full_address} - ${carWashData.car_wash_type.name}`;
+    }
+    return `${carWashData.name} - ${carWashData.car_wash_type.name}`;
+  };
+
   return (
     <>
       <Head>
-        <title>Myjnia</title>
+        <title>{pageTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
