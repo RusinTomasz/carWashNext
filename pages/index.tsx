@@ -15,7 +15,9 @@ export default function Home(props: HomeProps) {
   return (
     <>
       <Head>
-        <title>Ranking Myjni</title>
+        <title>
+          Ranking myjni bezdotykowych i usług Auto detailingu | rankingmyjni.pl
+        </title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={`${process.env.NEXT_PUBLIC_CLIENT_HOST}`} />
       </Head>
