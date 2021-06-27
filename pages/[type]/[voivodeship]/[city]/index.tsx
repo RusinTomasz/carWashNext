@@ -60,10 +60,13 @@ const City = (props: CityProps) => {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(page);
   const [startingIndex, setStartingIndex] = useState(startCountingIndex);
+  const [pageTitle, setPageTitle] = useState("");
 
   const carWashListRef = useRef(null);
 
   useEffect(() => {
+    const pageTitle = createPageTitle();
+    setPageTitle(pageTitle);
     Router.events.on("routeChangeStart", startLoading);
     Router.events.on("routeChangeComplete", stopLoading);
     return () => {
@@ -71,6 +74,14 @@ const City = (props: CityProps) => {
       Router.events.off("routeChangeComplete", stopLoading);
     };
   }, []);
+
+  const createPageTitle = (): string => {
+    // Need to be done dynamicaly #review
+    if (type === "myjniebezdotykowe") {
+      return `Myjnie bezdotykowe - ${cityName} - ranking myjni bezdotykowych - ${cityName}`;
+    }
+    return `Auto detailing - ${cityName} - ranking auto detailingu - ${cityName}`;
+  };
 
   const onPageChange = (page: number) => {
     const startCountingIndex = paginationUtils.countStartingIndex(page, limit);
@@ -82,7 +93,7 @@ const City = (props: CityProps) => {
   return (
     <>
       <Head>
-        <title>Ranking Myjni Podstrona Miasto</title>
+        <title>{pageTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
@@ -128,7 +139,7 @@ export const getServerSideProps = async ({ req, query }) => {
   let cityName = null;
   const limit = 15;
   const startIndex = limit * (currentPage - 1);
-  const carWashTypeId = getCarWashTypeIdByAlias(type);
+  const carWashTypeId = getCarWashTypeIdByAlias(type);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
   try {
     let carWashesDataUrl = `${process.env.NEXT_PUBLIC_HOST}/car-washes?_limit=${limit}&_start=${startIndex}&voivodeship_slug=${voivodeship}&car_wash_type=${carWashTypeId}&city_slug=${city}`;
