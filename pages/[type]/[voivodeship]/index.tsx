@@ -14,6 +14,7 @@ import { breakpoints, maxWidth } from "../../../app/styles/breakpoints";
 import { colors } from "../../../app/styles/variables";
 import BreadcrumbsComponent from "../../../app/components/breadcrumbs/Breadcrumbs";
 import LoadingScreen from "../../../app/components/loadingScreen/LoadingScreen";
+import voivodeships from "../../../app/components/voivodeships/data/voivodeshipsData";
 
 export interface VoivodeshipParams extends ParsedUrlQuery {
   type: string;
@@ -68,8 +69,11 @@ const Voivodeship = (props: VoivodeshipProps) => {
   const stopLoading = () => setLoading(false);
 
   const [loading, setLoading] = useState(false);
+  const [pageTitle, setPageTitle] = useState("");
 
   useEffect(() => {
+    const pageTitle = createPageTitle();
+    setPageTitle(pageTitle);
     Router.events.on("routeChangeStart", startLoading);
     Router.events.on("routeChangeComplete", stopLoading);
     return () => {
@@ -78,10 +82,21 @@ const Voivodeship = (props: VoivodeshipProps) => {
     };
   }, []);
 
+  const createPageTitle = (): string => {
+    // Create seperate util for filter voviodeships by slug #review
+    const voivodeshipObj = voivodeships.filter(
+      (voivodeshipEl) => voivodeshipEl.slug === voivodeship
+    );
+    if (type === "myjniebezdotykowe") {
+      return `Myjnie bezdotykowe - województwo ${voivodeshipObj[0].name}`;
+    }
+    return `Auto detailing - województwo ${voivodeshipObj[0].name}`;
+  };
+
   return (
     <>
       <Head>
-        <title>Ranking Myjni</title>
+        <title>{pageTitle}</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
