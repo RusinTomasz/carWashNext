@@ -3,6 +3,7 @@ import voivodeships from "../../app/components/voivodeships/data/voivodeshipsDat
 import VoivodeshipsList from "../../app/components/voivodeships/voivodeshipsList/VoivodeshipsList";
 import Container from "../../app/styles/shared/Container";
 import FlexWrapper from "../../app/styles/shared/FlexWrapper";
+import DefaultErrorPage from "next/error";
 
 interface TypeParams {
   type: string;
@@ -15,6 +16,11 @@ interface CarWashTypeProps {
 
 export default function CarWashType(props: CarWashTypeProps) {
   const { type, canonicalUrl } = props;
+
+  if (type !== "myjniebezdotykowe" && type !== "autodetailing") {
+    // #review
+    return <DefaultErrorPage statusCode={404} />;
+  }
 
   return (
     <>
