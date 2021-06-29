@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import GlobalStyle from "../app/styles/GlobalStyle";
 
@@ -16,6 +16,8 @@ import { AppDataProvider } from "../app/context/AppContext";
 import MainMenu from "../app/components/mainMenu/MainMenu";
 import CookieConsent from "react-cookie-consent";
 
+import TagManager from "react-gtm-module";
+
 const cookieButtonStyles = {
   padding: "1rem 1.5rem 1rem",
   height: "42px",
@@ -29,6 +31,10 @@ const cookieButtonStyles = {
 };
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: "GTM-K2P6N8Q" });
+  }, []);
+
   return (
     <>
       <GlobalStyle />
