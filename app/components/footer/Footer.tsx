@@ -88,7 +88,7 @@ function Footer() {
             </FooterColumn>
           </FlexWrapper>
 
-          <p>CarWash © 2020 All Rights Reserved</p>
+          <p>CarWash © 2021 All Rights Reserved</p>
         </FooterBottom>
         <Image
           src="/img/footer/footer-shape.svg"

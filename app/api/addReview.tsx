@@ -13,7 +13,7 @@ const addReview = async (review: addReviewArgs) => {
   const reviewToAdd = {
     authorName: authorName,
     content: message,
-    blocked: false,
+    blocked: true,
     points: starsValue,
     related: [
       {
