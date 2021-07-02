@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://rankingmyjni.pl
+
+# Sitemaps
+Sitemap: https://rankingmyjni.pl/sitemap.xml
+Sitemap: https://rankingmyjni.pl/server-sitemap.xml
