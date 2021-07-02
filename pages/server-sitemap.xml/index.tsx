@@ -23,7 +23,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           loc: `https://rankingmyjni.pl/${type}/${voivodeships[j].slug}/${city.slug}`,
           lastmod: new Date().toISOString(),
           priority: "0.7",
-          changefreq: "weekly",
         };
 
         fields.push(field);
