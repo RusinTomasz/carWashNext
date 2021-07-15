@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 48px;
     font-weight: 400;
     margin: 0;
@@ -28,7 +28,9 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 28px;
+    font-weight: 300;
     font-family: "Exo", sans-serif;
     color: ${colors.default};
   }
