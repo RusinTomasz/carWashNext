@@ -34,7 +34,7 @@ const ContactPage = () => {
   return (
     <>
       <Head>
-        <title>Wyszukaj</title>
+        <title>Kontakt</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
