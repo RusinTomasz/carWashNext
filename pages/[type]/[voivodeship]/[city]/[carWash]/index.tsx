@@ -174,7 +174,7 @@ export async function getStaticProps(
       carWashFetchReviewsError: props.isCarWashFetchReviewsError,
       canonicalUrl: props.canonicalUrl,
     },
-    revalidate: 18000,
+    revalidate: 9000,
   };
 }
 
