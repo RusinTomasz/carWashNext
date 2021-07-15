@@ -9,6 +9,7 @@ interface Colors {
   lightBlue: string;
   barBlue: string;
   red: string;
+  green: string;
   carWashAddress: string;
   successBg: string;
   errorBg: string;
@@ -39,7 +40,8 @@ export const colors: Colors = {
   grayButton: "#efefef",
   lightBlue: "#00bce1",
   barBlue: "#a2bffd",
-  red: "#e74c3c",
+  red: "#EA4335",
+  green: "#4CAF50",
   carWashAddress: "#c4c4c4",
   successBg: "#4F8A10",
   errorBg: "#ef5350",
