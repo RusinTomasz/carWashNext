@@ -7,13 +7,22 @@ import Container from "../../app/styles/shared/Container";
 import styled from "styled-components";
 import FlexWrapper from "../../app/styles/shared/FlexWrapper";
 import ActionLink from "../../app/styles/shared/links/ActionLink";
+import { breakpoints, maxWidth } from "../../app/styles/breakpoints";
 
 const PageTitle = styled.h1`
   margin-top: 5rem;
+  ${maxWidth(breakpoints.sm)} {
+    margin-top: 3rem;
+    font-size: 28px;
+    line-height: 38px;
+  }
 `;
 
 const RankingsWrap = styled(FlexWrapper)`
   margin: 5rem 0;
+  ${maxWidth(breakpoints.sm)} {
+    margin: 3rem 0;
+  }
 `;
 
 const RankingItem = styled(FlexWrapper)`
@@ -21,6 +30,13 @@ const RankingItem = styled(FlexWrapper)`
   width: 50%;
   height: 400px;
   padding: 2rem 6rem;
+  ${maxWidth(breakpoints.md)} {
+    width: 100%;
+  }
+  ${maxWidth(breakpoints.sm)} {
+    padding: 2rem 1.5rem;
+    height: 320px;
+  }
 `;
 
 const ContentWrap = styled.div`
@@ -32,13 +48,13 @@ const Title = styled.h2`
   margin: 0;
   font-weight: 500;
   font-size: 26px;
-  line-height: 48px;
+  line-height: 34px;
 `;
 
 const Description = styled.p`
   font-size: 14px;
   line-height: 21px;
-  margin: 1rem 0 2rem;
+  margin: 2rem 0;
 `;
 
 const Rankings = () => {
