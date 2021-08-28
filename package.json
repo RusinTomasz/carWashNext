@@ -17,10 +17,10 @@
     ]
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "leaflet": "^1.7.1",
     "next": "10.0.9",
-    "next-redux-wrapper": "^6.0.2",
     "next-sitemap": "^1.6.124",
     "next-transpile-modules": "^7.3.0",
     "nextjs-breadcrumbs": "^1.1.4",
@@ -35,8 +35,6 @@
     "react-modal": "^3.14.3",
     "react-redux": "^7.2.4",
     "react-select": "^4.3.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
     "slugify": "^1.5.3",
     "styled-components": "^5.3.0",
     "uuid": "^8.3.2"
