@@ -4,7 +4,6 @@ import { AppProps } from "next/dist/next-server/lib/router/router";
 import GlobalStyle from "../app/styles/GlobalStyle";
 
 /* Redux */
-import { wrapper } from "../store/store";
 import { Provider } from "react-redux";
 import store from "../store/store";
 
@@ -61,4 +60,4 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   );
 };
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

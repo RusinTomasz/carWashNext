@@ -1,23 +1,15 @@
-import { createStore, applyMiddleware, Store, AnyAction } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { configureStore } from "@reduxjs/toolkit";
+import dashboardReducer from "./features/dashboard/dashboardSlice";
 
-import rootReducer from "./reducers";
-import { MakeStore, createWrapper, Context } from "next-redux-wrapper";
-import { State } from "./reducers/index";
+const store = configureStore({
+    reducer: {
+        dashboard: dashboardReducer,
+    },
+});
 
-const initialState = {};
-const middleware = [thunk];
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+export type RootState = ReturnType<typeof store.getState>
 
-//Return a new Redux Store instance each time it's called.
-const makeStore: MakeStore<State> = (context: Context) => store;
-
-export const wrapper = createWrapper<State>(makeStore, { debug: true });
+export type AppDispatch = typeof store.dispatch
 
 export default store;
