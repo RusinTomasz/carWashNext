@@ -56,6 +56,11 @@ const MainMenu = () => {
             <MenuLink onClick={handleLinkClick}>Regulamin</MenuLink>
           </Link>
         </MenuItem>
+        <MenuItem isOpen={isOpen}>
+          <Link href="/auth/login" passHref>
+            <MenuLink onClick={handleLinkClick}>Login</MenuLink>
+          </Link>
+        </MenuItem>
       </Menu>
     </HamburgerNav>
   );
