@@ -1,4 +1,4 @@
-import React, {SyntheticEvent } from 'react';
+import React from 'react';
 import LoginForm from "./LoginForm";
 
 export interface LoginFormValues {
@@ -8,34 +8,10 @@ export interface LoginFormValues {
 
 const LoginFormContainer = () => {
 
-    const formValues: LoginFormValues = {
-        email: "",
-        password: "",
-    };
-
-    const handleSubmit = async (evt: SyntheticEvent) => {
-        evt.preventDefault();
-        console.log("await for login");
-    };
 
     return (
         <>
-            <LoginForm />
-
-            {/*{isSuccess && (*/}
-            {/*    <FormStatusMessage*/}
-            {/*        title={successEmailTitle}*/}
-            {/*        message={successEmailMessage}*/}
-            {/*        type="success"*/}
-            {/*    />*/}
-            {/*)}*/}
-            {/*{isError && (*/}
-            {/*    <FormStatusMessage*/}
-            {/*        title={errorEmailTitle}*/}
-            {/*        message={errorEmailMessage}*/}
-            {/*        type="error"*/}
-            {/*    />*/}
-            {/*)}*/}
+            <LoginForm/>
         </>
     );
 };
