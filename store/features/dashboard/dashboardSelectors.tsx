@@ -1,5 +1,9 @@
 import {dashboardSliceState} from "./dashboardSlice";
 
-export const selectCount = (state: dashboardSliceState) => {
-    return state.counter.value;
+export const selectMenuSelectedKeys = (state: dashboardSliceState) => {
+    return state.dashboard.menuSelectedKeys;
+};
+
+export const selectOwnerCarWashes = (state: dashboardSliceState) => {
+    return state.dashboard.carWashes;
 };

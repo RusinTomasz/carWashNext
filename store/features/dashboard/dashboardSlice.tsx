@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import CarWashType from "../../../app/types/CarWash";
+
 
 export interface dashboardSliceState {
-    counter: {
-        value: number;
+    dashboard: {
+        menuSelectedKeys: string[];
+        carWashes: CarWashType[];
     };
 }
 
@@ -10,17 +13,19 @@ export const dashboardSlice = createSlice({
     name: "dashboard",
     initialState: {
         value: 0,
+        carWashes: [],
+        menuSelectedKeys: ["1"],
     },
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        setMenuSelectedKeys: (state, action) => {
+            state.menuSelectedKeys = [action.payload]
         },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload;
+        setCarWashes: (state, action) => {
+            state.carWashes = action.payload;
         },
     },
 });
 
-export const { increment, incrementByAmount } = dashboardSlice.actions;
+export const { setMenuSelectedKeys, setCarWashes } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer;

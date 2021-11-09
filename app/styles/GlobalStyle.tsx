@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { colors } from "../styles/variables";
 
+
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 10px;
@@ -27,7 +28,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   body {
-    font-weight: 400;
     font-size: 14px;
     line-height: 28px;
     font-weight: 300;
@@ -41,6 +41,9 @@ const GlobalStyle = createGlobalStyle`
     display: inline-block;
     color: ${colors.default};
     transition: all 0.2s ease-out;
+    &:hover {
+      color: initial;
+    }
   }
 `;
 

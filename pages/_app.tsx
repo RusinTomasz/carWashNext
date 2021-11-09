@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { FC, useEffect } from "react";
+import {FC, useEffect, useState} from "react";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import GlobalStyle from "../app/styles/GlobalStyle";
 
@@ -16,6 +16,7 @@ import MainMenu from "../app/components/mainMenu/MainMenu";
 import CookieConsent from "react-cookie-consent";
 
 import TagManager from "react-gtm-module";
+import {useRouter} from "next/router";
 
 const cookieButtonStyles = {
   padding: "1rem 1.5rem 1rem",
@@ -30,16 +31,25 @@ const cookieButtonStyles = {
 };
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const route = useRouter();
+  const [isDashboard, setIsDashboard] = useState(false);
+
   useEffect(() => {
     TagManager.initialize({ gtmId: "GTM-K2P6N8Q" });
   }, []);
+
+  useEffect(() => {
+    console.log("useEffect")
+    route.pathname.includes("/dashboard")  ? setIsDashboard(true) : setIsDashboard(false);
+  }, [route])
+
 
   return (
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <Header />
-        <MainMenu />
+        {!isDashboard && <Header />}
+        {!isDashboard && <MainMenu />}
         <AppDataProvider>
           <Component {...pageProps} />
         </AppDataProvider>

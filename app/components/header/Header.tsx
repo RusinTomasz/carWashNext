@@ -50,6 +50,9 @@ const Header = () => {
           <Link href="/kontakt" passHref>
             <AddCarWashLink>+ Dodaj myjnię</AddCarWashLink>
           </Link>
+          <Link href="/dashboard" passHref>
+            Dashboard
+          </Link>
         </FlexWrapper>
       </Container>
     </HeaderContent>
